@@ -1,0 +1,21 @@
+.home-category {
+    margin-bottom: 2rem;
+
+    .home-category-header {
+        @include display-flex;
+
+        margin-bottom: 1rem;
+
+        .category-name {
+            @include flex-grow(1);
+
+            h5 {
+                font-weight: bold;
+            }
+        }
+    }
+
+    .home-category-body {
+        @include display-flex;
+    }
+}

@@ -1,0 +1,7 @@
+.category-list {
+    margin-bottom: 1rem;
+
+    .list-wrapper {
+        @include make-custom-row(-5px);
+    }
+}

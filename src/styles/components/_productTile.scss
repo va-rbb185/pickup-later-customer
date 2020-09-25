@@ -1,0 +1,11 @@
+.product-tile {
+    height: 100%;
+    padding: 10px 10px 50px;
+    border-radius: 5px;
+
+    @include box-shadow(0 0 5px 1px rgba(0, 0, 0, 0.15));
+
+    &:not(:last-child) {
+        margin-right: 0.65rem;
+    }
+}
