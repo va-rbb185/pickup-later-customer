@@ -6,10 +6,10 @@ const HomeCategory = (props) => {
             <div className="container-fluid">
                 <div className="home-category-header">
                     <div className="category-name">
-                        <h5>Giải khát - Bia</h5>
+                        <h5>Đồ dùng Gia đình</h5>
                     </div>
                     <div className="show-all-link">
-                        <a href="#">Tất cả</a>
+                        <a href="#">Xem tất cả</a>
                     </div>
                 </div>
                 <div className="home-category-body">

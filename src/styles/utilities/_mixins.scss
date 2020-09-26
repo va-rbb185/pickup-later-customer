@@ -129,3 +129,14 @@
     -webkit-box-shadow: $value;
     box-shadow: $value;
 }
+
+@mixin fit-image {
+    height: 100%;
+    width: 100%;
+}
+
+@mixin translate($x, $y) {
+    -webkit-transform: translate($x, $y);
+    -ms-transform: translate($x, $y);
+    transform: translate($x, $y);
+}

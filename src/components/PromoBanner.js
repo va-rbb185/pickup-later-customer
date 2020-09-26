@@ -1,6 +1,6 @@
 import React from 'react';
 
-const bannerURL = 'https://image.shutterstock.com/z/stock-vector-flash-sale-discount-banner-template-promotion-1497823586.jpg';
+const bannerURL = 'https://dl.dropboxusercontent.com/s/lacnv4jz9tosh3t/giveaway_banner.jpg';
 
 const PromoBanner = () => {
     return (
