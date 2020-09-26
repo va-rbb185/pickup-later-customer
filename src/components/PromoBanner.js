@@ -5,9 +5,7 @@ const bannerURL = 'https://dl.dropboxusercontent.com/s/lacnv4jz9tosh3t/giveaway_
 const PromoBanner = () => {
     return (
         <div className="promo-banner">
-            <div className="container-fluid">
-                <img src={bannerURL} alt="Promo Banner" title="Promo Banner"/>
-            </div>
+            <img src={bannerURL} alt="Promo Banner" title="Promo Banner" />
         </div>
     );
 };

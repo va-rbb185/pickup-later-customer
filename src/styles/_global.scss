@@ -3,8 +3,12 @@ body {
     font-size: 14px;
 }
 
-.home-category {
-    &:last-child {
-        margin-bottom: 3.5rem;
-    }
+#app {
+    background-color: $prelude;
+}
+
+.page {
+    max-width: 768px;
+    margin-left: auto;
+    margin-right: auto;
 }

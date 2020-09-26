@@ -5,8 +5,18 @@ body {
   font-size: 14px;
 }
 
-.home-category:last-child {
-  margin-bottom: 3.5rem;
+#app {
+  background-color: #d9d2ee;
+}
+
+.page {
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home {
+  background-color: #fff;
 }
 
 .home-header {
@@ -40,6 +50,11 @@ body {
 .promo-banner {
   margin-top: calc(66px + 1rem);
   margin-bottom: 1.5rem;
+}
+@media (min-width: 768px) {
+  .promo-banner {
+    margin-top: 66px;
+  }
 }
 .promo-banner img {
   height: 100%;
@@ -95,7 +110,7 @@ body {
 }
 
 .home-category {
-  margin-bottom: 2rem;
+  padding-bottom: 2rem;
 }
 .home-category .home-category-header {
   display: -webkit-box;
