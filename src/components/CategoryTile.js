@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-const catImageURL = 'https://dl.dropboxusercontent.com/s/fjtgt9hwiqblr0e/category_icon_beverage_beer.jpg';
-const showAllImageURL = 'https://dl.dropboxusercontent.com/s/hm6f8nk3j6ijhat/show_all_categories_icon.jpg';
+import { sampleImageURLs } from '../static/resources';
 
 const CategoryTile = (props) => {
     if (props.isShowAllTile) {
@@ -10,7 +8,7 @@ const CategoryTile = (props) => {
             <div className="category-tile show-all">
                 <div className="category-icon">
                     <Link to="/all-categories" >
-                        <img src={showAllImageURL} alt="Category Icon" />
+                        <img src={sampleImageURLs.SHOW_ALL_CATEGORIES} alt="Category Icon" />
                     </Link>
                 </div>
                 <div className="category-name">
@@ -23,7 +21,7 @@ const CategoryTile = (props) => {
     return (
         <div className="category-tile">
             <div className="category-icon">
-                <img src={catImageURL} alt="Category Icon" />
+                <img src={sampleImageURLs.CATEGORY} alt="Category Icon" />
             </div>
             <div className="category-name">Giải khát - Bia</div>
         </div>

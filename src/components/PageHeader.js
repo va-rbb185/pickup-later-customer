@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-let homeLogo = 'https://dl.dropboxusercontent.com/s/eyrwkcu6f2pk30w/app_logo_128.png';
+import { sampleImageURLs } from '../static/resources';
 
 const PageHeader = (props) => {
     return (
@@ -9,7 +8,7 @@ const PageHeader = (props) => {
             <div className="page-header-wrapper">
                 <Link to="/">
                     <div className="home-logo">
-                        <img src={homeLogo} alt="Home Logo" />
+                        <img src={sampleImageURLs.LOGO} alt="Home Logo" />
                     </div>
                 </Link>
                 <h4>{props.pageTitle}</h4>

@@ -1,11 +1,10 @@
 import React from 'react';
-
-const bannerURL = 'https://dl.dropboxusercontent.com/s/lacnv4jz9tosh3t/giveaway_banner.jpg';
+import { sampleImageURLs } from '../static/resources';
 
 const PromoBanner = () => {
     return (
         <div className="promo-banner">
-            <img src={bannerURL} alt="Promo Banner" title="Promo Banner" />
+            <img src={sampleImageURLs.BANNER} alt="Promo Banner" title="Promo Banner" />
         </div>
     );
 };
