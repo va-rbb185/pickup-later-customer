@@ -1,5 +1,7 @@
+/* utilities */
 /* colors */
 /* font sizes */
+/* custom measurements */
 html,
 body {
   font-size: 14px;
@@ -9,16 +11,17 @@ body {
   background-color: #d9d2ee;
 }
 
+.inner-page {
+  background-color: #fff;
+}
+
 .page {
   max-width: 768px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.home {
-  background-color: #fff;
-}
-
+/* components */
 .home-header {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -26,16 +29,22 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 66px;
   z-index: 999;
-  background-color: #fff;
+  background-color: rgba(242, 242, 242, 0.96);
   -webkit-box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.1);
   box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.1);
+  height: 66px;
+}
+.home-header + div {
+  margin-top: 66px;
 }
 .home-header .home-header-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 .home-header .home-header-wrapper .search-box {
   -webkit-box-flex: 1;
@@ -47,13 +56,59 @@ body {
   margin-right: 0;
 }
 
+.page-header {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: rgba(242, 242, 242, 0.96);
+  -webkit-box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.1);
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.1);
+  padding-left: 8px;
+  height: 53px;
+}
+.page-header + div {
+  margin-top: 53px;
+}
+.page-header .page-header-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: relative;
+}
+.page-header .page-header-wrapper .home-logo {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 41px;
+  width: 41px;
+  border-radius: 8px;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+.page-header .page-header-wrapper .home-logo img {
+  border-radius: 8px;
+  height: 100%;
+  width: 100%;
+}
+
 .promo-banner {
-  margin-top: calc(66px + 1rem);
+  padding-top: 1rem;
   margin-bottom: 1.5rem;
 }
 @media (min-width: 768px) {
   .promo-banner {
-    margin-top: 66px;
+    padding-top: 0;
   }
 }
 .promo-banner img {
@@ -73,12 +128,22 @@ body {
   margin-left: -5px;
   margin-right: -5px;
 }
-
-.category-tile {
+.category-list.show-top .list-wrapper > div {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 25%;
   flex: 0 0 25%;
   max-width: 25%;
+  position: relative;
+  width: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.category-tile {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 33.33%;
+  flex: 0 0 33.33%;
+  max-width: 33.33%;
   position: relative;
   width: 100%;
   padding-left: 5px;
@@ -107,6 +172,21 @@ body {
 .category-tile .category-icon img {
   height: 100%;
   width: 100%;
+}
+.category-tile.show-all .category-icon {
+  position: relative;
+}
+.category-tile.show-all .category-icon span {
+  font-size: 2.8571rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.category-tile a {
+  color: #212529;
 }
 
 .home-category {
@@ -156,14 +236,15 @@ body {
   font-size: 1.2857rem;
   font-weight: 500;
 }
-.product-tile .product-quantity {
+
+.product-quantity {
   position: absolute;
   left: 10px;
   right: 10px;
   bottom: 10px;
   padding: 4px;
   border-radius: 4px;
-  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 5px rgba(250, 193, 193, 0.15);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -171,14 +252,14 @@ body {
   -ms-flex-align: center;
   align-items: center;
 }
-.product-tile .product-quantity button {
+.product-quantity button {
   position: relative;
   width: 26px;
   height: 30px;
   border: none;
   background-color: initial;
 }
-.product-tile .product-quantity button span {
+.product-quantity button span {
   font-size: 0.857rem;
   position: absolute;
   top: 50%;
@@ -187,11 +268,15 @@ body {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
-.product-tile .product-quantity .quantity {
+.product-quantity .quantity {
   -webkit-box-flex: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
   font-size: 1.1429rem;
   font-weight: bold;
   text-align: center;
+}
+
+.all-categories .category-list {
+  padding-top: 1.5rem;
 }

@@ -7,10 +7,10 @@ import ProductTile from './ProductTile';
 
 const Home = () => {
     return (
-        <div className="home">
+        <div className="home inner-page">
             <HomeHeader />
             <PromoBanner />
-            <CategoryList categories={[]} show-top />
+            <CategoryList categories={[]} isShowTop />
             <HomeCategory>
                 <ProductTile vertical />
                 <ProductTile vertical />

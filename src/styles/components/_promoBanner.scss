@@ -1,9 +1,9 @@
 .promo-banner {
-    margin-top: calc(66px + 1rem);
+    padding-top: 1rem;
     margin-bottom: 1.5rem;
 
     @media (min-width: 768px) {
-        margin-top: 66px;
+        padding-top: 0;
     }
 
     img {

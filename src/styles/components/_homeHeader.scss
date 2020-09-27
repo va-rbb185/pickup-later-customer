@@ -1,18 +1,15 @@
 .home-header {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 66px;
-    z-index: 999;
-    background-color: $white;
+    @include appHeader;
 
-    @include box-shadow(0 1px 6px 0 rgba(32, 33, 36, 0.1));
+    height: $homeHeaderHeight;
+
+    + div {
+        margin-top: $homeHeaderHeight;
+    }
 
     .home-header-wrapper {
         @include display-flex;
+        @include align-items-center;
 
         .search-box {
             @include flex-grow(1);

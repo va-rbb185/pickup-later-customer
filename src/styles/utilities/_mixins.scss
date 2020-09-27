@@ -140,3 +140,16 @@
     -ms-transform: translate($x, $y);
     transform: translate($x, $y);
 }
+
+@mixin appHeader {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-color: rgba(242, 242, 242, 0.96);
+
+    @include box-shadow(0 1px 6px 0 rgba(32, 33, 36, 0.1));
+}

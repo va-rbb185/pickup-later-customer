@@ -26,42 +26,4 @@
             font-weight: 500;
         }
     }
-
-    .product-quantity {
-        position: absolute;
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
-        padding: 4px;
-        border-radius: 4px;
-        box-shadow: 0 4px 5px rgba(0, 0, 0, .15);
-
-        @include display-flex;
-        @include align-items-center;
-
-        button {
-            position: relative;
-            width: 26px;
-            height: 30px;
-            border: none;
-            background-color: initial;
-
-            span {
-                font-size: $fontSize12;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-
-                @include translate(-50%, -50%);
-            }
-        }
-
-        .quantity {
-            @include flex-grow(1);
-
-            font-size: $fontSize16;
-            font-weight: bold;
-            text-align: center;
-        }
-    }
 }

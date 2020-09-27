@@ -1,5 +1,5 @@
 .category-tile {
-    @include make-custom-col(25%, 5px);
+    @include make-custom-col(33.33%, 5px);
     @include display-flex;
     @include flex-column;
     @include align-items-center;
@@ -18,5 +18,24 @@
         img {
             @include fit-image;
         }
+    }
+
+    &.show-all {
+        .category-icon {
+            position: relative;
+
+            span {
+                font-size: $fontSize40;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+
+                @include translate(-50%, -50%);
+            }
+        }
+    }
+
+    a {
+        color: $shark;
     }
 }

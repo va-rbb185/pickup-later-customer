@@ -4,4 +4,10 @@
     .list-wrapper {
         @include make-custom-row(-5px);
     }
+
+    &.show-top {
+        .list-wrapper > div {
+            @include make-custom-col(25%, 5px);
+        }
+    }
 }

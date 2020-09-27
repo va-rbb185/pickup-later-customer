@@ -1,0 +1,35 @@
+.page-header {
+    @include appHeader;
+
+    padding-left: 8px;
+    height: $pageHeaderHeight;
+
+    + div {
+        margin-top: $pageHeaderHeight;
+    }
+
+    .page-header-wrapper {
+        @include display-flex;
+        @include align-items-center;
+        @include justify-content-center;
+
+        position: relative;
+
+        .home-logo {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            height: 41px;
+            width: 41px;
+            border-radius: 8px;
+    
+            @include translate(0, -50%);
+
+            img {
+                border-radius: 8px;
+
+                @include fit-image;
+            }
+        }
+    }
+}
