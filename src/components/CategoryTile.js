@@ -14,7 +14,7 @@ const CategoryTile = (props) => {
                     </Link>
                 </div>
                 <div className="category-name">
-                    <Link to="/all-categories" >Tất cả</Link>
+                    <Link to="/all-categories">Tất cả</Link>
                 </div>
             </div>
         );

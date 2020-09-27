@@ -24,6 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "start-development": "react-scripts start",
     "start-production": "react-scripts build && serve -s build",
     "compile-scss": "sass --no-source-map src\\styles:src\\static\\css",
     "watch-scss": "sass --no-source-map --watch src\\styles:src\\static\\css"

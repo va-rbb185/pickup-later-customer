@@ -1,0 +1,10 @@
+.home {
+    .promo-banner {
+        padding-top: 1rem;
+        margin-bottom: 1.5rem;
+
+        @media (min-width: 768px) {
+            padding-top: 0;
+        }
+    }
+}
