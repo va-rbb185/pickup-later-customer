@@ -10,7 +10,7 @@ const Home = () => {
         <div className="home inner-page">
             <HomeHeader />
             <PromoBanner />
-            <CategoryList categories={[]} isShowTop />
+            <CategoryList cols={4} isShowTop={false} />
             <HomeCategory>
                 <ProductTile vertical />
                 <ProductTile vertical />

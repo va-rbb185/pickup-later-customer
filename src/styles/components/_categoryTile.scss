@@ -1,5 +1,4 @@
 .category-tile {
-    @include make-custom-col(33.33%, 5px);
     @include display-flex;
     @include flex-column;
     @include align-items-center;

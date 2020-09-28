@@ -6,6 +6,7 @@ class SearchBox extends React.Component {
         super(props);
         this.isSearchPage = this.props.location.pathname === '/search';
         this.onSearchBoxClick = this.onSearchBoxClick.bind(this);
+        this.onSearchBoxChange = this.onSearchBoxChange.bind(this);
     }
 
     onSearchBoxClick() {
@@ -13,6 +14,8 @@ class SearchBox extends React.Component {
             this.props.history.push('/search');
         }
     }
+
+    onSearchBoxChange() { }
 
     componentDidMount() {
         if (this.isSearchPage) {

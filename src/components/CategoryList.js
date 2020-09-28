@@ -2,13 +2,18 @@ import React from 'react';
 import CategoryTile from './CategoryTile';
 
 const CategoryList = (props) => {
-    const isShowTop = !!props.isShowTop;
+    const colClassName = !!props.cols && props.cols >= 2 && props.cols <= 4
+        ? ` has-${props.cols}-cols`
+        : '';
+    const componentClassName = 'category-list' + colClassName;
 
-    if (isShowTop) {
+    if (props.isShowTop) {
         return (
-            <div className="category-list show-top">
+            <div className={componentClassName}>
                 <div className="container-fluid">
                     <div className="list-wrapper">
+                        <CategoryTile />
+                        <CategoryTile />
                         <CategoryTile />
                         <CategoryTile />
                         <CategoryTile />
@@ -21,7 +26,7 @@ const CategoryList = (props) => {
     }
 
     return (
-        <div className="category-list">
+        <div className={componentClassName}>
             <div className="container-fluid">
                 <div className="list-wrapper">
                     <CategoryTile />

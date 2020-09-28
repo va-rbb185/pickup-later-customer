@@ -5,8 +5,24 @@
         @include make-custom-row(-5px);
     }
 
-    &.show-top {
-        .list-wrapper > div {
+    .category-tile {
+        @include make-custom-col(33.33%, 5px);
+    }
+
+    &.has-2-cols {
+        .category-tile {
+            @include make-custom-col(50%, 5px);
+        }
+    }
+
+    &.has-3-cols {
+        .category-tile {
+            @include make-custom-col(33.33%, 5px);
+        }
+    }
+
+    &.has-4-cols {
+        .category-tile {
             @include make-custom-col(25%, 5px);
         }
     }

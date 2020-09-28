@@ -6,7 +6,7 @@ const CategoryListingPage = () => {
     return (
         <div className="all-categories inner-page">
             <PageHeader pageTitle="Tất cả Danh mục" />
-            <CategoryList categories={[]} />
+            <CategoryList cols={3} isShowTop={false} />
         </div>
     );
 };
