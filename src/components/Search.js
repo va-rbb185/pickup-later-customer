@@ -7,8 +7,10 @@ class Search extends React.Component {
         return (
             <div className="search inner-page">
                 <PageHeader pageTitle="Tìm kiếm" />
-                <div className="search-box-wrapper">
-                    <SearchBox />
+                <div className="top-section">
+                    <div className="component-container">
+                        <SearchBox />
+                    </div>
                 </div>
             </div>
         );

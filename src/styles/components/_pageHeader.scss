@@ -4,10 +4,6 @@
     padding-left: 8px;
     height: $pageHeaderHeight;
 
-    + div {
-        margin-top: $pageHeaderHeight;
-    }
-
     .page-header-wrapper {
         @include display-flex;
         @include align-items-center;

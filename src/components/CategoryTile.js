@@ -21,9 +21,13 @@ const CategoryTile = (props) => {
     return (
         <div className="category-tile">
             <div className="category-icon">
-                <img src={sampleImageURLs.CATEGORY} alt="Category Icon" />
+                <Link to="/product-list" >
+                    <img src={sampleImageURLs.CATEGORY} alt="Category Icon" />
+                </Link>
             </div>
-            <div className="category-name">Giải khát - Bia</div>
+            <Link to="/product-list" >
+                <div className="category-name">Giải khát - Bia</div>
+            </Link>
         </div>
     );
 };

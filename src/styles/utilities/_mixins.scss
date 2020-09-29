@@ -130,9 +130,9 @@
     box-shadow: $value;
 }
 
-@mixin fit-image {
-    height: 100%;
-    width: 100%;
+@mixin fit-image($percentage: 100%) {
+    height: $percentage;
+    width: $percentage;
 }
 
 @mixin translate($x, $y) {

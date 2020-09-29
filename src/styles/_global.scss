@@ -3,16 +3,31 @@ body {
     font-size: 14px;
 }
 
+body {
+    padding-top: $pageHeaderHeight;
+}
+
 #app {
     background-color: $prelude;
 }
 
 .inner-page {
     background-color: $white;
+
+    .top-section {
+        border-bottom: 10px solid $whiteSmoke;
+    }
 }
 
 .page {
     max-width: 768px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.component-container {
+    width: 100%;
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }

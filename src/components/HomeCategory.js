@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HomeCategory = (props) => {
     return (
@@ -9,7 +10,7 @@ const HomeCategory = (props) => {
                         <h5>Đồ dùng Gia đình</h5>
                     </div>
                     <div className="show-all-link">
-                        <a href="#">Xem tất cả</a>
+                        <Link to="/product-list">Xem tất cả</Link>
                     </div>
                 </div>
                 <div className="home-category-body">

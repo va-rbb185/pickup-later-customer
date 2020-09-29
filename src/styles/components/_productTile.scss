@@ -1,29 +1,90 @@
 .product-tile {
-    position: relative;
-    height: 100%;
-    padding: 10px 10px 4rem;
-    border-radius: 5px;
+    &.horizontal {
+        padding: 1.25rem 1.25rem 0 1.25rem;
 
-    @include box-shadow(0 0 5px 1px rgba(0, 0, 0, 0.15));
+        .inner-tile {
+            @include make-custom-row(-5px);
 
-    &:not(:last-child) {
-        margin-right: 0.65rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid $whiteSmoke;
+        }
+
+        &:last-child {
+            .inner-tile {
+                border-bottom: none;
+            }
+        }
+
+        .product-image {
+            @include make-custom-col(25%, 5px);
+
+            img {
+                @include fit-image(90%);
+            }
+        }
+
+        .product-info {
+            @include make-custom-col(50%, 5px);
+
+            .product-name {
+                font-size: $fontSize15;
+            }
+
+            .product-quantity {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 50%;
+            }
+        }
+
+        .product-prices {
+            @include make-custom-col(25%, 5px);
+
+            text-align: right;
+
+            .sale-price {
+                font-size: $fontSize16;
+                font-weight: 500;
+            }
+
+            .original-price {
+                font-size: $fontSize12;
+            }
+        }
     }
 
-    .product-info {
-        img {
-            @include fit-image;
+    &.vertical {
+        position: relative;
+        height: 100%;
+        padding: 10px 10px 4rem;
+        border-radius: 5px;
+
+        @include box-shadow(0 0 5px 1px rgba(0, 0, 0, 0.15));
+
+        &:not(:last-child) {
+            margin-right: 0.65rem;
         }
 
-        .product-name {
-            font-size: $fontSize12;
-            margin-top: 0.85rem;
-            margin-bottom: 0.5rem;
-        }
+        .product-info {
+            img {
+                @include fit-image;
+            }
 
-        .sale-price {
-            font-size: $fontSize18;
-            font-weight: 500;
+            .product-name {
+                font-size: $fontSize12;
+                margin-top: 0.85rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .sale-price {
+                font-size: $fontSize18;
+                font-weight: 500;
+            }
+
+            .original-price {
+                font-size: $fontSize14;
+            }
         }
     }
 }
