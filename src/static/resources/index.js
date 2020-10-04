@@ -3,7 +3,8 @@ export const sampleImageURLs = {
     BANNER: 'https://dl.dropboxusercontent.com/s/lacnv4jz9tosh3t/giveaway_banner.jpg',
     CATEGORY: 'https://dl.dropboxusercontent.com/s/fjtgt9hwiqblr0e/category_icon_beverage_beer.jpg',
     SHOW_ALL_CATEGORIES: 'https://dl.dropboxusercontent.com/s/hm6f8nk3j6ijhat/show_all_categories_icon.jpg',
-    PRODUCT: 'https://dl.dropboxusercontent.com/s/bagyvq9l6plv91b/sample_product_image.jpg'
+    PRODUCT: 'https://dl.dropboxusercontent.com/s/bagyvq9l6plv91b/sample_product_image.jpg',
+    PRODUCT_DETAIL: 'https://dl.dropboxusercontent.com/s/kw4lq8rjo7kaadq/sample_product_image_3.jpg'
 };
 
 export const text = {};

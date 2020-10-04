@@ -1,0 +1,32 @@
+.cart {
+    .cart-summary {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 1rem;
+        border-top: 1px solid $whiteSmoke;
+
+        .subtotal {
+            @include display-flex;
+            @include align-items-center;
+
+            margin-bottom: 0.75rem;
+
+            .subtotal-label {
+                @include flex-grow(1);
+
+                font-size: $fontSize16;
+            }
+
+            .subtotal-value {
+                font-size: $fontSize22;
+                font-weight: 600;
+            }
+        }
+
+        button {
+            width: 100%;
+        }
+    }
+}

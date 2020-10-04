@@ -1,0 +1,38 @@
+.product-details {
+    .product-image {
+        text-align: center;
+
+        img {
+            @include fit-image(80%);
+        }
+    }
+
+    .details {
+        padding: 1rem;
+        border-bottom: 10px solid $whiteSmoke;
+
+        .product-name {
+            font-size: $fontSize18;
+            font-weight: 500;
+        }
+
+        .sale-price {
+            font-size: $fontSize22;
+            font-weight: 600;
+            color: $darkGreen;
+        }
+
+        .prep-time {
+            text-transform: uppercase;
+            color: $lighterGreen;
+        }
+
+        .product-quantity {
+            position: static;
+            left: auto;
+            right: auto;
+            bottom: auto;
+            width: 30%;
+        }
+    }
+}

@@ -4,6 +4,9 @@ import Home from './Home';
 import Search from './Search';
 import CategoryListingPage from './CategoryListingPage';
 import ProductListingPage from './ProductListingPage';
+import ProductDetailPage from './ProductDetailPage';
+import CardButton from './CartButton';
+import Cart from './Cart';
 
 const App = () => {
     return (
@@ -13,7 +16,10 @@ const App = () => {
                 <Route path="/search" component={Search} />
                 <Route path="/all-categories" component={CategoryListingPage} />
                 <Route path="/product-list" component={ProductListingPage} />
+                <Route path="/product-details" component={ProductDetailPage} />
+                <Route path="/cart" component={Cart} />
             </div>
+            <CardButton />
         </BrowserRouter>
     );
 };

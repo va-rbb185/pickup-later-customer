@@ -1,10 +1,16 @@
 html,
 body {
     font-size: 14px;
+    color: $text;
 }
 
 body {
     padding-top: $pageHeaderHeight;
+}
+
+a,
+a:hover {
+    color: $text;
 }
 
 #app {
