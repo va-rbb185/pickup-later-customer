@@ -17,7 +17,7 @@ class CardButton extends React.Component {
     render() {
         return (
             <div
-                className={`card-button${this.isCartPage ? ' d-none' : ''}`}
+                className="card-button"
                 onClick={this.onCardButtonClick}
             >
                 <button className="ui circular button cart-float-button">
