@@ -1,0 +1,24 @@
+.product-carousel {
+    position: relative;
+
+    .mUZZN {
+        margin: 0;
+    }
+
+    .rec-arrow {
+        position: absolute;
+        top: 50%;
+        z-index: 9;
+        border-radius: 5px;
+
+        @include translate(0, -50%);
+
+        &.rec-arrow-left {
+            left: 4px;
+        }
+
+        &.rec-arrow-right {
+            right: 4px;
+        }
+    }
+}

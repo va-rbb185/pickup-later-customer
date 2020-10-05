@@ -415,6 +415,28 @@ a:hover {
   cursor: pointer;
 }
 
+.product-carousel {
+  position: relative;
+}
+.product-carousel .mUZZN {
+  margin: 0;
+}
+.product-carousel .rec-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 9;
+  border-radius: 5px;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+}
+.product-carousel .rec-arrow.rec-arrow-left {
+  left: 4px;
+}
+.product-carousel .rec-arrow.rec-arrow-right {
+  right: 4px;
+}
+
 /* pages */
 .home {
   padding-top: 13px;

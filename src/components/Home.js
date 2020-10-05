@@ -5,6 +5,8 @@ import PromoBanner from './PromoBanner';
 import HomeCategory from './HomeCategory';
 import ProductTile from './ProductTile';
 
+const renderingCallback = () => <ProductTile vertical />;
+
 const Home = () => {
     return (
         <div className="home inner-page">
@@ -12,19 +14,13 @@ const Home = () => {
             <PromoBanner />
             <CategoryList cols={4} isShowTop={false} />
             <HomeCategory>
-                <ProductTile vertical />
-                <ProductTile vertical />
-                <ProductTile vertical />
+                {[0, 1, 2, 3, 4, 5, 6].map(renderingCallback)}
             </HomeCategory>
             <HomeCategory>
-                <ProductTile vertical />
-                <ProductTile vertical />
-                <ProductTile vertical />
+                {[0, 1, 2, 3, 4].map(renderingCallback)}
             </HomeCategory>
             <HomeCategory>
-                <ProductTile vertical />
-                <ProductTile vertical />
-                <ProductTile vertical />
+                {[0, 1, 2, 3].map(renderingCallback)}
             </HomeCategory>
         </div>
     );

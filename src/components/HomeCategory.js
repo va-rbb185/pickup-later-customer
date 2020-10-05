@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ProductCarousel from './ProductCarousel';
 
 const HomeCategory = (props) => {
     return (
@@ -14,7 +15,9 @@ const HomeCategory = (props) => {
                     </div>
                 </div>
                 <div className="home-category-body">
-                    {props.children}
+                    <ProductCarousel>
+                        {props.children}
+                    </ProductCarousel>
                 </div>
             </div>
         </div>
