@@ -9,8 +9,7 @@ const Cart = () => {
         <div className="cart inner-page">
             <PageHeader pageTitle="Giỏ hàng của bạn" />
             <div className="products">
-                <ProductTile />
-                <ProductTile />
+                {[0, 1].map(index => <ProductTile key={index} />)}
             </div>
             <Recommendation />
             <div className="cart-summary">

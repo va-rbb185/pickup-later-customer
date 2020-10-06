@@ -15,11 +15,7 @@ const ProductListingPage = () => {
                 </div>
             </div>
             <div className="products">
-                <ProductTile />
-                <ProductTile />
-                <ProductTile />
-                <ProductTile />
-                <ProductTile />
+                {[0, 1, 2, 3, 4].map(index => <ProductTile key={index} />)}
             </div>
         </div>
     );

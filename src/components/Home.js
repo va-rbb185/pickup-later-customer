@@ -5,7 +5,7 @@ import PromoBanner from './PromoBanner';
 import HomeCategory from './HomeCategory';
 import ProductTile from './ProductTile';
 
-const renderingCallback = () => <ProductTile vertical />;
+const renderingCallback = index => <ProductTile key={index} vertical />;
 
 const Home = () => {
     return (

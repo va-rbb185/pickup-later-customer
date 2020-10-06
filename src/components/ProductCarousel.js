@@ -6,7 +6,7 @@ const ProductCarousel = (props) => {
         <Carousel
             className="product-carousel"
             itemsToShow={3}
-            showArrows={true}
+            showArrows={false}
             pagination={false}
             itemPadding={[8, 4, 8, 4]}
         >
