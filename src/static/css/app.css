@@ -437,6 +437,13 @@ a:hover {
   right: 4px;
 }
 
+.product-recommendation {
+  padding: 1rem;
+}
+.product-recommendation h5 {
+  font-weight: bold;
+}
+
 /* pages */
 .home {
   padding-top: 13px;
