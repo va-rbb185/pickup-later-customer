@@ -7,6 +7,7 @@ import ProductListingPage from './ProductListingPage';
 import ProductDetailPage from './ProductDetailPage';
 import CardButton from './CartButton';
 import Cart from './Cart';
+import Login from './Login';
 
 const App = () => {
     return (
@@ -18,6 +19,7 @@ const App = () => {
                 <Route path="/product-list" component={ProductListingPage} />
                 <Route path="/product-details" component={ProductDetailPage} />
                 <Route path="/cart" component={Cart} />
+                <Route path="/login" component={Login} />
             </div>
             <CardButton />
         </BrowserRouter>

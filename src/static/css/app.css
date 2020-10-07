@@ -524,3 +524,14 @@ a:hover {
 .cart .cart-summary button {
   width: 100%;
 }
+
+.login .login-body {
+  padding: 1rem;
+}
+.login .login-body .login-form .submit-button-wrapper {
+  width: 100%;
+  text-align: center;
+}
+.login .login-body .login-form button {
+  margin: 0;
+}

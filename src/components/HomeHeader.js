@@ -1,14 +1,16 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 import SearchBox from './SearchBox';
 
-const HomeHeader = (props) => {
+const HomeHeader = () => {
+    let history = useHistory();
     return (
         <div className="home-header">
             <div className="container-fluid">
                 <div className="home-header-wrapper">
                     <SearchBox />
-                    <Button icon='user' />
+                    <Button icon='user' onClick={() => history.push('/login')} />
                 </div>
             </div>
         </div>
