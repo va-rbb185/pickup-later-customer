@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import { storeMenu as initialMenu } from '../static/resources';
+// import { storeMenu as initialMenu } from '../static/resources';
 import {
     UPDATE_MENU,
     FETCH_MENU_SUCCESS,
     FETCH_MENU_FAILURE
 } from '../actions/types';
 
-const menuReducer = (previousMenu = initialMenu, action) => {
+const menuReducer = (previousMenu = {}, action) => {
     switch (action.type) {
         case UPDATE_MENU:
             console.info('Menu updated:', action.payload.menu);

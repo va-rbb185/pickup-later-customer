@@ -12,6 +12,10 @@ class Home extends React.Component {
         this.props.fetchMenu();
     }
 
+    isStoreMenuEmpty() {
+        return Object.keys(this.props.storeMenu).length === 0;
+    }
+
     render() {
         console.log('Home component rendered/re-rendered. All props:', this.props);
         const renderingCallback = index => <ProductTile key={index} vertical />;

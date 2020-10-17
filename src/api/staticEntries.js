@@ -10,3 +10,8 @@ export const httpMethods = {
     PATCH: 'PATCH',
     DELETE: 'DELETE'
 }
+
+export const jsonHeaders = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+};
