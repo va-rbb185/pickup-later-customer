@@ -13,8 +13,7 @@ class Home extends React.Component {
     }
 
     render() {
-        console.log('Home component rendered/re-rendered:', this.props.storeMenu);
-
+        console.log('Home component rendered/re-rendered. All props:', this.props);
         const renderingCallback = index => <ProductTile key={index} vertical />;
         return (
             <div className="home inner-page">

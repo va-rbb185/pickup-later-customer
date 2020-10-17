@@ -2,30 +2,26 @@ import { combineReducers } from 'redux';
 import { storeMenu as initialMenu } from '../static/resources';
 import {
     UPDATE_MENU,
-    FETCH_MENU_START,
     FETCH_MENU_SUCCESS,
-    FETCH_MENU_FAILURE,
-    FETCH_MENU_END
+    FETCH_MENU_FAILURE
 } from '../actions/types';
 
-const menuReducer = (menu = initialMenu, action) => {
+const menuReducer = (previousMenu = initialMenu, action) => {
     switch (action.type) {
         case UPDATE_MENU:
-            return action.payload;
-        case FETCH_MENU_START:
-            console.log('Menu fetching started.');
-            return menu;
+            console.info('Menu updated:', action.payload.menu);
+            return action.payload.menu;
+
         case FETCH_MENU_SUCCESS:
-            console.log('Menu fetching succeeded.');
-            return action.payload;
+            console.info('Menu fetching succeeded:', action.payload.menu);
+            return action.payload.menu;
+
         case FETCH_MENU_FAILURE:
-            console.log('Menu fetching failed:', action.payload);
-            return menu;
-        case FETCH_MENU_END:
-            console.log('Menu fetching ended.');
-            return menu;
+            console.error('Menu fetching failed:', action.payload.error);
+            return previousMenu;
+
         default:
-            return menu;
+            return previousMenu;
     }
 };
 
