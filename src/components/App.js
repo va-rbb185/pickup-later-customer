@@ -8,6 +8,7 @@ import ProductDetailPage from './ProductDetailPage';
 import CardButton from './CartButton';
 import Cart from './Cart';
 import Login from './Login';
+import Checkout from './Checkout';
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
                 <Route path="/product-list" component={ProductListingPage} />
                 <Route path="/product-details" component={ProductDetailPage} />
                 <Route path="/cart" component={Cart} />
+                <Route path="/checkout" component={Checkout} />
                 <Route path="/login" component={Login} />
             </div>
             <CardButton />

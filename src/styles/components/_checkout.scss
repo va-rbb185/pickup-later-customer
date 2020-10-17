@@ -1,0 +1,71 @@
+.checkout {
+    padding-bottom: 109px;
+    background-color: $whiteSmoke;
+
+    .checkout-section {
+        .section-header {
+            padding: 0.65rem;
+            background-color: $whiteSmoke;
+            font-size: $fontSize18;
+            font-weight: 600;
+            color: $mortar;
+        }
+
+        .section-body {
+            padding: 0.65rem;
+            background-color: $white;
+        }
+    }
+
+    .customer-details {
+        .customer-field {
+            .field-icon {
+                color: $darkGreen;
+            }
+        }
+    }
+
+    .order-summary {}
+
+    .payment-methods {}
+
+    .order-placement {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 1rem;
+        background-color: $white;
+        border-top: 1px solid $whiteSmoke;
+
+        .subtotal {
+            @include display-flex;
+            @include align-items-start;
+
+            margin-bottom: 0.75rem;
+
+            .label {
+                @include flex-grow(1);
+
+                font-size: $fontSize16;
+            }
+
+            .values {
+                text-align: right;
+
+                .value {
+                    font-size: $fontSize22;
+                    font-weight: 600;
+                }
+
+                .original-value {
+                    font-size: $fontSize16;
+                }
+            }
+        }
+
+        button {
+            width: 100%;
+        }
+    }
+}

@@ -1,10 +1,13 @@
 .cart {
+    padding-bottom: 109px;
+
     .cart-summary {
         position: fixed;
         left: 0;
         right: 0;
         bottom: 0;
         padding: 1rem;
+        background-color: $white;
         border-top: 1px solid $whiteSmoke;
 
         .subtotal {
