@@ -1,10 +1,10 @@
 import { schemes, httpMethods, jsonHeaders } from './staticEntries';
 
-const scheme = schemes.HTTP;
-// const host = '05d3652e891e.ngrok.io';
-// const basePath = '/api/v1';
-const host = 'jsonplaceholder.typicode.com';
-const basePath = '';
+const scheme = schemes.HTTPS;
+const host = 'e85dc8bb08ec.ap.ngrok.io';
+const basePath = '/api/v1';
+// const host = 'jsonplaceholder.typicode.com';
+// const basePath = '';
 const paths = {
     get: {
         menu: '/menu',
@@ -33,9 +33,11 @@ function getConfigurations(method, data = null) {
 }
 
 export const fetchStoreMenu = async () => {
-    const apiPath = getApiPath(paths.get.test);
+    const apiPath = getApiPath(paths.get.menu);
     const configurations = getConfigurations(httpMethods.GET);
+
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
+
     return data;
 }

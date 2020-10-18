@@ -21,13 +21,19 @@ const fetchMenuFailure = (error) => ({
     }
 });
 
-export const updateStoreMenu = menu => ({
+export const updateMenu = menu => ({
     type: UPDATE_MENU,
     payload: { menu }
 });
 
 export const fetchMenu = () => dispatch => {
     fetchStoreMenu()
-        .then(response => dispatch(fetchMenuSuccess(response)))
-        .catch(error => dispatch(fetchMenuFailure(error)));
+        .then(response => {
+            const successAction = fetchMenuSuccess(response);
+            dispatch(successAction);
+        })
+        .catch(error => {
+            const failureAction = fetchMenuFailure(error);
+            dispatch(failureAction);
+        });
 };

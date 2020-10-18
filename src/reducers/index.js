@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-// import { storeMenu as initialMenu } from '../static/resources';
+// import { storeMenu as initialMenu } from '../json';
 import {
     UPDATE_MENU,
     FETCH_MENU_SUCCESS,
@@ -9,11 +9,11 @@ import {
 const menuReducer = (previousMenu = {}, action) => {
     switch (action.type) {
         case UPDATE_MENU:
-            console.info('Menu updated:', action.payload.menu);
+            console.info('Menu updated. Updated state:', action.payload.menu);
             return action.payload.menu;
 
         case FETCH_MENU_SUCCESS:
-            console.info('Menu fetching succeeded:', action.payload.menu);
+            console.info('Menu fetching succeeded. Updated state:', action.payload.menu);
             return action.payload.menu;
 
         case FETCH_MENU_FAILURE:

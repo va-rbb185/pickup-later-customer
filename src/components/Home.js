@@ -1,23 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import HomeHeader from './HomeHeader';
 import CategoryList from './CategoryList';
 import PromoBanner from './PromoBanner';
 import HomeCategory from './HomeCategory';
 import ProductTile from './ProductTile';
-import { fetchMenu } from '../actions';
 
 class Home extends React.Component {
-    componentDidMount() {
-        this.props.fetchMenu();
-    }
-
-    isStoreMenuEmpty() {
-        return Object.keys(this.props.storeMenu).length === 0;
-    }
-
     render() {
-        console.log('Home component rendered/re-rendered. All props:', this.props);
         const renderingCallback = index => <ProductTile key={index} vertical />;
         return (
             <div className="home inner-page">
@@ -39,9 +30,6 @@ class Home extends React.Component {
 };
 
 const mapStateToProps = state => ({ storeMenu: state.storeMenu });
-const ConnectedHome = connect(
-    mapStateToProps,
-    { fetchMenu }
-)(Home);
+const ConnectedHome = connect(mapStateToProps)(Home);
 
 export default ConnectedHome;
