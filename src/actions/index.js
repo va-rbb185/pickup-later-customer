@@ -3,11 +3,15 @@ import updateMenu from './updateMenu';
 import fetchMenu from './fetchMenu';
 import addCartItem from './addCartItem';
 import removeCartItem from './removeCartItem';
+import showCartButton from './showCartButton';
+import hideCartButton from './hideCartButton';
 
 export {
     updateTestData,
     updateMenu,
     fetchMenu,
     addCartItem,
-    removeCartItem
+    removeCartItem,
+    showCartButton,
+    hideCartButton
 };
