@@ -1,30 +1,11 @@
 import { combineReducers } from 'redux';
-// import { storeMenu as initialMenu } from '../json';
-import {
-    UPDATE_MENU,
-    FETCH_MENU_SUCCESS,
-    FETCH_MENU_FAILURE
-} from '../actions/types';
 
-const menuReducer = (previousMenu = {}, action) => {
-    switch (action.type) {
-        case UPDATE_MENU:
-            console.info('Menu updated. Updated state:', action.payload.menu);
-            return action.payload.menu;
-
-        case FETCH_MENU_SUCCESS:
-            console.info('Menu fetching succeeded. Updated state:', action.payload.menu);
-            return action.payload.menu;
-
-        case FETCH_MENU_FAILURE:
-            console.error('Menu fetching failed:', action.payload.error);
-            return previousMenu;
-
-        default:
-            return previousMenu;
-    }
-};
+import testDataReducer from './testDataReducer';
+import menuReducer from './menuReducer';
+import cartReducer from './cartReducer';
 
 export default combineReducers({
-    storeMenu: menuReducer
+    testData: testDataReducer,
+    storeMenu: menuReducer,
+    cart: cartReducer
 });
