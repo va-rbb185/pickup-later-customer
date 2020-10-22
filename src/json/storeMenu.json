@@ -17,8 +17,7 @@
           "salePrice": 15000,
           "imageUrl": "https://epicure.vn/wp-content/uploads/2017/08/may-rang-xay-cafe-tu-dong.jpg",
           "freshFood": true,
-          "productType": "Product",
-          "products": null
+          "productType": "Product"
         },
         {
           "id": 2,
@@ -28,8 +27,7 @@
           "salePrice": 20000,
           "imageUrl": "https://epicure.vn/wp-content/uploads/2017/08/may-rang-xay-cafe-tu-dong.jpg",
           "freshFood": true,
-          "productType": "Product",
-          "products": null
+          "productType": "Product"
         },
         {
           "id": 3,
@@ -39,8 +37,7 @@
           "salePrice": 15000,
           "imageUrl": "https://cdn.tgdd.vn/Products/Images/3226/76513/bhx/nuoc-tang-luc-redbull-lon-250ml-15112018162747.JPG",
           "freshFood": false,
-          "productType": "Product",
-          "products": null
+          "productType": "Product"
         },
         {
           "id": 7,
@@ -50,8 +47,7 @@
           "salePrice": 15000,
           "imageUrl": "",
           "freshFood": true,
-          "productType": "Product",
-          "products": null
+          "productType": "Product"
         },
         {
           "id": 8,
@@ -61,8 +57,7 @@
           "salePrice": 15000,
           "imageUrl": "",
           "freshFood": true,
-          "productType": "Product",
-          "products": null
+          "productType": "Product"
         },
         {
           "id": 9,
@@ -72,8 +67,7 @@
           "salePrice": 10000,
           "imageUrl": "https://bizweb.dktcdn.net/thumb/1024x1024/100/361/770/products/nuoc-tang-luc-sting-dau-lon-330ml.jpg?v=1570676502267",
           "freshFood": false,
-          "productType": "Product",
-          "products": null
+          "productType": "Product"
         }
       ]
     },
@@ -91,8 +85,7 @@
           "salePrice": 30000,
           "imageUrl": "",
           "freshFood": true,
-          "productType": "Product",
-          "products": null
+          "productType": "Product"
         },
         {
           "id": 10,
@@ -102,8 +95,7 @@
           "salePrice": 30000,
           "imageUrl": "",
           "freshFood": true,
-          "productType": "Product",
-          "products": null
+          "productType": "Product"
         }
       ]
     },
@@ -121,8 +113,7 @@
           "salePrice": 30000,
           "imageUrl": "",
           "freshFood": true,
-          "productType": "Product",
-          "products": null
+          "productType": "Product"
         },
         {
           "id": 11,
@@ -132,8 +123,7 @@
           "salePrice": 30000,
           "imageUrl": "",
           "freshFood": true,
-          "productType": "Product",
-          "products": null
+          "productType": "Product"
         }
       ]
     },
@@ -151,8 +141,7 @@
           "salePrice": 15000,
           "imageUrl": "",
           "freshFood": true,
-          "productType": "Product",
-          "products": null
+          "productType": "Product"
         },
         {
           "id": 12,
@@ -162,8 +151,7 @@
           "salePrice": 20000,
           "imageUrl": "",
           "freshFood": true,
-          "productType": "Product",
-          "products": null
+          "productType": "Product"
         }
       ]
     },

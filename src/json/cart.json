@@ -1,0 +1,30 @@
+{
+  "amount": 3,
+  "items": [{
+      "quantity": 1,
+      "product": {
+        "id": 10,
+        "name": "Cơm sườn",
+        "title": "Cơm sườn",
+        "price": 30000,
+        "salePrice": 30000,
+        "imageUrl": "",
+        "freshFood": true,
+        "productType": "Product"
+      }
+    },
+    {
+      "quantity": 2,
+      "product": {
+        "id": 7,
+        "name": "Sữa đậu nành (size vừa)",
+        "title": "Sữa đậu nành (size vừa)",
+        "price": 10000,
+        "salePrice": 15000,
+        "imageUrl": "",
+        "freshFood": true,
+        "productType": "Product"
+      }
+    }
+  ]
+}
