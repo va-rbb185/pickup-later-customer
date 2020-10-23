@@ -23,6 +23,8 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        // start Spinner here
+        // stop Spinner in Home's componentDidUpdate() method
         this.props.fetchMenu();
         this.props.retrieveCartFromStorage();
     }

@@ -1,16 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import HomeHeader from './HomeHeader';
 import CategoryList from './CategoryList';
 import PromoBanner from './PromoBanner';
 import HomeCategory from './HomeCategory';
 
-const Home = (props) => {
+const Home = ({ allCategories }) => {
     // console.info('Home rendered/re-rendered. All component props:', props);
-    const allCategories = props.storeMenu.groups;
     const top3Categories = allCategories.slice(0, 3);
-
     return (
         <div className="home inner-page">
             <HomeHeader />
@@ -25,7 +22,7 @@ const Home = (props) => {
     );
 };
 
-const mapStateToProps = ({ storeMenu }) => ({ storeMenu });
+const mapStateToProps = ({ storeMenu }) => ({ allCategories: storeMenu.groups });
 const ConnectedHome = connect(mapStateToProps)(Home);
 
 export default ConnectedHome;

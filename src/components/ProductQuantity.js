@@ -21,7 +21,14 @@ class ProductQuantity extends React.Component {
     }
 
     onClickRemoveFromCart() {
-        this.props.removeCartItem(this.props.product);
+        if (this.calculateQuantity() === 1) {
+            const removeFromCartConfirmed = window.confirm('Bạn có chắc chắn muốn xoá sản phẩm này khỏi giỏ hàng?');
+            if (removeFromCartConfirmed) {
+                this.props.removeCartItem(this.props.product);
+            }
+        } else {
+            this.props.removeCartItem(this.props.product);
+        }
     }
 
     render() {
@@ -36,7 +43,7 @@ class ProductQuantity extends React.Component {
                     </span>
                 </button>
                 <div className="quantity">{quantity}</div>
-                <button disabled={quantity === 5} type="button" className="ant-btn btn-quantity ant-btn-icon-only" onClick={this.onClickAddToCart}>
+                <button disabled={quantity === 9} type="button" className="ant-btn btn-quantity ant-btn-icon-only" onClick={this.onClickAddToCart}>
                     <span role="img" aria-label="plus" className="anticon anticon-plus">
                         <svg viewBox="64 64 896 896" focusable="false" className="" data-icon="plus" width="1em" height="1em" fill="currentColor" aria-hidden="true">
                             <defs>
