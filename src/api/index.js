@@ -1,10 +1,8 @@
 import { schemes, httpMethods, jsonHeaders } from './staticEntries';
 
 const scheme = schemes.HTTPS;
-const host = '3f83ef1ce9e9.ap.ngrok.io';
+const host = '31af907d2953.ap.ngrok.io';
 const basePath = '/api/v1';
-// const host = 'jsonplaceholder.typicode.com';
-// const basePath = '';
 const paths = {
     get: {
         menu: '/menu',
@@ -38,4 +36,4 @@ export const fetchStoreMenu = async () => {
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
     return data;
-}
+};

@@ -1,4 +1,5 @@
-import { storeMenu } from '../store/initialState';
+// import { storeMenu } from '../store/initialState';
+import { storeMenu } from '../json';
 import {
     UPDATE_MENU,
     FETCH_MENU_START,

@@ -16,7 +16,7 @@ const Login = () => {
                             content={loginResources.DESCRIPTION_CONTENT}
                         />
                         <Form.Input placeholder={loginResources.INPUT_PLACEHOLDER_PHONE} />
-                        <Form.Input placeholder={loginResources.INPUT_PLACEHOLDER_OTP} />
+                        <Form.Input placeholder={loginResources.INPUT_PLACEHOLDER_OTP} disabled />
                         <div className="submit-button-wrapper">
                             <Button className="phone-submit" color="green">{loginResources.SUBMIT_TEXT}</Button>
                         </div>

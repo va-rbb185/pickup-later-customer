@@ -1,7 +1,8 @@
 import { cart as initialCart } from '../store/initialState';
 import {
     ADD_CART_ITEM,
-    REMOVE_CART_ITEM
+    REMOVE_CART_ITEM,
+    RETRIEVE_CART_FROM_STORAGE
 } from '../actions/types';
 
 export default (previousState = initialCart, action) => {
@@ -34,6 +35,9 @@ export default (previousState = initialCart, action) => {
                 return newState;
             }
             return previousState;
+
+        case RETRIEVE_CART_FROM_STORAGE:
+            return action.cart;
 
         default:
             return previousState;

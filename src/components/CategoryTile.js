@@ -22,11 +22,11 @@ const CategoryTile = (props) => {
         <div className="category-tile">
             <div className="category-icon">
                 <Link to="/product-list" >
-                    <img src={sampleImageURLs.CATEGORY} alt="Category Icon" />
+                    <img src={props.category.imageUrl || sampleImageURLs.CATEGORY} alt="Category Icon" />
                 </Link>
             </div>
             <Link to="/product-list" >
-                <div className="category-name">Giải khát - Bia</div>
+                <div className="category-name">{props.category.name}</div>
             </Link>
         </div>
     );

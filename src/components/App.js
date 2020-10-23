@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchMenu } from '../actions';
+import { fetchMenu, retrieveCartFromStorage } from '../actions';
 
 import Home from './Home';
 import Search from './Search';
@@ -14,18 +14,26 @@ import Login from './Login';
 import Checkout from './Checkout';
 
 class App extends React.Component {
-    isStoreMenuEmpty() {
-        return Object.keys(this.props.storeMenu).length === 0;
-    }
-
-    componentDidMount() {
-        if (this.isStoreMenuEmpty()) {
-            this.props.fetchMenu();
+    saveCartToStorage(cart) {
+        const prevCart = this.props.cart;
+        const hasCartChanged = cart.amount !== prevCart.amount;
+        if (hasCartChanged) {
+            window.localStorage.setItem('storedCart', JSON.stringify(cart));
         }
     }
 
+    componentDidMount() {
+        this.props.fetchMenu();
+        this.props.retrieveCartFromStorage();
+    }
+
+    shouldComponentUpdate(nextProps) {
+        this.saveCartToStorage(nextProps.cart);
+        return false;
+    }
+
     render() {
-        console.info('App rendered/re-rendered. All component props:', this.props);
+        console.info('App rendered.');
         return (
             <BrowserRouter>
                 <div className="page">
@@ -44,10 +52,8 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({ storeMenu: state.storeMenu });
-const ConnectedApp = connect(
-    mapStateToProps,
-    { fetchMenu }
-)(App);
+const mapStateToProps = ({ cart }) => ({ cart });
+const actions = { fetchMenu, retrieveCartFromStorage };
+const ConnectedApp = connect(mapStateToProps, actions)(App);
 
 export default ConnectedApp;

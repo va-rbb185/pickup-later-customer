@@ -5,6 +5,7 @@ import addCartItem from './addCartItem';
 import removeCartItem from './removeCartItem';
 import showCartButton from './showCartButton';
 import hideCartButton from './hideCartButton';
+import retrieveCartFromStorage from './retrieveCartFromStorage';
 
 export {
     updateTestData,
@@ -13,5 +14,6 @@ export {
     addCartItem,
     removeCartItem,
     showCartButton,
-    hideCartButton
+    hideCartButton,
+    retrieveCartFromStorage
 };

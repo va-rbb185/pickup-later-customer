@@ -2,6 +2,7 @@ import React from 'react';
 import CategoryTile from './CategoryTile';
 
 const CategoryList = (props) => {
+    // console.info('CategoryList rendered/re-rendered. All component props:', props);
     const colClassName = !!props.cols && props.cols >= 2 && props.cols <= 4
         ? ` has-${props.cols}-cols`
         : '';
@@ -29,14 +30,7 @@ const CategoryList = (props) => {
         <div className={componentClassName}>
             <div className="container-fluid">
                 <div className="list-wrapper">
-                    <CategoryTile />
-                    <CategoryTile />
-                    <CategoryTile />
-                    <CategoryTile />
-                    <CategoryTile />
-                    <CategoryTile />
-                    <CategoryTile />
-                    <CategoryTile />
+                    {props.categories.map(category => <CategoryTile key={`category_${category.id}`} category={category} />)}
                 </div>
             </div>
         </div>
