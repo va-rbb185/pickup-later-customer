@@ -23,13 +23,20 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        // start Spinner here
-        // stop Spinner in Home's componentDidUpdate() method
+        /*
+         * Start Spinner here
+         * Stop `Spinner` in Home's componentDidUpdate() method
+         */
         this.props.fetchMenu();
         this.props.retrieveCartFromStorage();
     }
 
     shouldComponentUpdate(nextProps) {
+        /*
+         * Detects changes in `cart` state
+         * Saves cart to localStorage whenever it is updated in store
+         * App component is never re-rendered under any circumstances
+         */
         this.saveCartToStorage(nextProps.cart);
         return false;
     }
