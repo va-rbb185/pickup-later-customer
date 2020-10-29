@@ -10,7 +10,7 @@ const HomeHeader = () => {
             <div className="container-fluid">
                 <div className="home-header-wrapper">
                     <SearchBox />
-                    <Button icon='user' onClick={() => history.push('/login')} />
+                    <Button icon='user' onClick={() => history.push('/account')} />
                 </div>
             </div>
         </div>

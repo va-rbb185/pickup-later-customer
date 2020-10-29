@@ -1,4 +1,4 @@
-export default {
+const sampleImageURLs = {
     LOGO: 'https://dl.dropboxusercontent.com/s/eyrwkcu6f2pk30w/app_logo_128.png',
     BANNER: 'https://dl.dropboxusercontent.com/s/lacnv4jz9tosh3t/giveaway_banner.jpg',
     CATEGORY: 'https://dl.dropboxusercontent.com/s/fjtgt9hwiqblr0e/category_icon_beverage_beer.jpg',
@@ -6,3 +6,5 @@ export default {
     PRODUCT: 'https://dl.dropboxusercontent.com/s/bagyvq9l6plv91b/sample_product_image.jpg',
     PRODUCT_DETAIL: 'https://dl.dropboxusercontent.com/s/kw4lq8rjo7kaadq/sample_product_image_3.jpg'
 };
+
+export default sampleImageURLs;

@@ -1,6 +1,8 @@
 import { ADD_CART_ITEM } from './types';
 
-export default product => ({
+const addCartItem = product => ({
     type: ADD_CART_ITEM,
     product
 });
+
+export default addCartItem;

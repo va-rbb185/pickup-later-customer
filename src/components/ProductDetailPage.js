@@ -2,12 +2,11 @@ import React from 'react';
 import PageHeader from './PageHeader';
 import { sampleImageURLs } from '../static/resources';
 import ProductQuantity from './ProductQuantity';
-import Recommendation from './Recommendation';
 
 const ProductDetailPage = () => {
     return (
         <div className="product-details inner-page">
-            <PageHeader pageTitle="Chi tiết Sản phẩm" />
+            <PageHeader>Chi tiết Sản phẩm</PageHeader>
             <div className="top-section">
                 <div className="product-image">
                     <img src={sampleImageURLs.PRODUCT_DETAIL} alt="" />
@@ -20,7 +19,6 @@ const ProductDetailPage = () => {
                 <div className="prep-time">Thời gian chuẩn bị ~15 phút</div>
                 <ProductQuantity />
             </div>
-            <Recommendation />
         </div >
     );
 };

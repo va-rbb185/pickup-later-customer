@@ -7,7 +7,7 @@ import ProductTile from './ProductTile';
 const ProductListingPage = () => {
     return (
         <div className="product-list inner-page">
-            <PageHeader pageTitle="Đồ dùng Gia đình" />
+            <PageHeader>Đồ dùng Gia đình</PageHeader>
             <div className="top-section">
                 <PromoBanner />
                 <div className="component-container">

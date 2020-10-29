@@ -11,7 +11,7 @@ const Checkout = () => {
     let history = useHistory();
     return (
         <div className="checkout inner-page">
-            <PageHeader pageTitle={checkoutResources.PAGE_TITLE} />
+            <PageHeader>{checkoutResources.PAGE_TITLE}</PageHeader>
             <div className="checkout-content">
                 <div className="checkout-section customer-details">
                     <div className="section-header">{checkoutResources.CUSTOMER_DETAIL_TITLE}</div>

@@ -17,7 +17,7 @@ const fetchMenuFailure = (error) => ({
     error
 });
 
-export default () => dispatch => {
+const fetchMenu = () => dispatch => {
     console.info('Menu fetching started.');
     dispatch(fetchMenuStart());
 
@@ -33,3 +33,5 @@ export default () => dispatch => {
             dispatch(action);
         });
 };
+
+export default fetchMenu;

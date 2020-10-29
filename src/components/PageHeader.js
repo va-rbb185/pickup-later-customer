@@ -11,7 +11,7 @@ const PageHeader = (props) => {
                         <img src={sampleImageURLs.LOGO} alt="Home Logo" />
                     </div>
                 </Link>
-                <h4>{props.pageTitle}</h4>
+                <h4>{props.children}</h4>
             </div>
         </div>
     );

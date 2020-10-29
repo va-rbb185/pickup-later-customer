@@ -377,7 +377,7 @@ a:hover {
   text-align: center;
 }
 
-.card-button {
+.cart-button {
   position: fixed;
   right: 16px;
   bottom: 20px;
@@ -385,21 +385,21 @@ a:hover {
   z-index: 10;
   box-shadow: 0 5px 24px rgba(0, 0, 0, 0.3);
 }
-.card-button .cart-float-button {
+.cart-button .cart-float-button {
   width: 60px;
   height: 60px;
   background-color: #008358 !important;
   transition: 0.2s linear !important;
   margin-right: 0 !important;
 }
-.card-button .cart-float-button .cart-float-button-icon {
+.cart-button .cart-float-button .cart-float-button-icon {
   position: absolute;
   right: 5%;
   bottom: 0;
   left: 0;
   top: 25%;
 }
-.card-button .cart-float-button span {
+.cart-button .cart-float-button span {
   background-color: #fff;
   border-radius: 50%;
   color: #f58220;

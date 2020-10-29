@@ -1,6 +1,8 @@
 import { UPDATE_MENU } from './types';
 
-export default menu => ({
+const updateMenu = menu => ({
     type: UPDATE_MENU,
     menu
 });
+
+export default updateMenu;

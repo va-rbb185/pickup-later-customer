@@ -6,6 +6,9 @@ import removeCartItem from './removeCartItem';
 import showCartButton from './showCartButton';
 import hideCartButton from './hideCartButton';
 import retrieveCartFromStorage from './retrieveCartFromStorage';
+import authenticatePhone from './authenticatePhone';
+import authenticateOtp from './authenticateOtp';
+import retrieveAuthenticationFromStorage from './retrieveAuthenticationFromStorage';
 
 export {
     updateTestData,
@@ -15,5 +18,8 @@ export {
     removeCartItem,
     showCartButton,
     hideCartButton,
-    retrieveCartFromStorage
+    retrieveCartFromStorage,
+    authenticatePhone,
+    authenticateOtp,
+    retrieveAuthenticationFromStorage
 };

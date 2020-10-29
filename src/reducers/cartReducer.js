@@ -5,7 +5,7 @@ import {
     RETRIEVE_CART_FROM_STORAGE
 } from '../actions/types';
 
-export default (prevState = initialCart, action) => {
+const cartReducer = (prevState = initialCart, action) => {
     const nextState = { ...prevState };
     let existingItem;
 
@@ -43,3 +43,5 @@ export default (prevState = initialCart, action) => {
             return prevState;
     }
 };
+
+export default cartReducer;

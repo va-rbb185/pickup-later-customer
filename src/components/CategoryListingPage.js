@@ -5,7 +5,7 @@ import PageHeader from './PageHeader';
 const CategoryListingPage = () => {
     return (
         <div className="all-categories inner-page">
-            <PageHeader pageTitle="Tất cả Danh mục" />
+            <PageHeader>Tất cả Danh mục</PageHeader>
             <CategoryList cols={3} isShowTop={false} />
         </div>
     );

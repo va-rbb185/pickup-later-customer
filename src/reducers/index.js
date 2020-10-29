@@ -4,10 +4,12 @@ import testDataReducer from './testDataReducer';
 import menuReducer from './menuReducer';
 import cartReducer from './cartReducer';
 import showCartButtonReducer from './showCartButtonReducer';
+import authenticationReducer from './authenticationReducer';
 
 export default combineReducers({
     testData: testDataReducer,
     storeMenu: menuReducer,
     cart: cartReducer,
-    showCartButton: showCartButtonReducer
+    showCartButton: showCartButtonReducer,
+    authentication: authenticationReducer
 });

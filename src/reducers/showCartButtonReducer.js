@@ -3,7 +3,7 @@ import {
     HIDE_CART_BUTTON
 } from '../actions/types';
 
-export default (previousState = true, action) => {
+const showCartButtonReducer = (previousState = true, action) => {
     switch (action.type) {
         case SHOW_CART_BUTTON:
             return true;
@@ -13,3 +13,5 @@ export default (previousState = true, action) => {
             return previousState;
     }
 };
+
+export default showCartButtonReducer;

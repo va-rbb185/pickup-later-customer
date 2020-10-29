@@ -1,6 +1,8 @@
 import { REMOVE_CART_ITEM } from './types';
 
-export default product => ({
+const removeCartItem = product => ({
     type: REMOVE_CART_ITEM,
     product
 });
+
+export default removeCartItem;
