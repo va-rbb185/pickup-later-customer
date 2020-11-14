@@ -6,7 +6,6 @@ import PromoBanner from './PromoBanner';
 import HomeCategory from './HomeCategory';
 
 const Home = ({ allCategories }) => {
-    // console.info('Home rendered/re-rendered. All component props:', props);
     const top3Categories = allCategories.slice(0, 3);
     return (
         <div className="home inner-page">

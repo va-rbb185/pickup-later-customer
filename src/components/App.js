@@ -4,8 +4,11 @@ import { connect } from 'react-redux';
 import {
     fetchMenu,
     retrieveCartFromStorage,
-    retrieveAuthenticationFromStorage
+    retrieveAuthenticationFromStorage,
+    updateCustomerDetails
 } from '../actions';
+import { loginStatus } from '../enums';
+import { convertPhone84To0 } from '../helpers';
 
 import Home from './Home';
 import Search from './Search';
@@ -44,11 +47,18 @@ class App extends React.Component {
          * App component is never re-rendered under any circumstances
          */
         this.saveCartToStorage(nextProps.cart);
+        if (nextProps.authentication.login.status === loginStatus.LOGGED_IN) {
+            const customerDetails = {
+                name: '',
+                phone: convertPhone84To0(nextProps.authentication.user.data['phone_number']),
+                note: ''
+            };
+            this.props.updateCustomerDetails(customerDetails);
+        }
         return false;
     }
 
     render() {
-        console.log('App rendered.');
         return (
             <BrowserRouter>
                 <div className="page">
@@ -67,12 +77,16 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = ({ cart }) => ({ cart });
+const mapStateToProps = ({ cart, authentication }) => ({
+    cart,
+    authentication
+});
 
 const actions = {
     fetchMenu,
     retrieveCartFromStorage,
-    retrieveAuthenticationFromStorage
+    retrieveAuthenticationFromStorage,
+    updateCustomerDetails
 };
 
 const ConnectedApp = connect(mapStateToProps, actions)(App);

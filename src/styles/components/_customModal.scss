@@ -1,0 +1,8 @@
+.ui.modal.custom-modal {
+    width: 90%;
+    height: auto;
+    top: 50%;
+    left: 50%;
+
+    @include translate(-50%, -50%);
+}

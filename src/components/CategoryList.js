@@ -2,7 +2,6 @@ import React from 'react';
 import CategoryTile from './CategoryTile';
 
 const CategoryList = (props) => {
-    // console.info('CategoryList rendered/re-rendered. All component props:', props);
     const colClassName = !!props.cols && props.cols >= 2 && props.cols <= 4
         ? ` has-${props.cols}-cols`
         : '';

@@ -1,7 +1,8 @@
 import React from 'react';
-import ProductQuantity from './ProductQuantity';
-import { sampleImageURLs } from '../static/resources';
 import { Link } from 'react-router-dom';
+import { sampleImageURLs } from '../static/resources';
+import { formatPrice } from '../helpers';
+import ProductQuantity from './ProductQuantity';
 
 const ProductTile = (props) => {
     const isVerticalTile = !!props.vertical;
@@ -16,8 +17,8 @@ const ProductTile = (props) => {
                         <img src={imageUrl || sampleImageURLs.PRODUCT} alt="product" />
                         <div className="product-name">{name}</div>
                     </Link>
-                    <div className="sale-price">{salePrice} đ</div>
-                    {salePrice !== price ? <div className="original-price"><s>{price} đ</s></div> : null}
+                    <div className="sale-price">{formatPrice(salePrice)}</div>
+                    {salePrice !== price ? <div className="original-price"><s>{formatPrice(price)}</s></div> : null}
                 </div>
                 <ProductQuantity product={props.product} />
             </div>
@@ -39,8 +40,8 @@ const ProductTile = (props) => {
                     <ProductQuantity product={props.product} />
                 </div>
                 <div className="product-prices">
-                    <div className="sale-price">{price} đ</div>
-                    {salePrice !== price ? <div className="original-price"><s>{price} đ</s></div> : null}
+                    <div className="sale-price">{formatPrice(salePrice)}</div>
+                    {salePrice !== price ? <div className="original-price"><s>{formatPrice(price)}</s></div> : null}
                 </div>
             </div>
         </div>

@@ -28,7 +28,7 @@ class SearchBox extends React.Component {
             <div className="search-box">
                 <div className="ui fluid icon input">
                     <input
-                        ref={(input) => { this.searchInput = input; }}
+                        ref={input => { this.searchInput = input; }}
                         type="text"
                         placeholder="Tìm kiếm sản phẩm..."
                         onClick={this.onSearchBoxClick}

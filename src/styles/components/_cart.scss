@@ -12,19 +12,27 @@
 
         .subtotal {
             @include display-flex;
-            @include align-items-center;
+            @include align-items-start;
 
             margin-bottom: 0.75rem;
 
-            .subtotal-label {
+            .label {
                 @include flex-grow(1);
 
                 font-size: $fontSize16;
             }
 
-            .subtotal-value {
-                font-size: $fontSize22;
-                font-weight: 600;
+            .values {
+                text-align: right;
+
+                .value {
+                    font-size: $fontSize22;
+                    font-weight: 600;
+                }
+
+                .original-value {
+                    font-size: $fontSize16;
+                }
             }
         }
 

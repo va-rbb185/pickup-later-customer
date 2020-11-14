@@ -5,11 +5,15 @@ import menuReducer from './menuReducer';
 import cartReducer from './cartReducer';
 import showCartButtonReducer from './showCartButtonReducer';
 import authenticationReducer from './authenticationReducer';
+import customerDetailsReducer from './customerDetailsReducer';
+import paymentMethodReducer from './paymentMethodReducer';
 
 export default combineReducers({
     testData: testDataReducer,
     storeMenu: menuReducer,
     cart: cartReducer,
     showCartButton: showCartButtonReducer,
-    authentication: authenticationReducer
+    authentication: authenticationReducer,
+    customerDetails : customerDetailsReducer,
+    paymentMethod: paymentMethodReducer
 });

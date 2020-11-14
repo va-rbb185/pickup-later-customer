@@ -1,0 +1,36 @@
+{
+  "storeId": "1000",
+  "userName": "An Tang",
+  "userId": 1,
+  "phoneNumber": "+84983165861",
+  "totalAmount": 30000,
+  "totalPriceAmount": 30000,
+  "note": "Ghi chu",
+  "paymentMethod": "COD",
+  "token": "",
+  "orderDetails": [{
+      "product_id": 88,
+      "product_name": "Đông cô vs Ốp La",
+      "product_type": "Combo",
+      "quantity": 1
+    },
+    {
+      "product_id": 89,
+      "product_name": "Bánh Mì Cà Phê",
+      "product_type": "Combo",
+      "quantity": 1
+    },
+    {
+      "product_id": 90,
+      "product_name": "Mua 2 Thùng Tặng 1 Thùng Bia",
+      "product_type": "Combo",
+      "quantity": 1
+    },
+    {
+      "product_id": 8829,
+      "product_name": "Bánh Giò Gà Nấm Đông Cô",
+      "product_type": "Product",
+      "quantity": 2
+    }
+  ]
+}

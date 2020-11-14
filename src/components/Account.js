@@ -56,7 +56,7 @@ class Account extends React.Component {
         this.props.hideCartButton();
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         /*
          * Detects changes in `authentication` state
          * Saves authentication information to `localStorage` whenever it is updated in store
@@ -69,7 +69,6 @@ class Account extends React.Component {
     }
 
     render() {
-        console.log('Account rendered/re-rendered.');
         const currentLoginStatus = this.props.authentication.login.status;
         const isNotLoggedIn = currentLoginStatus === loginStatus.NOT_LOGGED_IN;
         const isPhoneVerification = currentLoginStatus === loginStatus.PHONE_VERIFICATION;
@@ -102,7 +101,7 @@ class Account extends React.Component {
                                     value={this.state.phoneNumber}
                                     required={true}
                                     maxLength={10}
-                                    pattern="(?=0)[0-9]{10}$"
+                                    pattern="^(?=0)[0-9]{10}$"
                                     onChange={this.onPhoneInputChange}
                                 />
                                 <Form.Input

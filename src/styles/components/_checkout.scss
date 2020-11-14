@@ -1,33 +1,75 @@
 .checkout {
-    padding-bottom: 109px;
+    padding-bottom: 150px;
     background-color: $whiteSmoke;
 
     .checkout-section {
         .section-header {
-            padding: 0.65rem;
+            padding: 0.5rem 0.75rem;
             background-color: $whiteSmoke;
-            font-size: $fontSize18;
+            font-size: $fontSize16;
             font-weight: 600;
-            color: $mortar;
+            color: $dustyGray;
         }
 
         .section-body {
-            padding: 0.65rem;
+            padding: 0.75rem;
             background-color: $white;
         }
-    }
 
-    .customer-details {
-        .customer-field {
-            .field-icon {
-                color: $darkGreen;
+        &.customer-details {
+            .section-body {
+                padding-left: 0;
             }
         }
     }
 
-    .order-summary {}
+    .order-summary {
+        .edit-cart-link {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
 
-    .payment-methods {}
+            a {
+                color: $lighterGreen;
+                text-decoration: none;
+            }
+        }
+
+        .summary {
+            padding-top: 0.75rem;
+            padding-bottom: 0.25rem;
+
+            .summary-entry {
+                @include make-custom-row(0);
+
+                .summary-title {
+                    @include make-custom-col(77%, 0);
+                }
+
+                .summary-amount {
+                    @include make-custom-col(23%, 0);
+                }
+            }
+        }
+    }
+
+    .payment {
+        .payment-inner {
+            @include make-custom-row(0);
+
+            .payment-methods {
+                @include make-custom-col(50%, 0);
+
+                padding-right: 15px;
+                border-right: solid 1px $gainsboro;
+            }
+
+            .promos {
+                @include make-custom-col(50%, 0);
+
+                padding-left: 15px;
+            }
+        }
+    }
 
     .order-placement {
         position: fixed;
@@ -66,6 +108,60 @@
 
         button {
             width: 100%;
+        }
+    }
+}
+
+.customer-field {
+    @include make-custom-row(0);
+
+    &:not(:last-child) {
+        margin-bottom: 0.75rem;
+    }
+
+    .field-icon {
+        @include make-custom-col(15%, 0);
+        @include display-flex;
+        @include justify-content-center;
+        @include align-items-center;
+    }
+
+    .field-data {
+        @include make-custom-col(85%, 0);
+
+        h5 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+    }
+}
+
+.payment-method-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    .list-item {
+        padding: 0.5rem 0;
+        @include make-custom-row(0);
+        @include align-items-center;
+
+        .payment-method-name {
+            @include make-custom-col(85%, 0);
+        }
+
+        .checkmark {
+            @include make-custom-col(15%, 0);
+
+            visibility: hidden;
+            color: $lighterGreen;
+            text-align: right;
+        }
+
+        &.selected {
+            .checkmark {
+                visibility: visible;
+            }
         }
     }
 }

@@ -1,0 +1,41 @@
+.checkout-product-tile {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid $whiteSmoke;
+
+    &:first-child {
+        padding-top: 0;
+    }
+
+    .inner-tile {
+        @include make-custom-row(0);
+    }
+
+    .item-quantity {
+        @include make-custom-col(15%, 0);
+
+        .btn-quantity {
+            padding: 12px;
+
+            span {
+                font-weight: 600;
+            }
+        }
+    }
+
+    .item-info {
+        @include make-custom-col(62%, 0);
+        @include display-flex;
+        @include align-items-center;
+
+        .product-name {
+            font-weight: 500;
+        }
+    }
+
+    .item-subtotal {
+        @include make-custom-col(23%, 0);
+        @include display-flex;
+        @include align-items-center;
+        @include justify-content-end;
+    }
+}

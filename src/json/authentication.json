@@ -1,0 +1,19 @@
+{
+  "login": {
+    "status": "LOGGED_IN"
+  },
+  "user": {
+    "type": "CUSTOMER",
+    "data": {
+      "id": 5,
+      "user_name": "",
+      "password": "",
+      "phone_number": "+84352305969",
+      "address": "",
+      "code_verify": 880799,
+      "type": 3,
+      "status": "ACTIVE",
+      "lastest_login_at": "2020-10-23T23:06:19.781089369+07:00"
+    }
+  }
+}
