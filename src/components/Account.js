@@ -8,12 +8,24 @@ import PageHeader from './PageHeader';
 import { Button } from 'semantic-ui-react';
 
 class Account extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onClickLogout = this.onClickLogout.bind(this);
+    }
+
     deleteAuthentication(nextAuthentication) {
         const nextLoginStatus = nextAuthentication.login.status;
         const shouldDelete = nextLoginStatus === loginStatus.NOT_LOGGED_IN;
 
         if (shouldDelete) {
             window.localStorage.removeItem('storedAuthentication');
+        }
+    }
+
+    onClickLogout() {
+        const confirmation = window.confirm('Bạn có chắc chắn muốn đăng xuất?');
+        if (confirmation) {
+            this.props.logoutCurrentUser();
         }
     }
 
@@ -45,7 +57,7 @@ class Account extends React.Component {
                     color="red"
                     icon="sign out alternate"
                     content="Đăng xuất"
-                    onClick={this.props.logoutCurrentUser}
+                    onClick={this.onClickLogout}
                 />
             </div>
         );
