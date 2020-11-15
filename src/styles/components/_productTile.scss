@@ -75,7 +75,13 @@
             @include display-flex;
             @include flex-column;
 
-            min-height: 234px;
+            @media (min-width: 375px) {
+                min-height: 236px;
+            }
+
+            @media (min-width: 414px) {
+                min-height: 248px;
+            }
 
             .product-image {
                 margin-bottom: 0.85rem;

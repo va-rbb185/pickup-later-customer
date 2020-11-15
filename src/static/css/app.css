@@ -330,7 +330,16 @@ a:hover {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  min-height: 234px;
+}
+@media (min-width: 375px) {
+  .product-tile.vertical .inner-tile {
+    min-height: 236px;
+  }
+}
+@media (min-width: 414px) {
+  .product-tile.vertical .inner-tile {
+    min-height: 248px;
+  }
 }
 .product-tile.vertical .inner-tile .product-image {
   margin-bottom: 0.85rem;
