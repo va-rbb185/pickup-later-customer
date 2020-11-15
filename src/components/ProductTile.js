@@ -12,15 +12,25 @@ const ProductTile = (props) => {
     if (isVerticalTile) {
         return (
             <div className={className}>
-                <div className="product-info">
-                    <Link to="/product-details">
-                        <img src={imageUrl || sampleImageURLs.PRODUCT} alt="product" />
-                        <div className="product-name">{name}</div>
-                    </Link>
-                    <div className="sale-price">{formatPrice(salePrice)}</div>
-                    {salePrice !== price ? <div className="original-price"><s>{formatPrice(price)}</s></div> : null}
+                <div className="inner-tile">
+                    <div className="product-image">
+                        <Link to="/product-details">
+                            <img src={imageUrl || sampleImageURLs.PRODUCT} alt="product" />
+                        </Link>
+                    </div>
+                    <div className="product-name">{name}</div>
+                    <div className="product-prices">
+                        <div className="sale-price">{formatPrice(salePrice)}</div>
+                        {
+                            salePrice !== price
+                                ? <div className="original-price"><s>{formatPrice(price)}</s></div>
+                                : null
+                        }
+                    </div>
+                    <div className="product-quantity-wrapper">
+                        <ProductQuantity product={props.product} />
+                    </div>
                 </div>
-                <ProductQuantity product={props.product} />
             </div>
         );
     }
@@ -34,14 +44,20 @@ const ProductTile = (props) => {
                     </Link>
                 </div>
                 <div className="product-info">
-                    <Link to="/product-details">
-                        <div className="product-name">{name}</div>
-                    </Link>
-                    <ProductQuantity product={props.product} />
+                    <div className="product-name-wrapper">
+                        <Link to="/product-details" className="product-name">{name}</Link>
+                    </div>
+                    <div className="product-quantity-wrapper">
+                        <ProductQuantity product={props.product} />
+                    </div>
                 </div>
                 <div className="product-prices">
                     <div className="sale-price">{formatPrice(salePrice)}</div>
-                    {salePrice !== price ? <div className="original-price"><s>{formatPrice(price)}</s></div> : null}
+                    {
+                        salePrice !== price
+                            ? <div className="original-price"><s>{formatPrice(price)}</s></div>
+                            : null
+                    }
                 </div>
             </div>
         </div>
