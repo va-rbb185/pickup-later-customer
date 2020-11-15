@@ -17,7 +17,7 @@ import ProductListingPage from './ProductListingPage';
 import ProductDetailPage from './ProductDetailPage';
 import CartButton from './CartButton';
 import Cart from './Cart';
-import Account from './Account';
+import Login from './Login';
 import Checkout from './Checkout';
 
 class App extends React.Component {
@@ -74,7 +74,9 @@ class App extends React.Component {
                     <Route path="/product-details" component={ProductDetailPage} />
                     <Route path="/cart" component={Cart} />
                     <Route path="/checkout" component={Checkout} />
-                    <Route path="/account" component={Account} />
+                    <Route path="/login" component={Login} />
+                    <Route path="/logout" component={Login} />
+                    <Route path="/account" component={Login} />
                 </div>
                 <CartButton />
             </BrowserRouter>

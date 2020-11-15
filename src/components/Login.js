@@ -7,7 +7,7 @@ import { loginResources } from '../static/resources';
 
 import PageHeader from './PageHeader';
 
-class Account extends React.Component {
+class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -148,6 +148,6 @@ const actions = {
     authenticateOtp
 };
 
-const ConnectedAccount = connect(mapStateToProps, actions)(Account);
+const ConnectedLogin = connect(mapStateToProps, actions)(Login);
 
-export default ConnectedAccount;
+export default ConnectedLogin;
