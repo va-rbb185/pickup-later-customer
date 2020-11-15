@@ -2,7 +2,8 @@ import { cart as initialCart } from '../store/initialState';
 import {
     ADD_CART_ITEM,
     REMOVE_CART_ITEM,
-    RETRIEVE_CART_FROM_STORAGE
+    RETRIEVE_CART_FROM_STORAGE,
+    CLEAR_CART
 } from '../actions/types';
 
 const cartReducer = (prevState = initialCart, action) => {
@@ -35,6 +36,9 @@ const cartReducer = (prevState = initialCart, action) => {
                 return nextState;
             }
             return prevState;
+
+        case CLEAR_CART:
+            return action.cart;
 
         case RETRIEVE_CART_FROM_STORAGE:
             return action.cart;

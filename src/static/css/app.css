@@ -578,6 +578,17 @@ a:hover {
 .cart {
   padding-bottom: 109px;
 }
+.cart .empty-cart-msg {
+  text-align: center;
+  color: #555;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.cart .clear-cart {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 .cart .cart-summary {
   position: fixed;
   left: 0;

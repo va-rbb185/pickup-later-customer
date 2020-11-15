@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
-import { showCartButton, hideCartButton } from '../actions';
+import { showCartButton, hideCartButton, clearCart } from '../actions';
 import { loginStatus } from '../enums';
 import { formatPrice, calculateAmount, calculateOriginalAmount } from '../helpers';
 
@@ -10,6 +10,18 @@ import PageHeader from './PageHeader';
 import ProductTile from './ProductTile';
 
 class Cart extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onClickClearCart = this.onClickClearCart.bind(this);
+    }
+
+    onClickClearCart() {
+        const confirmation = window.confirm('Bạn có chắc chắn muốn xoá tất cả sản phẩm khỏi giỏ hàng?');
+        if (confirmation) {
+            this.props.clearCart();
+        }
+    }
+
     componentDidMount() {
         this.props.hideCartButton();
     }
@@ -28,6 +40,26 @@ class Cart extends React.Component {
                 <div className="products">
                     {this.props.cart.items.map(item => <ProductTile key={`product_${item.product.id}`} product={item.product} />)}
                 </div>
+                {
+                    this.props.cart.amount === 0
+                        ? <div className="empty-cart-msg">
+                            Giỏ hàng không có sản phẩm nào.
+                        </div>
+                        : null
+                }
+                {
+                    this.props.cart.amount > 0
+                        ? <div className="clear-cart">
+                            <Button
+                                basic
+                                color="red"
+                                icon="trash alternate"
+                                content="Xoá tất cả"
+                                onClick={this.onClickClearCart}
+                            />
+                        </div>
+                        : null
+                }
                 <div className="cart-summary">
                     <div className="subtotal">
                         <div className="label">Tổng cộng:</div>
@@ -60,7 +92,8 @@ const mapStateToProps = ({ cart, authentication }) => ({
 
 const actions = {
     showCartButton,
-    hideCartButton
+    hideCartButton,
+    clearCart
 };
 
 const CartWithRouter = withRouter(Cart);

@@ -11,9 +11,9 @@ import {
     showCartButton,
     hideCartButton,
     updateCustomerDetails,
-    updatePaymentMethod
+    updatePaymentMethod,
+    createOrder
 } from '../actions';
-import { createOrder } from '../api';
 
 import PageHeader from './PageHeader';
 import CheckoutProductTile from './CheckoutProductTile';
@@ -114,10 +114,8 @@ class Checkout extends React.Component {
             );
             console.log('Created order:', order);
 
-            /* NOW submit created order to API */
-            createOrder(order)
-                .then(response => console.log(response))
-                .catch(error => console.log(error));
+            /* Submit created order to server */
+            this.props.createOrder(order);
         }
     }
 
@@ -343,7 +341,8 @@ const actions = {
     showCartButton,
     hideCartButton,
     updateCustomerDetails,
-    updatePaymentMethod
+    updatePaymentMethod,
+    createOrder
 };
 
 const ConnectedCheckout = connect(mapStateToProps, actions)(Checkout);

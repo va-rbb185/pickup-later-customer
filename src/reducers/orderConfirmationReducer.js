@@ -11,7 +11,7 @@ const orderConfirmationReducer = (prevState = null, action) => {
         case CREATE_ORDER_SUCCESS:
             return action.orderConfirmation;
         case CREATE_ORDER_FAILURE:
-            return prevState;
+            return action.error;
         default:
             return prevState;
     }

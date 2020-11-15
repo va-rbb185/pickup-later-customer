@@ -23,11 +23,28 @@ import Checkout from './Checkout';
 class App extends React.Component {
     saveCartToStorage(cart) {
         const prevCart = this.props.cart;
-        if (cart.amount !== prevCart.amount) {
+        const shouldSave = cart.amount !== prevCart.amount;
+
+        if (shouldSave) {
             window.localStorage.setItem('storedCart', JSON.stringify(cart));
             return true;
         }
         return false;
+    }
+
+    updateCustomerPhone(nextAuthentication) {
+        const currentLoginStatus = this.props.authentication.login.status;
+        const nextLoginStatus = nextAuthentication.login.status;
+        const shouldUpdate = nextLoginStatus === loginStatus.LOGGED_IN && nextLoginStatus !== currentLoginStatus;
+
+        if (shouldUpdate) {
+            const nextCustomerDetails = {
+                name: '',
+                phone: convertPhone84To0(nextAuthentication.user.data['phone_number']),
+                note: ''
+            };
+            this.props.updateCustomerDetails(nextCustomerDetails);
+        }
     }
 
     componentDidMount() {
@@ -41,20 +58,8 @@ class App extends React.Component {
     }
 
     shouldComponentUpdate(nextProps) {
-        /*
-         * Detects changes in `cart` state
-         * Saves cart to `localStorage` whenever it is updated in store
-         * App component is never re-rendered under any circumstances
-         */
         this.saveCartToStorage(nextProps.cart);
-        if (nextProps.authentication.login.status === loginStatus.LOGGED_IN) {
-            const customerDetails = {
-                name: '',
-                phone: convertPhone84To0(nextProps.authentication.user.data['phone_number']),
-                note: ''
-            };
-            this.props.updateCustomerDetails(customerDetails);
-        }
+        this.updateCustomerPhone(nextProps.authentication);
         return false;
     }
 

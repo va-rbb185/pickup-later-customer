@@ -5,6 +5,7 @@ import fetchMenu from './fetchMenu';
 import addCartItem from './addCartItem';
 import removeCartItem from './removeCartItem';
 import showCartButton from './showCartButton';
+import clearCart from './clearCart';
 import hideCartButton from './hideCartButton';
 import retrieveCartFromStorage from './retrieveCartFromStorage';
 import authenticatePhone from './authenticatePhone';
@@ -21,6 +22,7 @@ export {
     fetchMenu,
     addCartItem,
     removeCartItem,
+    clearCart,
     showCartButton,
     hideCartButton,
     retrieveCartFromStorage,

@@ -22,8 +22,8 @@ class ProductQuantity extends React.Component {
 
     onClickRemoveFromCart() {
         if (this.calculateQuantity() === 1) {
-            const removeFromCartConfirmed = window.confirm('Bạn có chắc chắn muốn xoá sản phẩm này khỏi giỏ hàng?');
-            if (removeFromCartConfirmed) {
+            const confirmation = window.confirm('Bạn có chắc chắn muốn xoá sản phẩm này khỏi giỏ hàng?');
+            if (confirmation) {
                 this.props.removeCartItem(this.props.product);
             }
         } else {
