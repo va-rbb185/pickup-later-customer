@@ -18,18 +18,18 @@ const fetchMenuFailure = (error) => ({
 });
 
 const fetchMenu = () => dispatch => {
-    console.info('Menu fetching started.');
+    console.info('Store menu fetching started.');
     dispatch(fetchMenuStart());
 
     fetchStoreMenu()
         .then(response => {
             const action = fetchMenuSuccess(response);
-            console.info('Menu fetching succeeded. Updated state:', action.menu);
+            console.info('Store menu fetching succeeded. Updated state:', action.menu);
             dispatch(action);
         })
         .catch(error => {
             const action = fetchMenuFailure(error);
-            console.error('Menu fetching failed.', action.error);
+            console.error('Store menu fetching failed.', action.error);
             dispatch(action);
         });
 };

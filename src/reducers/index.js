@@ -7,6 +7,7 @@ import showCartButtonReducer from './showCartButtonReducer';
 import authenticationReducer from './authenticationReducer';
 import customerDetailsReducer from './customerDetailsReducer';
 import paymentMethodReducer from './paymentMethodReducer';
+import orderConfirmationReducer from './orderConfirmationReducer';
 
 export default combineReducers({
     testData: testDataReducer,
@@ -15,5 +16,6 @@ export default combineReducers({
     showCartButton: showCartButtonReducer,
     authentication: authenticationReducer,
     customerDetails : customerDetailsReducer,
-    paymentMethod: paymentMethodReducer
+    paymentMethod: paymentMethodReducer,
+    orderConfirmation: orderConfirmationReducer
 });

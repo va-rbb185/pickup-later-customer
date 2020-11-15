@@ -11,6 +11,7 @@ import authenticatePhone from './authenticatePhone';
 import authenticateOtp from './authenticateOtp';
 import retrieveAuthenticationFromStorage from './retrieveAuthenticationFromStorage';
 import updatePaymentMethod from './updatePaymentMethod';
+import createOrder from './createOrder';
 
 export {
     updateTestData,
@@ -25,5 +26,6 @@ export {
     retrieveCartFromStorage,
     authenticatePhone,
     authenticateOtp,
-    retrieveAuthenticationFromStorage
+    retrieveAuthenticationFromStorage,
+    createOrder
 };
