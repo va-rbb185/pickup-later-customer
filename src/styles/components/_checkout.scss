@@ -25,7 +25,7 @@
 
     .order-summary {
         .edit-cart-link {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             font-weight: 600;
 
             a {
@@ -67,6 +67,7 @@
                 @include make-custom-col(50%, 0);
 
                 padding-left: 15px;
+                color: $dustyGray;
             }
         }
     }
@@ -124,25 +125,36 @@
         @include display-flex;
         @include justify-content-center;
         @include align-items-center;
+
+        color: $lighterGreen;
     }
 
     .field-data {
         @include make-custom-col(85%, 0);
 
         h5 {
+            display: block;
+            font-size: $fontSize16;
             font-weight: 600;
             margin-bottom: 0.25rem;
+        }
+
+        span {
+            color: $mortar;
         }
     }
 }
 
-.payment-method-list {
+.payment-method-list,
+.promo-list {
     margin: 0;
     padding: 0;
     list-style: none;
 
     .list-item {
-        padding: 0.5rem 0;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+
         @include make-custom-row(0);
         @include align-items-center;
 

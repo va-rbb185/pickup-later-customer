@@ -197,7 +197,7 @@ class Checkout extends React.Component {
                                 <div className="payment-methods" onClick={() => this.setOpenPaymentModal(true)}>
                                     <span>{paymentMethods[this.props.paymentMethod].shortTitle}</span>
                                 </div>
-                                <div className="promos" onClick={() => this.setOpenPromoModal(true)}>
+                                <div className="promos" onClick={() => this.setOpenPromoModal(false)}>
                                     <span>Khuyến mãi/Giảm giá</span>
                                 </div>
                             </div>
@@ -221,7 +221,7 @@ class Checkout extends React.Component {
 
                 <CustomModal
                     open={this.state.customerDetailModalOpen}
-                    header="Chi tiết khách hàng"
+                    header="Thông tin người nhận"
                     confirmation="Lưu"
                     onClose={() => this.setOpenCustomerDetailModal(false)}
                     onOpen={() => this.setOpenCustomerDetailModal(true)}
@@ -320,8 +320,7 @@ class Checkout extends React.Component {
                     onConfirm={() => this.setOpenPromoModal(false)}
                 >
                     <ul className="promo-list">
-                        <li>Giảm 20% cho Đồ dùng Gia đình</li>
-                        <li>Giảm 10% cho Nước giải khát</li>
+                        <li className="list-item">Hiện không có mã khuyến mãi khả dụng.</li>
                     </ul>
                 </CustomModal>
             </div>

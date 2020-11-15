@@ -514,6 +514,7 @@ a:hover {
   padding: 12px;
 }
 .checkout-product-tile .item-quantity .btn-quantity span {
+  color: #4db856;
   font-weight: 600;
 }
 .checkout-product-tile .item-info {
@@ -696,7 +697,7 @@ a:hover {
   padding-left: 0;
 }
 .checkout .order-summary .edit-cart-link {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   font-weight: 600;
 }
 .checkout .order-summary .edit-cart-link a {
@@ -767,6 +768,7 @@ a:hover {
   padding-left: 0;
   padding-right: 0;
   padding-left: 15px;
+  color: #999;
 }
 .checkout .order-placement {
   position: fixed;
@@ -836,6 +838,7 @@ a:hover {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  color: #4db856;
 }
 .customer-field .field-data {
   -webkit-box-flex: 0;
@@ -848,17 +851,25 @@ a:hover {
   padding-right: 0;
 }
 .customer-field .field-data h5 {
+  display: block;
+  font-size: 1.1429rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
 }
+.customer-field .field-data span {
+  color: #555;
+}
 
-.payment-method-list {
+.payment-method-list,
+.promo-list {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.payment-method-list .list-item {
-  padding: 0.5rem 0;
+.payment-method-list .list-item,
+.promo-list .list-item {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -870,7 +881,8 @@ a:hover {
   -ms-flex-align: center;
   align-items: center;
 }
-.payment-method-list .list-item .payment-method-name {
+.payment-method-list .list-item .payment-method-name,
+.promo-list .list-item .payment-method-name {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 85%;
   flex: 0 0 85%;
@@ -880,7 +892,8 @@ a:hover {
   padding-left: 0;
   padding-right: 0;
 }
-.payment-method-list .list-item .checkmark {
+.payment-method-list .list-item .checkmark,
+.promo-list .list-item .checkmark {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 15%;
   flex: 0 0 15%;
@@ -893,6 +906,7 @@ a:hover {
   color: #4db856;
   text-align: right;
 }
-.payment-method-list .list-item.selected .checkmark {
+.payment-method-list .list-item.selected .checkmark,
+.promo-list .list-item.selected .checkmark {
   visibility: visible;
 }
