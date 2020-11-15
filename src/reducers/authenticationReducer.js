@@ -6,7 +6,8 @@ import {
     AUTHENTICATE_OTP_START,
     AUTHENTICATE_OTP_SUCCESS,
     AUTHENTICATE_OTP_FAILURE,
-    RETRIEVE_AUTHENTICATION_FROM_STORAGE
+    RETRIEVE_AUTHENTICATION_FROM_STORAGE,
+    LOGOUT_CURRENT_USER
 } from '../actions/types';
 
 const authenticationReducer = (prevState = authentication, action) => {
@@ -32,6 +33,9 @@ const authenticationReducer = (prevState = authentication, action) => {
             return prevState;
 
         case RETRIEVE_AUTHENTICATION_FROM_STORAGE:
+            return action.authentication;
+
+        case LOGOUT_CURRENT_USER:
             return action.authentication;
 
         default:

@@ -8,6 +8,7 @@ import showCartButton from './showCartButton';
 import clearCart from './clearCart';
 import hideCartButton from './hideCartButton';
 import retrieveCartFromStorage from './retrieveCartFromStorage';
+import logoutCurrentUser from './logoutCurrentUser';
 import authenticatePhone from './authenticatePhone';
 import authenticateOtp from './authenticateOtp';
 import retrieveAuthenticationFromStorage from './retrieveAuthenticationFromStorage';
@@ -29,5 +30,6 @@ export {
     authenticatePhone,
     authenticateOtp,
     retrieveAuthenticationFromStorage,
+    logoutCurrentUser,
     createOrder
 };

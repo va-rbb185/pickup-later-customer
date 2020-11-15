@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button, Form, Message } from 'semantic-ui-react';
 import { showCartButton, hideCartButton, authenticatePhone, authenticateOtp } from '../actions';
@@ -44,12 +45,13 @@ class Login extends React.Component {
         }
     }
 
-    saveAuthenticationToStorage(authentication) {
-        if (authentication.login.status !== loginStatus.PHONE_VERIFICATION) {
-            window.localStorage.setItem('storedAuthentication', JSON.stringify(authentication));
-            return true;
+    saveAuthenticationToStorage(nextAuthentication) {
+        const nextLoginStatus = nextAuthentication.login.status;
+        const shouldSave = nextLoginStatus === loginStatus.LOGGED_IN;
+
+        if (shouldSave) {
+            window.localStorage.setItem('storedAuthentication', JSON.stringify(nextAuthentication));
         }
-        return false;
     }
 
     componentDidMount() {
@@ -57,10 +59,6 @@ class Login extends React.Component {
     }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
-        /*
-         * Detects changes in `authentication` state
-         * Saves authentication information to `localStorage` whenever it is updated in store
-         */
         this.saveAuthenticationToStorage(nextProps.authentication);
     }
 
@@ -75,12 +73,7 @@ class Login extends React.Component {
         const isLoggedIn = currentLoginStatus === loginStatus.LOGGED_IN;
 
         if (isLoggedIn) {
-            return (
-                <div className="account inner-page">
-                    <PageHeader>Account Page</PageHeader>
-                    <a href="/logout">Đăng xuất</a>
-                </div>
-            );
+            return <Redirect to="/account" />;
         }
 
         if (isNotLoggedIn || isPhoneVerification) {
