@@ -13,28 +13,20 @@ class Account extends React.Component {
         this.onClickLogout = this.onClickLogout.bind(this);
     }
 
-    deleteAuthentication(nextAuthentication) {
-        const nextLoginStatus = nextAuthentication.login.status;
-        const shouldDelete = nextLoginStatus === loginStatus.NOT_LOGGED_IN;
-
-        if (shouldDelete) {
-            window.localStorage.removeItem('storedAuthentication');
-        }
+    deleteAuthenticationFromStorage() {
+        window.localStorage.removeItem('storedAuthentication');
     }
 
     onClickLogout() {
         const confirmation = window.confirm('Bạn có chắc chắn muốn đăng xuất?');
         if (confirmation) {
+            this.deleteAuthenticationFromStorage();
             this.props.logoutCurrentUser();
         }
     }
 
     componentDidMount() {
         this.props.hideCartButton();
-    }
-
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        this.deleteAuthentication(nextProps.authentication);
     }
 
     componentWillUnmount() {

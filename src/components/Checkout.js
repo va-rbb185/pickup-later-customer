@@ -72,10 +72,10 @@ class Checkout extends React.Component {
             validationMessage += 'Vui lòng nhập Số điện thoại hợp lệ.';
             valid = false;
         }
-
         if (validationMessage) {
-            alert(validationMessage);
+            window.alert(validationMessage);
         }
+
         return valid;
     }
 
@@ -251,7 +251,7 @@ class Checkout extends React.Component {
                                 <div className="field-data">
                                     <Form.Input
                                         readOnly={true}
-                                        type="text"
+                                        type="tel"
                                         placeholder="Số điện thoại"
                                         required={true}
                                         maxLength={10}

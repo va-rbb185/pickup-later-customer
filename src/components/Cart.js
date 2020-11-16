@@ -77,7 +77,7 @@ class Cart extends React.Component {
                         disabled={this.props.cart.amount === 0 || !this.props.isLoggedIn}
                         onClick={() => this.props.history.push('/checkout')}
                     >
-                        {this.props.isLoggedIn ? 'Tiến hành Thanh toán' : 'Vui lòng đăng nhập để thanh toán'}
+                        {this.props.isLoggedIn ? 'Tiến hành Thanh toán' : 'Vui lòng đăng nhập để đến bước thanh toán'}
                     </Button>
                 </div>
             </div>
