@@ -1,12 +1,18 @@
-import { authentication as initialAuthentication } from '../store/initialState';
+import { loginStatus, userTypes } from '../enums';
 import { RETRIEVE_AUTHENTICATION_FROM_STORAGE } from './types';
 
 const retrieveAuthenticationFromStorage = () => {
+    let authentication = {
+        login: { status: loginStatus.NOT_LOGGED_IN },
+        user: { type: userTypes.GUEST }
+    };
     const retrievedJson = window.localStorage.getItem('storedAuthentication');
-    const retrievedAuthentication = retrievedJson ? JSON.parse(retrievedJson) : initialAuthentication;
+    if (retrievedJson) {
+        authentication = JSON.parse(retrievedJson);
+    }
     return {
         type: RETRIEVE_AUTHENTICATION_FROM_STORAGE,
-        authentication: retrievedAuthentication
+        authentication
     };
 };
 

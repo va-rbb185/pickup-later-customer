@@ -56,23 +56,23 @@ class Checkout extends React.Component {
         this.setState({ currentlySelectedPayment: paymentMethod });
     }
 
-    validateCustomerDetails(customerName, customerPhone) {
+    validateCustomerDetails(customerName, customerPhone, alertInvalid = true) {
         let valid = true;
         let validationMessage = '';
 
         if (!customerName) {
             valid = false;
-            validationMessage += 'Vui lòng không bỏ trống tên người nhận.\n';
+            validationMessage += 'Vui lòng không bỏ trống tên người nhận.';
         }
         if (!customerPhone) {
-            validationMessage += 'Vui lòng không bỏ trống số điện thoại.\n';
+            validationMessage += '\nVui lòng không bỏ trống số điện thoại.';
             valid = false;
         }
         if (customerPhone && !new RegExp('^(?=0)[0-9]{10}$').test(customerPhone)) {
-            validationMessage += 'Vui lòng nhập số điện thoại hợp lệ.';
+            validationMessage += '\nVui lòng nhập số điện thoại hợp lệ.';
             valid = false;
         }
-        if (validationMessage) {
+        if (validationMessage && alertInvalid) {
             window.alert(validationMessage);
         }
 
@@ -215,7 +215,12 @@ class Checkout extends React.Component {
                                 }
                             </div>
                         </div>
-                        <Button color="green" onClick={this.onPlaceOrder}>Đặt đơn</Button>
+                        <Button
+                            disabled={this.validateCustomerDetails(this.props.customerDetails.name, this.props.customerDetails.phone, false)}
+                            color="green"
+                            content="Đặt đơn"
+                            onClick={this.onPlaceOrder}
+                        />
                     </div>
                 </div>
 

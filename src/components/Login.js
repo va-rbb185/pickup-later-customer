@@ -34,11 +34,11 @@ class Login extends React.Component {
         let validationMessage = '';
 
         if (!phoneNumber) {
-            validationMessage += 'Vui lòng nhập số điện thoại để tiếp tục.\n';
+            validationMessage += 'Vui lòng nhập số điện thoại để tiếp tục.';
             valid = false;
         }
         if (phoneNumber && !new RegExp('^(?=0)[0-9]{10}$').test(phoneNumber)) {
-            validationMessage += 'Vui lòng nhập số điện thoại hợp lệ.';
+            validationMessage += '\nVui lòng nhập số điện thoại hợp lệ.';
             valid = false;
         }
         if (validationMessage) {
@@ -53,11 +53,11 @@ class Login extends React.Component {
         let validationMessage = '';
 
         if (!otp) {
-            validationMessage += 'Vui lòng nhập mã OTP đã được gửi tới số điện thoại của bạn để tiếp tục.\n';
+            validationMessage += 'Vui lòng nhập mã OTP đã được gửi tới số điện thoại của bạn để tiếp tục.';
             valid = false;
         }
         if (otp && !new RegExp('^[0-9]{6}$').test(otp)) {
-            validationMessage += 'Vui lòng nhập mã OTP hợp lệ.';
+            validationMessage += '\nVui lòng nhập mã OTP hợp lệ.';
             valid = false;
         }
         if (validationMessage) {
