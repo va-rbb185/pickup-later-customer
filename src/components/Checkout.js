@@ -62,14 +62,14 @@ class Checkout extends React.Component {
 
         if (!customerName) {
             valid = false;
-            validationMessage += 'Vui lòng không bỏ trống Tên người nhận.\n';
+            validationMessage += 'Vui lòng không bỏ trống tên người nhận.\n';
         }
         if (!customerPhone) {
-            validationMessage += 'Vui lòng không bỏ trống Số điện thoại.\n';
+            validationMessage += 'Vui lòng không bỏ trống số điện thoại.\n';
             valid = false;
         }
         if (customerPhone && !new RegExp('^(?=0)[0-9]{10}$').test(customerPhone)) {
-            validationMessage += 'Vui lòng nhập Số điện thoại hợp lệ.';
+            validationMessage += 'Vui lòng nhập số điện thoại hợp lệ.';
             valid = false;
         }
         if (validationMessage) {
