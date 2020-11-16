@@ -15,13 +15,17 @@ const authenticationReducer = (prevState = authentication, action) => {
         case AUTHENTICATE_PHONE_START:
             return prevState;
 
-        case AUTHENTICATE_PHONE_SUCCESS:
+        case AUTHENTICATE_PHONE_SUCCESS: {
             let nextState = { ...prevState };
             nextState.login = action.login;
             return nextState;
+        }
 
-        case AUTHENTICATE_PHONE_FAILURE:
-            return prevState;
+        case AUTHENTICATE_PHONE_FAILURE: {
+            let nextState = { ...prevState };
+            nextState.login.error = action.error;
+            return nextState;
+        }
 
         case AUTHENTICATE_OTP_START:
             return prevState;
@@ -29,8 +33,11 @@ const authenticationReducer = (prevState = authentication, action) => {
         case AUTHENTICATE_OTP_SUCCESS:
             return action.authentication;
 
-        case AUTHENTICATE_OTP_FAILURE:
-            return prevState;
+        case AUTHENTICATE_OTP_FAILURE: {
+            let nextState = { ...prevState };
+            nextState.user.error = action.error;
+            return nextState;
+        }
 
         case RETRIEVE_AUTHENTICATION_FROM_STORAGE:
             return action.authentication;

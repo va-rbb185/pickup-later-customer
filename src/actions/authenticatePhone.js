@@ -16,7 +16,10 @@ const authenticatePhoneSuccess = (phoneNumber) => ({
     }
 });
 
-const authenticatePhoneFailure = () => ({ type: AUTHENTICATE_PHONE_FAILURE });
+const authenticatePhoneFailure = error => ({
+    type: AUTHENTICATE_PHONE_FAILURE,
+    error
+});
 
 const authenticatePhone = phoneNumber => dispatch => {
     dispatch(authenticatePhoneStart());
@@ -24,12 +27,11 @@ const authenticatePhone = phoneNumber => dispatch => {
         .then(response => {
             if (response.message && response.message === 'success') {
                 dispatch(authenticatePhoneSuccess(phoneNumber));
+            } else if (response.error) {
+                dispatch(authenticatePhoneFailure(response.error));
             }
         })
-        .catch(error => {
-            console.error('Phone authentication failed.', error);
-            dispatch(authenticatePhoneFailure());
-        });
+        .catch(error => dispatch(authenticatePhoneFailure(error)));
 };
 
 export default authenticatePhone;

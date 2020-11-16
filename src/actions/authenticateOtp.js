@@ -8,30 +8,33 @@ import {
 
 const authenticateOtpStart = () => ({ type: AUTHENTICATE_OTP_START });
 
-const authenticateOtpSuccess = (response) => ({
+const authenticateOtpSuccess = data => ({
     type: AUTHENTICATE_OTP_SUCCESS,
     authentication: {
         login: { status: loginStatus.LOGGED_IN },
         user: {
             type: userTypes.CUSTOMER,
-            data: response.data
+            data
         }
     }
 });
 
-const authenticateOtpFailure = () => ({ type: AUTHENTICATE_OTP_FAILURE });
+const authenticateOtpFailure = error => ({
+    type: AUTHENTICATE_OTP_FAILURE,
+    error
+});
 
 const authenticateOtp = (phoneNumber, otp) => dispatch => {
     dispatch(authenticateOtpStart());
     authenticateOtpApi(phoneNumber, otp)
         .then(response => {
-            console.info('OTP authentication succeeded:', response.data);
-            dispatch(authenticateOtpSuccess(response));
+            if (response.data) {
+                dispatch(authenticateOtpSuccess(response.data));
+            } else if (response.error) {
+                dispatch(authenticateOtpFailure(response.error));
+            }
         })
-        .catch(error => {
-            console.error('OTP authentication failed.', error);
-            dispatch(authenticateOtpFailure());
-        });
+        .catch(error => dispatch(authenticateOtpFailure(error)));
 };
 
 export default authenticateOtp;
