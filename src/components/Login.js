@@ -2,13 +2,21 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button, Form, Message } from 'semantic-ui-react';
-import { showCartButton, hideCartButton, authenticatePhone, authenticateOtp } from '../actions';
+import {
+    showCartButton,
+    hideCartButton,
+    authenticatePhone,
+    authenticateOtp,
+    logoutCurrentUser
+} from '../actions';
 import { loginStatus } from '../enums';
 import { loginResources } from '../static/resources';
 
 import PageHeader from './PageHeader';
 
 class Login extends React.Component {
+    MAX_ATTEMPTS_ALLOWED = 4;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -103,6 +111,14 @@ class Login extends React.Component {
         this.saveAuthenticationToStorage(nextProps.authentication);
     }
 
+    componentDidUpdate() {
+        const currentLoginStatus = this.props.authentication.login.status;
+        const isPhoneVerification = currentLoginStatus === loginStatus.PHONE_VERIFICATION;
+        if (isPhoneVerification && this.props.authentication.user.failedAttempts === this.MAX_ATTEMPTS_ALLOWED) {
+            this.props.logoutCurrentUser();
+        }
+    }
+
     componentWillUnmount() {
         this.props.showCartButton();
     }
@@ -137,7 +153,9 @@ class Login extends React.Component {
                     <Message
                         negative
                         header={loginResources.DESCRIPTION_HEADER_OTP_FAILURE}
-                        content={loginResources.DESCRIPTION_CONTENT_OTP_FAILURE}
+                        content={
+                            `${loginResources.DESCRIPTION_CONTENT_OTP_FAILURE} ${this.MAX_ATTEMPTS_ALLOWED - this.props.authentication.user.failedAttempts}.`
+                        }
                     />;
             } else {
                 loginMessageComponent =
@@ -162,7 +180,7 @@ class Login extends React.Component {
                             <Form success>
                                 {loginMessageComponent}
                                 <Form.Input
-                                    readOnly={!isNotLoggedIn}
+                                    className={!isNotLoggedIn ? 'd-none' : ''}
                                     type="tel"
                                     placeholder={loginResources.INPUT_PLACEHOLDER_PHONE}
                                     required={true}
@@ -172,7 +190,7 @@ class Login extends React.Component {
                                     onChange={this.onPhoneInputChange}
                                 />
                                 <Form.Input
-                                    disabled={!isPhoneVerification}
+                                    className={!isPhoneVerification || (isPhoneVerification && this.props.authentication.user.failedAttempts === this.MAX_ATTEMPTS_ALLOWED) ? 'd-none' : ''}
                                     type="text"
                                     placeholder={loginResources.INPUT_PLACEHOLDER_OTP}
                                     required={isPhoneVerification}
@@ -213,7 +231,8 @@ const actions = {
     showCartButton,
     hideCartButton,
     authenticatePhone,
-    authenticateOtp
+    authenticateOtp,
+    logoutCurrentUser
 };
 
 const ConnectedLogin = connect(mapStateToProps, actions)(Login);

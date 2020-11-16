@@ -7,7 +7,7 @@ const login = {
     DESCRIPTION_HEADER_OTP: 'Nhập mã OTP để hoàn tất',
     DESCRIPTION_CONTENT_OTP: 'Nhập mã OTP đã được gửi về số điện thoại ở trên để hoàn tất đăng nhập.',
     DESCRIPTION_HEADER_OTP_FAILURE: 'Xác thực OTP không thành công',
-    DESCRIPTION_CONTENT_OTP_FAILURE: 'Vui lòng kiểm tra lại mã OTP.',
+    DESCRIPTION_CONTENT_OTP_FAILURE: 'Vui lòng kiểm tra lại mã OTP. Số lần thử còn lại:',
     INPUT_PLACEHOLDER_PHONE: 'Số điện thoại đăng nhập',
     INPUT_PLACEHOLDER_OTP: 'Mã OTP',
     SUBMIT_PHONE: 'Gửi mã OTP',
