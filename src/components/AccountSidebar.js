@@ -3,10 +3,12 @@ import { useDispatch } from 'react-redux';
 import { Button } from 'semantic-ui-react';
 import { logoutCurrentUser } from '../actions';
 
-const AccountSidebar = ({ authentication, hideSideBar }) => {
+const AccountSidebar = ({ customerDetails, hideSideBar }) => {
     const dispatch = useDispatch();
     return (
         <div className="sidebar-content">
+            <h3>{customerDetails.name || 'Logged-in User'}</h3>
+            <div>{customerDetails.phone}</div>
             <Button
                 basic
                 color="red"

@@ -9,7 +9,7 @@ import PromoBanner from './PromoBanner';
 import HomeCategory from './HomeCategory';
 import AccountSidebar from './AccountSidebar';
 
-const Home = ({ allCategories, authentication }) => {
+const Home = ({ allCategories, isLoggedIn, customerDetails }) => {
     const [visible, setVisible] = React.useState(false);
     const top3Categories = allCategories.slice(0, 3);
 
@@ -18,7 +18,7 @@ const Home = ({ allCategories, authentication }) => {
             <Sidebar.Pushable>
                 <Sidebar.Pusher dimmed={visible}>
                     <HomeHeader
-                        isLoggedIn={authentication.login.status === loginStatus.LOGGED_IN}
+                        isLoggedIn={isLoggedIn}
                         showSideBar={() => setVisible(true)}
                     />
                     <PromoBanner />
@@ -41,19 +41,21 @@ const Home = ({ allCategories, authentication }) => {
                     visible={visible}
                     onHide={() => setVisible(false)}
                 >
-                    <AccountSidebar
-                        authentication={authentication}
-                        hideSideBar={() => setVisible(false)}
-                    />
+                    {
+                        isLoggedIn
+                            ? <AccountSidebar customerDetails={customerDetails} hideSideBar={() => setVisible(false)} />
+                            : null
+                    }
                 </Sidebar>
             </Sidebar.Pushable>
         </div>
     );
 };
 
-const mapStateToProps = ({ storeMenu, authentication }) => ({
+const mapStateToProps = ({ storeMenu, authentication, customerDetails }) => ({
     allCategories: storeMenu.groups,
-    authentication
+    isLoggedIn: authentication.login.status === loginStatus.LOGGED_IN,
+    customerDetails
 });
 
 const ConnectedHome = connect(mapStateToProps)(Home);
