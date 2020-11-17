@@ -9,8 +9,8 @@ body {
   color: #212529;
 }
 
-body {
-  padding-top: 53px;
+body.unscrollable {
+  overflow-y: hidden;
 }
 
 a,
@@ -24,6 +24,9 @@ a:hover {
 
 .inner-page {
   background-color: #fff;
+}
+.inner-page:not(.home) {
+  padding-top: 53px;
 }
 .inner-page .top-section {
   border-bottom: 10px solid #f2f2f2;
@@ -570,8 +573,7 @@ a:hover {
   transform: none !important;
 }
 .pushable:not(body) > .ui.sidebar,
-.pushable:not(body) > .fixed,
-.pushable:not(body) > .pusher:after {
+.pushable:not(body) > .pusher::after {
   position: fixed !important;
 }
 
@@ -672,10 +674,8 @@ a:hover {
 }
 
 /* pages */
-.home {
-  padding-top: 13px;
-}
 .home .promo-banner {
+  margin-top: 66px;
   margin-bottom: 1.5rem;
 }
 @media (min-width: 768px) {

@@ -14,6 +14,12 @@ const Home = ({ allCategories, authentication }) => {
     const top3Categories = allCategories.slice(0, 3);
     const [visible, setVisible] = React.useState(false);
 
+    if (visible) {
+        document.body.classList.add('unscrollable');
+    } else {
+        document.body.classList.remove('unscrollable');
+    }
+
     return (
         <div className="home inner-page">
             <Sidebar.Pushable>

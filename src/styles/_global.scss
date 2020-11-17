@@ -4,8 +4,8 @@ body {
     color: $text;
 }
 
-body {
-    padding-top: $pageHeaderHeight;
+body.unscrollable {
+    overflow-y: hidden;
 }
 
 a,
@@ -19,6 +19,10 @@ a:hover {
 
 .inner-page {
     background-color: $white;
+
+    &:not(.home) {
+        padding-top: 53px;
+    }
 
     .top-section {
         border-bottom: 10px solid $whiteSmoke;

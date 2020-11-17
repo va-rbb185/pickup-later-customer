@@ -2,8 +2,7 @@
     transform: none !important;
 
     >.ui.sidebar,
-    >.fixed,
-    >.pusher:after {
+    >.pusher::after {
         position: fixed !important;
     }
 }
