@@ -1,0 +1,11 @@
+.pushable {
+    &:not(body) {
+        transform: none !important;
+
+        >.ui.sidebar,
+        >.fixed,
+        >.pusher:after {
+            position: fixed;
+        }
+    }
+}

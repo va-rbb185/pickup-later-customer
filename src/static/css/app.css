@@ -566,6 +566,15 @@ a:hover {
   transform: translate(-50%, -50%);
 }
 
+.pushable:not(body) {
+  transform: none !important;
+}
+.pushable:not(body) > .ui.sidebar,
+.pushable:not(body) > .fixed,
+.pushable:not(body) > .pusher:after {
+  position: fixed;
+}
+
 /* pages */
 .home {
   padding-top: 13px;

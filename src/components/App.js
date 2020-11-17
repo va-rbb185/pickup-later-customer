@@ -18,7 +18,6 @@ import ProductDetailPage from './ProductDetailPage';
 import CartButton from './CartButton';
 import Cart from './Cart';
 import Login from './Login';
-import Account from './Account';
 import Checkout from './Checkout';
 
 class App extends React.Component {
@@ -74,7 +73,6 @@ class App extends React.Component {
                     <Route path="/cart" component={Cart} />
                     <Route path="/checkout" component={Checkout} />
                     <Route path="/login" component={Login} />
-                    <Route path="/account" component={Account} />
                 </div>
                 <CartButton />
             </BrowserRouter>
