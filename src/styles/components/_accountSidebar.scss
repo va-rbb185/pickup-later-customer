@@ -1,11 +1,78 @@
-.pushable {
-    &:not(body) {
-        transform: none !important;
+.pushable:not(body) {
+    transform: none !important;
 
-        >.ui.sidebar,
-        >.fixed,
-        >.pusher:after {
-            position: fixed;
+    >.ui.sidebar,
+    >.fixed,
+    >.pusher:after {
+        position: fixed !important;
+    }
+}
+
+.sidebar-content {
+    .header {
+        padding: 1rem;
+        text-align: center;
+
+        @include box-shadow(0 1px 6px 0 rgba(32, 33, 36, 0.1));
+    }
+
+    .user {
+        @include make-custom-row(0);
+        @include align-items-center;
+
+        padding: 1rem;
+
+        .user-icon {
+            @include make-custom-col(25%, 0);
+
+            color: $darkGreen;
+        }
+
+        .user-info {
+            @include make-custom-col(75%, 0);
+
+            h5.user-name {
+                color: $lighterGreen;
+                font-size: $fontSize20;
+                font-weight: 600;
+            }
+
+            h6.phone-number {
+                color: $dimGray;
+                font-size: $fontSize16;
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .logout {
+        text-align: center;
+        padding: 0 1rem 1rem 1rem;
+        border-bottom: 1px solid $gainsboro;
+    }
+
+    .sidebar-entry {
+        @include make-custom-row(0);
+        @include align-items-center;
+
+        padding: 1rem;
+        border-bottom: 1px solid $gainsboro;
+
+        .icon {
+            @include make-custom-col(15%, 0);
+
+            color: $goldenGrass;
+            text-align: center;
+        }
+
+        .content {
+            @include make-custom-col(85%, 0);
+
+            padding-left: 10px;
+
+            h5 {
+                font-size: $fontSize16;
+            }
         }
     }
 }

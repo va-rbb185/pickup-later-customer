@@ -572,7 +572,103 @@ a:hover {
 .pushable:not(body) > .ui.sidebar,
 .pushable:not(body) > .fixed,
 .pushable:not(body) > .pusher:after {
-  position: fixed;
+  position: fixed !important;
+}
+
+.sidebar-content .header {
+  padding: 1rem;
+  text-align: center;
+  -webkit-box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.1);
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.1);
+}
+.sidebar-content .user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-left: 0;
+  margin-right: 0;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1rem;
+}
+.sidebar-content .user .user-icon {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 25%;
+  flex: 0 0 25%;
+  max-width: 25%;
+  position: relative;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  color: #008358;
+}
+.sidebar-content .user .user-info {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 75%;
+  flex: 0 0 75%;
+  max-width: 75%;
+  position: relative;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+.sidebar-content .user .user-info h5.user-name {
+  color: #4db856;
+  font-size: 1.4286rem;
+  font-weight: 600;
+}
+.sidebar-content .user .user-info h6.phone-number {
+  color: #606060;
+  font-size: 1.1429rem;
+  margin-bottom: 0;
+}
+.sidebar-content .logout {
+  text-align: center;
+  padding: 0 1rem 1rem 1rem;
+  border-bottom: 1px solid #dfdfdf;
+}
+.sidebar-content .sidebar-entry {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-left: 0;
+  margin-right: 0;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #dfdfdf;
+}
+.sidebar-content .sidebar-entry .icon {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 15%;
+  flex: 0 0 15%;
+  max-width: 15%;
+  position: relative;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  color: #daa520;
+  text-align: center;
+}
+.sidebar-content .sidebar-entry .content {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 85%;
+  flex: 0 0 85%;
+  max-width: 85%;
+  position: relative;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  padding-left: 10px;
+}
+.sidebar-content .sidebar-entry .content h5 {
+  font-size: 1.1429rem;
 }
 
 /* pages */
@@ -625,7 +721,7 @@ a:hover {
 }
 
 .cart {
-  padding-bottom: 109px;
+  padding-bottom: 150px;
 }
 .cart .empty-cart-msg {
   text-align: center;

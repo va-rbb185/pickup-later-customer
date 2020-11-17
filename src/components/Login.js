@@ -137,7 +137,7 @@ class Login extends React.Component {
 
         /* Render the page according to login status */
         if (isLoggedIn) {
-            return <Redirect to="/account" />;
+            return <Redirect to="/" />;
         }
 
         if (isNotLoggedIn || isPhoneVerification) {

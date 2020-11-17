@@ -9,24 +9,18 @@ import PromoBanner from './PromoBanner';
 import HomeCategory from './HomeCategory';
 import AccountSidebar from './AccountSidebar';
 
-const Home = ({ allCategories, isLoggedIn, customerDetails }) => {
-    const [visible, setVisible] = React.useState(false);
+const Home = ({ allCategories, authentication }) => {
+    const isLoggedIn = authentication.login.status === loginStatus.LOGGED_IN;
     const top3Categories = allCategories.slice(0, 3);
+    const [visible, setVisible] = React.useState(false);
 
     return (
         <div className="home inner-page">
             <Sidebar.Pushable>
                 <Sidebar.Pusher dimmed={visible}>
-                    <HomeHeader
-                        isLoggedIn={isLoggedIn}
-                        showSideBar={() => setVisible(true)}
-                    />
+                    <HomeHeader isLoggedIn={isLoggedIn} showSideBar={() => setVisible(true)} />
                     <PromoBanner />
-                    <CategoryList
-                        cols={4}
-                        isShowTop={false}
-                        categories={allCategories}
-                    />
+                    <CategoryList cols={4} isShowTop={false} categories={allCategories} />
                     <div className="home-categories">
                         {top3Categories.map(
                             homeCategory => <HomeCategory key={`homeCat_${homeCategory.id}`} category={homeCategory} />
@@ -43,7 +37,7 @@ const Home = ({ allCategories, isLoggedIn, customerDetails }) => {
                 >
                     {
                         isLoggedIn
-                            ? <AccountSidebar customerDetails={customerDetails} hideSideBar={() => setVisible(false)} />
+                            ? <AccountSidebar userData={authentication.user.data} hideSideBar={() => setVisible(false)} />
                             : null
                     }
                 </Sidebar>
@@ -52,10 +46,9 @@ const Home = ({ allCategories, isLoggedIn, customerDetails }) => {
     );
 };
 
-const mapStateToProps = ({ storeMenu, authentication, customerDetails }) => ({
+const mapStateToProps = ({ storeMenu, authentication }) => ({
     allCategories: storeMenu.groups,
-    isLoggedIn: authentication.login.status === loginStatus.LOGGED_IN,
-    customerDetails
+    authentication
 });
 
 const ConnectedHome = connect(mapStateToProps)(Home);

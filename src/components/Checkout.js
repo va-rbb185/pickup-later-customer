@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMobileAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faUser, faStickyNote } from '@fortawesome/free-regular-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { formatPrice, makeOrder, calculateAmount, calculateOriginalAmount } from '../helpers';
 import { paymentMethods } from '../enums';
 import {
@@ -56,7 +56,7 @@ class Checkout extends React.Component {
         this.setState({ currentlySelectedPayment: paymentMethod });
     }
 
-    validateCustomerDetails(customerName, customerPhone, alertInvalid = true) {
+    validateCustomerDetails(customerName, customerPhone) {
         let valid = true;
         let validationMessage = [];
 
@@ -72,7 +72,7 @@ class Checkout extends React.Component {
             valid = false;
             validationMessage.push('Vui lòng nhập số điện thoại hợp lệ.');
         }
-        if (validationMessage.length > 0 && alertInvalid) {
+        if (validationMessage.length > 0) {
             window.alert(validationMessage.join('\n'));
         }
 
@@ -216,7 +216,6 @@ class Checkout extends React.Component {
                             </div>
                         </div>
                         <Button
-                            disabled={this.validateCustomerDetails(this.props.customerDetails.name, this.props.customerDetails.phone, false)}
                             color="green"
                             content="Đặt đơn"
                             onClick={this.onPlaceOrder}
