@@ -58,22 +58,22 @@ class Checkout extends React.Component {
 
     validateCustomerDetails(customerName, customerPhone, alertInvalid = true) {
         let valid = true;
-        let validationMessage = '';
+        let validationMessage = [];
 
         if (!customerName) {
             valid = false;
-            validationMessage += 'Vui lòng không bỏ trống tên người nhận.';
+            validationMessage.push('Vui lòng không bỏ trống tên người nhận.');
         }
         if (!customerPhone) {
-            validationMessage += '\nVui lòng không bỏ trống số điện thoại.';
             valid = false;
+            validationMessage.push('Vui lòng không bỏ trống số điện thoại.');
         }
         if (customerPhone && !new RegExp('^(?=0)[0-9]{10}$').test(customerPhone)) {
-            validationMessage += '\nVui lòng nhập số điện thoại hợp lệ.';
             valid = false;
+            validationMessage.push('Vui lòng nhập số điện thoại hợp lệ.');
         }
-        if (validationMessage && alertInvalid) {
-            window.alert(validationMessage);
+        if (validationMessage.length > 0 && alertInvalid) {
+            window.alert(validationMessage.join('\n'));
         }
 
         return valid;
@@ -233,7 +233,7 @@ class Checkout extends React.Component {
                     onConfirm={this.onSaveCustomerDetails}
                 >
                     <div className="customer-detail-form">
-                        <Form success>
+                        <Form success noValidate>
                             <div className="customer-field">
                                 <div className="field-icon">
                                     <FontAwesomeIcon icon={faUser} size="2x" />

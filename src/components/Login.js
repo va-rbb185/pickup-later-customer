@@ -31,18 +31,18 @@ class Login extends React.Component {
 
     validatePhoneNumber(phoneNumber) {
         let valid = true;
-        let validationMessage = '';
+        let validationMessage = [];
 
         if (!phoneNumber) {
-            validationMessage += 'Vui lòng nhập số điện thoại để tiếp tục.';
             valid = false;
+            validationMessage.push('Vui lòng nhập số điện thoại để tiếp tục.');
         }
         if (phoneNumber && !new RegExp('^(?=0)[0-9]{10}$').test(phoneNumber)) {
-            validationMessage += '\nVui lòng nhập số điện thoại hợp lệ.';
             valid = false;
+            validationMessage.push('Vui lòng nhập số điện thoại hợp lệ.');
         }
-        if (validationMessage) {
-            window.alert(validationMessage);
+        if (validationMessage.length > 0) {
+            window.alert(validationMessage.join('\n'));
         }
 
         return valid;
@@ -50,18 +50,18 @@ class Login extends React.Component {
 
     validateOtp(otp) {
         let valid = true;
-        let validationMessage = '';
+        let validationMessage = [];
 
         if (!otp) {
-            validationMessage += 'Vui lòng nhập mã OTP đã được gửi tới số điện thoại của bạn để tiếp tục.';
             valid = false;
+            validationMessage.push('Vui lòng nhập mã OTP đã được gửi tới số điện thoại của bạn để tiếp tục.');
         }
         if (otp && !new RegExp('^[0-9]{6}$').test(otp)) {
-            validationMessage += '\nVui lòng nhập mã OTP hợp lệ.';
             valid = false;
+            validationMessage.push('Vui lòng nhập mã OTP hợp lệ.');
         }
-        if (validationMessage) {
-            window.alert(validationMessage);
+        if (validationMessage.length > 0) {
+            window.alert(validationMessage.join('\n'));
         }
 
         return valid;
@@ -187,7 +187,7 @@ class Login extends React.Component {
                     <PageHeader>{loginResources.PAGE_TITLE}</PageHeader>
                     <div className="login-body">
                         <div className="login-form">
-                            <Form success noValidate={true}>
+                            <Form success noValidate>
                                 {loginMessageComponent}
                                 <Form.Input
                                     className={!isNotLoggedIn ? 'd-none' : ''}
