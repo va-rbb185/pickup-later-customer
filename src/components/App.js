@@ -16,9 +16,11 @@ import CategoryListingPage from './CategoryListingPage';
 import ProductListingPage from './ProductListingPage';
 import ProductDetailPage from './ProductDetailPage';
 import CartButton from './CartButton';
+import Spinner from './Spinner';
 import Cart from './Cart';
 import Login from './Login';
 import Checkout from './Checkout';
+import OrderConfirmation from './OrderConfirmation';
 
 class App extends React.Component {
     saveCartToStorage(cart) {
@@ -73,8 +75,10 @@ class App extends React.Component {
                     <Route path="/cart" component={Cart} />
                     <Route path="/checkout" component={Checkout} />
                     <Route path="/login" component={Login} />
+                    <Route path="/order-confirmation" component={OrderConfirmation} />
                 </div>
                 <CartButton />
+                <Spinner />
             </BrowserRouter>
         );
     }

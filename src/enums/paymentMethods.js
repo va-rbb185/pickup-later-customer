@@ -1,8 +1,8 @@
 const paymentMethods = {
     MOMO: {
         stringValue: 'MOMO',
-        shortTitle: 'MoMo',
-        longTitle: 'Thanh toán bằng ví MoMo'
+        shortTitle: 'Ví MoMo',
+        longTitle: 'Thanh toán bằng ví điện tử MoMo'
     },
     COD: {
         stringValue: 'COD',
