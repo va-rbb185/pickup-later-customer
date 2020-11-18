@@ -5,8 +5,8 @@ import fetchMenu from './fetchMenu';
 import addCartItem from './addCartItem';
 import removeCartItem from './removeCartItem';
 import showCartButton from './showCartButton';
-import clearCart from './clearCart';
 import hideCartButton from './hideCartButton';
+import clearCart from './clearCart';
 import retrieveCartFromStorage from './retrieveCartFromStorage';
 import logoutCurrentUser from './logoutCurrentUser';
 import authenticatePhone from './authenticatePhone';
@@ -14,6 +14,8 @@ import authenticateOtp from './authenticateOtp';
 import retrieveAuthenticationFromStorage from './retrieveAuthenticationFromStorage';
 import updatePaymentMethod from './updatePaymentMethod';
 import createOrder from './createOrder';
+import showSpinner from './showSpinner';
+import hideSpinner from './hideSpinner';
 
 export {
     updateTestData,
@@ -31,5 +33,7 @@ export {
     authenticateOtp,
     retrieveAuthenticationFromStorage,
     logoutCurrentUser,
-    createOrder
+    createOrder,
+    showSpinner,
+    hideSpinner
 };

@@ -8,6 +8,7 @@ import authenticationReducer from './authenticationReducer';
 import customerDetailsReducer from './customerDetailsReducer';
 import paymentMethodReducer from './paymentMethodReducer';
 import orderConfirmationReducer from './orderConfirmationReducer';
+import showSpinnerReducer from './showSpinnerReducer';
 
 export default combineReducers({
     testData: testDataReducer,
@@ -17,5 +18,6 @@ export default combineReducers({
     authentication: authenticationReducer,
     customerDetails : customerDetailsReducer,
     paymentMethod: paymentMethodReducer,
-    orderConfirmation: orderConfirmationReducer
+    orderConfirmation: orderConfirmationReducer,
+    showSpinner: showSpinnerReducer
 });
