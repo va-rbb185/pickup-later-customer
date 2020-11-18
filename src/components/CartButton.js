@@ -5,7 +5,7 @@ import CartIcon from './CartIcon';
 
 const CartButton = ({ cartAmount, showCartButton }) => {
     const history = useHistory();
-    if (showCartButton && cartAmount > 0) {
+    if (showCartButton && cartAmount !== 0) {
         return (
             <div className="cart-button" onClick={() => history.push('/cart')}>
                 <button className="ui circular button cart-float-button">

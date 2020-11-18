@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { loginStatus } from '../enums';
+import { convertPhone84To0 } from '../helpers';
 import {
     fetchMenu,
     retrieveCartFromStorage,
     retrieveAuthenticationFromStorage,
     updateCustomerDetails
 } from '../actions';
-import { loginStatus } from '../enums';
-import { convertPhone84To0 } from '../helpers';
 
 import Home from './Home';
 import Search from './Search';

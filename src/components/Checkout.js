@@ -1,18 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Button, Form } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMobileAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faUser, faStickyNote } from '@fortawesome/free-regular-svg-icons';
 import { formatPrice, makeOrder, calculateAmount, calculateOriginalAmount } from '../helpers';
-import { paymentMethods } from '../enums';
+import { paymentMethods, loginStatus } from '../enums';
 import {
     showCartButton,
     hideCartButton,
     updateCustomerDetails,
     updatePaymentMethod,
-    createOrder
+    createOrder,
+    clearCart,
+    showSpinner
 } from '../actions';
 
 import PageHeader from './PageHeader';
@@ -105,6 +107,10 @@ class Checkout extends React.Component {
         );
 
         if (valid) {
+            /* Start spinner for order placement */
+            this.props.showSpinner();
+
+            /* Make an order */
             const order = makeOrder(
                 this.props.authentication,
                 this.props.storeMenu,
@@ -112,9 +118,11 @@ class Checkout extends React.Component {
                 this.props.customerDetails,
                 this.props.paymentMethod
             );
-            console.log('Created order:', order);
 
-            /* Submit created order to server */
+            /* Clear current cart as the order has been generated */
+            this.props.clearCart();
+
+            /* Submit the order to server */
             this.props.createOrder(order);
         }
     }
@@ -128,8 +136,29 @@ class Checkout extends React.Component {
     }
 
     render() {
+        if (this.props.orderConfirmation) {
+            const { paymentMethod, qrText, error } = this.props.orderConfirmation;
+
+            if (error) {
+                window.alert('Xảy ra lỗi khi đặt đơn. Vui lòng thử lại sau.');
+                return <Redirect to={{ pathname: '/order-confirmation', search: '?error=1' }} />;
+            }
+
+            if (paymentMethod === paymentMethods.MOMO.stringValue && qrText) {
+                window.location.replace(qrText);
+            }
+
+            if (paymentMethod === paymentMethods.COD.stringValue) {
+                return <Redirect to={{ pathname: '/order-confirmation', search: '?payment=cod' }} />;
+            }
+        }
+
         const orderSalePrice = calculateAmount(this.props.cart);
         const orderOriginalPrice = calculateOriginalAmount(this.props.cart);
+        const placeOrderAllowed = this.props.authentication.login.status === loginStatus.LOGGED_IN
+            && !!this.props.authentication.user.data
+            && !this.props.orderConfirmation
+            && this.props.cart.amount !== 0;
 
         return (
             <div className="checkout inner-page">
@@ -204,6 +233,13 @@ class Checkout extends React.Component {
                         </div>
                     </div>
                     <div className="order-placement">
+                        {
+                            !placeOrderAllowed
+                                ? <div className="invalid-msg">
+                                    Không thể đặt đơn hàng mới vào lúc này.
+                                </div>
+                                : null
+                        }
                         <div className="subtotal">
                             <div className="label">Tổng cộng:</div>
                             <div className="values">
@@ -216,8 +252,9 @@ class Checkout extends React.Component {
                             </div>
                         </div>
                         <Button
+                            disabled={!placeOrderAllowed}
                             color="green"
-                            content="Đặt đơn"
+                            content="Đặt đơn hàng"
                             onClick={this.onPlaceOrder}
                         />
                     </div>
@@ -332,12 +369,13 @@ class Checkout extends React.Component {
     }
 }
 
-const mapStateToProps = ({ authentication, storeMenu, cart, customerDetails, paymentMethod }) => ({
+const mapStateToProps = ({ authentication, storeMenu, cart, customerDetails, paymentMethod, orderConfirmation }) => ({
     authentication,
     storeMenu,
     cart,
     customerDetails,
-    paymentMethod
+    paymentMethod,
+    orderConfirmation
 });
 
 const actions = {
@@ -345,7 +383,9 @@ const actions = {
     hideCartButton,
     updateCustomerDetails,
     updatePaymentMethod,
-    createOrder
+    createOrder,
+    clearCart,
+    showSpinner
 };
 
 const ConnectedCheckout = connect(mapStateToProps, actions)(Checkout);

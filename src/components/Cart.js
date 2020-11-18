@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 import { showCartButton, hideCartButton, clearCart } from '../actions';
 import { loginStatus } from '../enums';
@@ -48,7 +48,7 @@ class Cart extends React.Component {
                         : null
                 }
                 {
-                    this.props.cart.amount > 0
+                    this.props.cart.amount !== 0
                         ? <div className="clear-cart">
                             <Button
                                 basic
@@ -61,6 +61,22 @@ class Cart extends React.Component {
                         : null
                 }
                 <div className="cart-summary">
+                    {
+                        !this.props.isLoggedIn
+                            ? <div className="invalid-msg">
+                                <span>Vui lòng </span>
+                                <Link to="/login" className="login-link">đăng nhập</Link>
+                                <span> để đến bước tiếp theo.</span>
+                            </div>
+                            : null
+                    }
+                    {
+                        this.props.hasOngoingOrder
+                            ? <div className="invalid-msg">
+                                Vui lòng hoàn tất đơn hàng đang thực hiện để có thể đặt đơn hàng mới.
+                            </div>
+                            : null
+                    }
                     <div className="subtotal">
                         <div className="label">Tổng cộng:</div>
                         <div className="values">
@@ -73,21 +89,21 @@ class Cart extends React.Component {
                         </div>
                     </div>
                     <Button
+                        disabled={!this.props.isLoggedIn || this.props.hasOngoingOrder || this.props.cart.amount === 0}
                         color="green"
-                        disabled={this.props.cart.amount === 0 || !this.props.isLoggedIn}
+                        content="Nhập thông tin đơn hàng"
                         onClick={() => this.props.history.push('/checkout')}
-                    >
-                        {this.props.isLoggedIn ? 'Tiến hành Thanh toán' : 'Vui lòng đăng nhập để đến bước thanh toán'}
-                    </Button>
+                    />
                 </div>
             </div>
         );
     }
 }
 
-const mapStateToProps = ({ cart, authentication }) => ({
+const mapStateToProps = ({ cart, authentication, orderConfirmation }) => ({
     cart,
-    isLoggedIn: authentication.login.status === loginStatus.LOGGED_IN
+    isLoggedIn: authentication.login.status === loginStatus.LOGGED_IN,
+    hasOngoingOrder: !!orderConfirmation
 });
 
 const actions = {

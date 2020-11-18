@@ -1,5 +1,5 @@
 .checkout {
-    padding-bottom: 150px;
+    padding-bottom: 200px;
     background-color: $whiteSmoke;
 
     .checkout-section {
@@ -80,6 +80,12 @@
         padding: 1rem;
         background-color: $white;
         border-top: 1px solid $whiteSmoke;
+
+        .invalid-msg {
+            color: $crimson;
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
 
         .subtotal {
             @include display-flex;
