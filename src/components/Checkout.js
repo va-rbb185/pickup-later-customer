@@ -141,15 +141,17 @@ class Checkout extends React.Component {
 
             if (error) {
                 window.alert('Xảy ra lỗi khi đặt đơn. Vui lòng thử lại sau.');
-                return <Redirect to={{ pathname: '/order-confirmation', search: '?error=1' }} />;
+                return <Redirect to={{ pathname: '/ongoing-order', search: '?error=1' }} />;
             }
 
             if (paymentMethod === paymentMethods.MOMO.stringValue && qrText) {
+                window.alert('Đặt đơn thành công. Bạn sẽ được chuyển đến trang thanh toán MoMo cho đơn hàng vừa đặt.');
                 window.location.replace(qrText);
             }
 
             if (paymentMethod === paymentMethods.COD.stringValue) {
-                return <Redirect to={{ pathname: '/order-confirmation', search: '?payment=cod' }} />;
+                window.alert('Đặt đơn thành công. Bạn sẽ được chuyển đến trang chi tiết cho đơn hàng vừa đặt.');
+                return <Redirect to="/ongoing-order" />;
             }
         }
 

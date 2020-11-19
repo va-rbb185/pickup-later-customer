@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { showCartButton, hideCartButton, hideSpinner } from '../actions';
 import PageHeader from './PageHeader';
 
-class OrderConfirmation extends React.Component {
+class OngoingOrder extends React.Component {
     componentDidMount() {
         this.props.hideCartButton();
         this.props.hideSpinner();
@@ -15,8 +15,8 @@ class OrderConfirmation extends React.Component {
 
     render() {
         return (
-            <div className="order-confirmation inner-page">
-                <PageHeader>Xác nhận đơn hàng</PageHeader>
+            <div className="ongoing-order inner-page">
+                <PageHeader>Đơn hàng đang thực hiện</PageHeader>
                 <h1>Trang theo dõi đơn hàng đang thực hiện</h1>
             </div>
         );
@@ -31,6 +31,6 @@ const actions = {
     hideSpinner
 };
 
-const ConnectedOrderConfirmation = connect(mapStateToProps, actions)(OrderConfirmation);
+const ConnectedOngoingOrder = connect(mapStateToProps, actions)(OngoingOrder);
 
-export default ConnectedOrderConfirmation;
+export default ConnectedOngoingOrder;
