@@ -14,7 +14,8 @@ import {
     updatePaymentMethod,
     createOrder,
     clearCart,
-    showSpinner
+    showSpinner,
+    updateOngoingOrder
 } from '../actions';
 
 import PageHeader from './PageHeader';
@@ -118,8 +119,7 @@ class Checkout extends React.Component {
                 this.props.customerDetails,
                 this.props.paymentMethod
             );
-
-            /* Clear current cart as the order has been generated */
+            this.props.updateOngoingOrder(this.props.cart, order);
             this.props.clearCart();
 
             /* Submit the order to server */
@@ -129,6 +129,12 @@ class Checkout extends React.Component {
 
     componentDidMount() {
         this.props.hideCartButton();
+    }
+
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (nextProps.orderConfirmation && nextProps.orderConfirmation !== this.props.orderConfirmation) {
+            this.props.updateOngoingOrder(null, null, nextProps.orderConfirmation);
+        }
     }
 
     componentWillUnmount() {
@@ -387,7 +393,8 @@ const actions = {
     updatePaymentMethod,
     createOrder,
     clearCart,
-    showSpinner
+    showSpinner,
+    updateOngoingOrder
 };
 
 const ConnectedCheckout = connect(mapStateToProps, actions)(Checkout);

@@ -9,6 +9,7 @@ import customerDetailsReducer from './customerDetailsReducer';
 import paymentMethodReducer from './paymentMethodReducer';
 import orderConfirmationReducer from './orderConfirmationReducer';
 import showSpinnerReducer from './showSpinnerReducer';
+import ongoingOrderReducer from './ongoingOrderReducer';
 
 export default combineReducers({
     testData: testDataReducer,
@@ -19,5 +20,6 @@ export default combineReducers({
     customerDetails : customerDetailsReducer,
     paymentMethod: paymentMethodReducer,
     orderConfirmation: orderConfirmationReducer,
-    showSpinner: showSpinnerReducer
+    showSpinner: showSpinnerReducer,
+    ongoingOrder: ongoingOrderReducer
 });

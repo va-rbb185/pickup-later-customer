@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Button } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,7 +8,9 @@ import { faHistory, faReceipt } from '@fortawesome/free-solid-svg-icons';
 import { logoutCurrentUser } from '../actions';
 
 const AccountSidebar = ({ userData, hideSideBar }) => {
+    let history = useHistory();
     const dispatch = useDispatch();
+
     return (
         <div className="sidebar-content">
             <div className="header">
@@ -38,7 +41,7 @@ const AccountSidebar = ({ userData, hideSideBar }) => {
                     }}
                 />
             </div>
-            <div className="ongoing-order sidebar-entry">
+            <div className="ongoing-order sidebar-entry" onClick={() => history.push('/ongoing-order')}>
                 <div className="icon">
                     <FontAwesomeIcon icon={faReceipt} size="2x" />
                 </div>
@@ -46,7 +49,7 @@ const AccountSidebar = ({ userData, hideSideBar }) => {
                     <h5>Đơn hàng đang thực hiện</h5>
                 </div>
             </div>
-            <div className="history sidebar-entry">
+            <div className="order-history sidebar-entry" onClick={null}>
                 <div className="icon">
                     <FontAwesomeIcon icon={faHistory} size="2x" />
                 </div>

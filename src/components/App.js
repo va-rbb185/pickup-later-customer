@@ -7,7 +7,8 @@ import {
     fetchMenu,
     retrieveCartFromStorage,
     retrieveAuthenticationFromStorage,
-    updateCustomerDetails
+    updateCustomerDetails,
+    retrieveOngoingOrderFromStorage
 } from '../actions';
 
 import Home from './Home';
@@ -23,12 +24,12 @@ import Checkout from './Checkout';
 import OngoingOrder from './OngoingOrder';
 
 class App extends React.Component {
-    saveCartToStorage(cart) {
-        const prevCart = this.props.cart;
-        const shouldSave = cart.amount !== prevCart.amount;
+    saveCartToStorage(nextCart) {
+        const currentCart = this.props.cart;
+        const shouldSave = nextCart.amount !== currentCart.amount;
 
         if (shouldSave) {
-            window.localStorage.setItem('storedCart', JSON.stringify(cart));
+            window.localStorage.setItem('storedCart', JSON.stringify(nextCart));
         }
     }
 
@@ -47,15 +48,26 @@ class App extends React.Component {
         }
     }
 
+    saveOngoingOrderToStorage(nextOngoingOrder) {
+        const currentOngoingOrder = this.props.ongoingOrder;
+        const shouldSave = !!nextOngoingOrder && nextOngoingOrder !== currentOngoingOrder;
+
+        if (shouldSave) {
+            window.localStorage.setItem('storedOngoingOrder', JSON.stringify(nextOngoingOrder));
+        }
+    }
+
     componentDidMount() {
         this.props.fetchMenu();
         this.props.retrieveCartFromStorage();
         this.props.retrieveAuthenticationFromStorage();
+        this.props.retrieveOngoingOrderFromStorage();
     }
 
     shouldComponentUpdate(nextProps) {
         this.saveCartToStorage(nextProps.cart);
         this.updateCustomerPhone(nextProps.authentication);
+        this.saveOngoingOrderToStorage(nextProps.ongoingOrder);
         return false;
     }
 
@@ -80,16 +92,18 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = ({ cart, authentication }) => ({
+const mapStateToProps = ({ cart, authentication, ongoingOrder }) => ({
     cart,
-    authentication
+    authentication,
+    ongoingOrder
 });
 
 const actions = {
     fetchMenu,
     retrieveCartFromStorage,
     retrieveAuthenticationFromStorage,
-    updateCustomerDetails
+    updateCustomerDetails,
+    retrieveOngoingOrderFromStorage
 };
 
 const ConnectedApp = connect(mapStateToProps, actions)(App);
