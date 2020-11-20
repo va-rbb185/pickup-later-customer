@@ -2,16 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { sampleImageURLs } from '../static/resources';
 
-const PageHeader = (props) => {
+const PageHeader = ({ noLogo, children }) => {
     return (
         <div className="page-header">
             <div className="page-header-wrapper">
-                <Link to="/">
-                    <div className="home-logo">
-                        <img src={sampleImageURLs.LOGO} alt="Home Logo" />
-                    </div>
-                </Link>
-                <h4>{props.children}</h4>
+                {
+                    !noLogo
+                        ? <div className="home-logo">
+                            <Link to="/">
+                                <img src={sampleImageURLs.LOGO} alt="Home Logo" />
+                            </Link>
+                        </div>
+                        : null
+                }
+                <h4>{children}</h4>
             </div>
         </div>
     );

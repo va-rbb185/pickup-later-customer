@@ -15,7 +15,8 @@ import {
     createOrder,
     clearCart,
     showSpinner,
-    updateOngoingOrder
+    updateOngoingOrder,
+    deleteOngoingOrder
 } from '../actions';
 
 import PageHeader from './PageHeader';
@@ -119,7 +120,14 @@ class Checkout extends React.Component {
                 this.props.customerDetails,
                 this.props.paymentMethod
             );
+
+            /* Delete existing ongoing order if any */
+            this.props.deleteOngoingOrder();
+
+            /* Add new ongoing order */
             this.props.updateOngoingOrder(this.props.cart, order);
+
+            /* Clear cart as order has been created */
             this.props.clearCart();
 
             /* Submit the order to server */
@@ -132,8 +140,14 @@ class Checkout extends React.Component {
     }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
-        if (nextProps.orderConfirmation && nextProps.orderConfirmation !== this.props.orderConfirmation) {
-            this.props.updateOngoingOrder(null, null, nextProps.orderConfirmation);
+        const nextOrderConfirmation = nextProps.orderConfirmation;
+        if (nextOrderConfirmation && nextOrderConfirmation !== this.props.orderConfirmation) {
+            const orderId = nextOrderConfirmation.transactionNo;
+            if (orderId) {
+                this.props.updateOngoingOrder(null, null, nextOrderConfirmation, orderId);
+            } else {
+                this.props.updateOngoingOrder(null, null, nextOrderConfirmation);
+            }
         }
     }
 
@@ -143,21 +157,35 @@ class Checkout extends React.Component {
 
     render() {
         if (this.props.orderConfirmation) {
-            const { paymentMethod, qrText, error } = this.props.orderConfirmation;
+            const {
+                error,
+                transactionNo:
+                orderId,
+                paymentMethod,
+                paymentStatus,
+                qrText,
+                createdAt
+            } = this.props.orderConfirmation;
 
             if (error) {
-                window.alert('Xảy ra lỗi khi đặt đơn. Vui lòng thử lại sau.');
-                return <Redirect to={{ pathname: '/ongoing-order', search: '?error=1' }} />;
+                return <Redirect to={{ pathname: '/order-confirmation', search: '?error=1' }} />;
+            }
+
+            if (paymentMethod === paymentMethods.COD.stringValue) {
+                window.alert('Đặt đơn thành công. Bạn sẽ được chuyển đến trang chi tiết cho đơn hàng vừa đặt.');
+                return (
+                    <Redirect
+                        to={{
+                            pathname: '/order-confirmation',
+                            search: `?orderId=${orderId}&paymentMethod=${paymentMethods.COD}&paymentStatus=${paymentStatus}&qrText=${qrText}&createdAt=${createdAt}`
+                        }}
+                    />
+                );
             }
 
             if (paymentMethod === paymentMethods.MOMO.stringValue && qrText) {
                 window.alert('Đặt đơn thành công. Bạn sẽ được chuyển đến trang thanh toán MoMo cho đơn hàng vừa đặt.');
                 window.location.replace(qrText);
-            }
-
-            if (paymentMethod === paymentMethods.COD.stringValue) {
-                window.alert('Đặt đơn thành công. Bạn sẽ được chuyển đến trang chi tiết cho đơn hàng vừa đặt.');
-                return <Redirect to="/ongoing-order" />;
             }
         }
 
@@ -394,7 +422,8 @@ const actions = {
     createOrder,
     clearCart,
     showSpinner,
-    updateOngoingOrder
+    updateOngoingOrder,
+    deleteOngoingOrder
 };
 
 const ConnectedCheckout = connect(mapStateToProps, actions)(Checkout);

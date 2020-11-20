@@ -34,9 +34,9 @@ const AccountSidebar = ({ userData, hideSideBar }) => {
                     onClick={() => {
                         const confirmation = window.confirm('Bạn có chắc chắn muốn đăng xuất?');
                         if (confirmation) {
+                            hideSideBar();
                             window.localStorage.removeItem('storedAuthentication');
                             dispatch(logoutCurrentUser());
-                            hideSideBar();
                         }
                     }}
                 />
@@ -49,7 +49,7 @@ const AccountSidebar = ({ userData, hideSideBar }) => {
                     <h5>Đơn hàng đang thực hiện</h5>
                 </div>
             </div>
-            <div className="order-history sidebar-entry" onClick={null}>
+            <div className="order-history sidebar-entry" onClick={hideSideBar}>
                 <div className="icon">
                     <FontAwesomeIcon icon={faHistory} size="2x" />
                 </div>

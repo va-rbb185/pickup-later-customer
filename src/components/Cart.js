@@ -103,7 +103,7 @@ class Cart extends React.Component {
 const mapStateToProps = ({ cart, authentication, ongoingOrder }) => ({
     cart,
     isLoggedIn: authentication.login.status === loginStatus.LOGGED_IN,
-    hasOngoingOrder: !!ongoingOrder
+    hasOngoingOrder: !!ongoingOrder && !!ongoingOrder.orderId && !ongoingOrder.orderConfirmation.error
 });
 
 const actions = {

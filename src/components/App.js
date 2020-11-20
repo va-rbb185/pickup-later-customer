@@ -21,6 +21,7 @@ import Spinner from './Spinner';
 import Cart from './Cart';
 import Login from './Login';
 import Checkout from './Checkout';
+import OrderConfirmation from './OrderConfirmation';
 import OngoingOrder from './OngoingOrder';
 
 class App extends React.Component {
@@ -83,6 +84,7 @@ class App extends React.Component {
                     <Route path="/cart" component={Cart} />
                     <Route path="/checkout" component={Checkout} />
                     <Route path="/login" component={Login} />
+                    <Route path="/order-confirmation" component={OrderConfirmation} />
                     <Route path="/ongoing-order" component={OngoingOrder} />
                 </div>
                 <CartButton />

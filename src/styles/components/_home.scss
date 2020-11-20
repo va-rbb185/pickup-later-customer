@@ -3,7 +3,7 @@
         margin-top: 66px;
         margin-bottom: 1.5rem;
 
-        @media (min-width: 768px) {
+        @media (min-width: $maxViewWidth) {
             padding-top: 0;
         }
     }

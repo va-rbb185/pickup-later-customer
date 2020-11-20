@@ -1,4 +1,4 @@
-import { calculateAmount, calculateOriginalAmount } from './calculateAmount';
+import { calculateAmount, calculateOriginalAmount } from './index';
 
 const makeOrder = (authentication, storeMenu, cart, customerDetails, paymentMethod) => ({
     userId: authentication.user.data.id,
@@ -7,10 +7,10 @@ const makeOrder = (authentication, storeMenu, cart, customerDetails, paymentMeth
     phoneNumber: customerDetails.phone,
     note: customerDetails.note,
     paymentMethod,
-    token: '',
     totalAmount: calculateAmount(cart),
     totalPriceAmount: calculateOriginalAmount(cart),
-    orderDetails: mapCartToOrderDetails(cart)
+    orderDetails: mapCartToOrderDetails(cart),
+    redirectUrl: `${window.location.origin}/order-confirmation`
 });
 
 const mapCartToOrderDetails = ({ items }) => items.map(

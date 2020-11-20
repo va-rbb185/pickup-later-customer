@@ -721,7 +721,7 @@ a:hover {
 }
 
 .cart {
-  padding-bottom: 200px;
+  padding-bottom: 230px;
 }
 .cart .empty-cart-msg {
   text-align: center;
@@ -1028,4 +1028,18 @@ a:hover {
 .payment-method-list .list-item.selected .checkmark,
 .promo-list .list-item.selected .checkmark {
   visibility: visible;
+}
+
+.inner-page.order-confirmation .icon {
+  text-align: center;
+  color: #db2828;
+  padding-top: 2.5rem;
+}
+.inner-page.order-confirmation .order-confirmation-msg {
+  text-align: center;
+  padding-top: 1.5rem;
+}
+.inner-page.order-confirmation .back-to-homepage {
+  text-align: center;
+  padding-top: 2rem;
 }
