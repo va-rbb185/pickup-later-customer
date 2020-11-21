@@ -67,12 +67,11 @@ class Login extends React.Component {
         return valid;
     }
 
-    saveAuthenticationToStorage(nextAuthentication) {
-        const nextLoginStatus = nextAuthentication.login.status;
-        if (nextLoginStatus === loginStatus.LOGGED_IN) {
+    saveAuthenticationToStorage(authentication) {
+        if (authentication.login.status === loginStatus.LOGGED_IN) {
             window.localStorage.setItem(
                 'storedAuthentication',
-                JSON.stringify(nextAuthentication)
+                JSON.stringify(authentication)
             );
         }
     }
@@ -112,16 +111,16 @@ class Login extends React.Component {
         this.props.hideCartButton();
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        this.saveAuthenticationToStorage(nextProps.authentication);
-    }
-
     componentDidUpdate() {
         const currentLoginStatus = this.props.authentication.login.status;
         const isPhoneVerification = currentLoginStatus === loginStatus.PHONE_VERIFICATION;
+        const isLoggedIn = currentLoginStatus === loginStatus.LOGGED_IN;
         const tooManyAttempts = this.props.authentication.user.failedAttempts === this.MAX_ATTEMPTS_ALLOWED;
+
         if (isPhoneVerification && tooManyAttempts) {
             this.props.logoutCurrentUser();
+        } else if (isLoggedIn) {
+            this.saveAuthenticationToStorage(this.props.authentication);
         }
     }
 

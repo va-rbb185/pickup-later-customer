@@ -139,14 +139,18 @@ class Checkout extends React.Component {
         this.props.hideCartButton();
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        const nextOrderConfirmation = nextProps.orderConfirmation;
-        if (nextOrderConfirmation && nextOrderConfirmation !== this.props.orderConfirmation) {
-            const orderId = nextOrderConfirmation.transactionNo;
+    componentDidUpdate(prevProps) {
+        if (this.props.orderConfirmation && this.props.orderConfirmation !== prevProps.orderConfirmation) {
+            const { transactionNo: orderId, qrText } = this.props.orderConfirmation;
+
             if (orderId) {
-                this.props.updateOngoingOrder(null, null, nextOrderConfirmation, orderId);
+                this.props.updateOngoingOrder(null, null, this.props.orderConfirmation, orderId);
             } else {
-                this.props.updateOngoingOrder(null, null, nextOrderConfirmation);
+                this.props.updateOngoingOrder(null, null, this.props.orderConfirmation);
+            }
+
+            if (qrText) {
+                window.location.replace(qrText);
             }
         }
     }
@@ -159,8 +163,7 @@ class Checkout extends React.Component {
         if (this.props.orderConfirmation) {
             const {
                 error,
-                transactionNo:
-                orderId,
+                transactionNo: orderId,
                 paymentMethod,
                 paymentStatus,
                 qrText,
@@ -185,7 +188,7 @@ class Checkout extends React.Component {
 
             if (paymentMethod === paymentMethods.MOMO.stringValue && qrText) {
                 window.alert('Đặt đơn thành công. Bạn sẽ được chuyển đến trang thanh toán MoMo cho đơn hàng vừa đặt.');
-                window.location.replace(qrText);
+                return null;
             }
         }
 

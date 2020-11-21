@@ -13,9 +13,11 @@ class OrderConfirmation extends React.Component {
     }
 
     render() {
-        const { ongoingOrder } = this.props;
-
-        if (ongoingOrder && ongoingOrder.orderId && !ongoingOrder.orderConfirmation.error) {
+        if (
+            this.props.ongoingOrder
+            && this.props.ongoingOrder.orderId
+            && !this.props.ongoingOrder.orderConfirmation.error
+        ) {
             return <Redirect to="/ongoing-order" />;
         }
 
@@ -41,11 +43,8 @@ class OrderConfirmation extends React.Component {
 }
 
 const mapStateToProps = ({ ongoingOrder }) => ({ ongoingOrder });
-
 const actions = { hideSpinner };
-
 const OrderConfirmationWithRouter = withRouter(OrderConfirmation);
-
 const ConnectedOrderConfirmation = connect(mapStateToProps, actions)(OrderConfirmationWithRouter);
 
 export default ConnectedOrderConfirmation;
