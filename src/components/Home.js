@@ -9,16 +9,18 @@ import PromoBanner from './PromoBanner';
 import HomeCategory from './HomeCategory';
 import AccountSidebar from './AccountSidebar';
 
-const Home = ({ allCategories, authentication }) => {
-    const isLoggedIn = authentication.login.status === loginStatus.LOGGED_IN;
-    const top3Categories = allCategories.slice(0, 3);
+const Home = ({ allCategories, top3Categories, authentication }) => {
     const [visible, setVisible] = React.useState(false);
 
-    if (visible) {
-        document.body.classList.add('unscrollable');
-    } else {
-        document.body.classList.remove('unscrollable');
-    }
+    React.useEffect(() => {
+        if (visible) {
+            document.body.classList.add('unscrollable');
+        } else {
+            document.body.classList.remove('unscrollable');
+        }
+    });
+
+    const isLoggedIn = authentication.login.status === loginStatus.LOGGED_IN;
 
     return (
         <div className="home inner-page">
@@ -54,6 +56,7 @@ const Home = ({ allCategories, authentication }) => {
 
 const mapStateToProps = ({ storeMenu, authentication }) => ({
     allCategories: storeMenu.groups,
+    top3Categories: storeMenu.groups.slice(0, 3),
     authentication
 });
 
