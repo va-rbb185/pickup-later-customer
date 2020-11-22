@@ -237,7 +237,7 @@ class Login extends React.Component {
 
 const mapStateToProps = ({ authentication }) => ({ authentication });
 
-const actions = {
+const mapDispatchToProps = {
     showCartButton,
     hideCartButton,
     authenticatePhone,
@@ -245,6 +245,6 @@ const actions = {
     logoutCurrentUser
 };
 
-const ConnectedLogin = connect(mapStateToProps, actions)(Login);
+const ConnectedLogin = connect(mapStateToProps, mapDispatchToProps)(Login);
 
 export default ConnectedLogin;

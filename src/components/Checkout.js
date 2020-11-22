@@ -417,7 +417,7 @@ const mapStateToProps = ({ authentication, storeMenu, cart, customerDetails, pay
     orderConfirmation
 });
 
-const actions = {
+const mapDispatchToProps = {
     showCartButton,
     hideCartButton,
     updateCustomerDetails,
@@ -429,6 +429,6 @@ const actions = {
     deleteOngoingOrder
 };
 
-const ConnectedCheckout = connect(mapStateToProps, actions)(Checkout);
+const ConnectedCheckout = connect(mapStateToProps, mapDispatchToProps)(Checkout);
 
 export default ConnectedCheckout;

@@ -16,7 +16,6 @@ const Spinner = ({ showSpinner }) => {
 };
 
 const mapStateToProps = ({ showSpinner }) => ({ showSpinner });
-
 const ConnectedSpinner = connect(mapStateToProps)(Spinner);
 
 export default ConnectedSpinner;

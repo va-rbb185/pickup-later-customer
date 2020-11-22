@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Sidebar, Menu } from 'semantic-ui-react';
 import { loginStatus } from '../enums';
@@ -9,18 +9,16 @@ import PromoBanner from './PromoBanner';
 import HomeCategory from './HomeCategory';
 import AccountSidebar from './AccountSidebar';
 
-const Home = ({ allCategories, top3Categories, authentication }) => {
-    const [visible, setVisible] = React.useState(false);
+const Home = ({ allCategories, top3Categories, isLoggedIn, userData }) => {
+    const [visible, setVisible] = useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (visible) {
             document.body.classList.add('unscrollable');
         } else {
             document.body.classList.remove('unscrollable');
         }
     });
-
-    const isLoggedIn = authentication.login.status === loginStatus.LOGGED_IN;
 
     return (
         <div className="home inner-page">
@@ -45,7 +43,7 @@ const Home = ({ allCategories, top3Categories, authentication }) => {
                 >
                     {
                         isLoggedIn
-                            ? <AccountSidebar userData={authentication.user.data} hideSideBar={() => setVisible(false)} />
+                            ? <AccountSidebar userData={userData} hideSideBar={() => setVisible(false)} />
                             : null
                     }
                 </Sidebar>
@@ -54,11 +52,17 @@ const Home = ({ allCategories, top3Categories, authentication }) => {
     );
 };
 
-const mapStateToProps = ({ storeMenu, authentication }) => ({
-    allCategories: storeMenu.groups,
-    top3Categories: storeMenu.groups.slice(0, 3),
-    authentication
-});
+const mapStateToProps = ({ storeMenu, authentication }) => {
+    const allCategories = storeMenu.groups;
+    const isLoggedIn = authentication.login.status === loginStatus.LOGGED_IN;
+
+    return {
+        allCategories,
+        top3Categories: allCategories.slice(0, 3),
+        isLoggedIn,
+        userData: isLoggedIn ? authentication.user.data : null
+    };
+};
 
 const ConnectedHome = connect(mapStateToProps)(Home);
 

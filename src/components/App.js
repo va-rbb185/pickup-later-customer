@@ -100,7 +100,7 @@ const mapStateToProps = ({ cart, authentication, ongoingOrder }) => ({
     ongoingOrder
 });
 
-const actions = {
+const mapDispatchToProps = {
     fetchMenu,
     retrieveCartFromStorage,
     retrieveAuthenticationFromStorage,
@@ -108,6 +108,6 @@ const actions = {
     retrieveOngoingOrderFromStorage
 };
 
-const ConnectedApp = connect(mapStateToProps, actions)(App);
+const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
 
 export default ConnectedApp;

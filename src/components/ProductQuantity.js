@@ -60,10 +60,12 @@ class ProductQuantity extends React.Component {
 };
 
 const mapStateToProps = ({ cart }) => ({ cart });
-const actions = {
+
+const mapDispatchToProps = {
     addCartItem,
     removeCartItem
 };
-const ConnectedProductQuantity = connect(mapStateToProps, actions)(ProductQuantity);
+
+const ConnectedProductQuantity = connect(mapStateToProps, mapDispatchToProps)(ProductQuantity);
 
 export default ConnectedProductQuantity;

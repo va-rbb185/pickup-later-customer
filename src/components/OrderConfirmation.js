@@ -43,8 +43,8 @@ class OrderConfirmation extends React.Component {
 }
 
 const mapStateToProps = ({ ongoingOrder }) => ({ ongoingOrder });
-const actions = { hideSpinner };
+const mapDispatchToProps = { hideSpinner };
 const OrderConfirmationWithRouter = withRouter(OrderConfirmation);
-const ConnectedOrderConfirmation = connect(mapStateToProps, actions)(OrderConfirmationWithRouter);
+const ConnectedOrderConfirmation = connect(mapStateToProps, mapDispatchToProps)(OrderConfirmationWithRouter);
 
 export default ConnectedOrderConfirmation;

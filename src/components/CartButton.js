@@ -24,6 +24,7 @@ const mapStateToProps = ({ cart, showCartButton }) => ({
     cartAmount: cart.amount,
     showCartButton
 });
+
 const ConnectedCartButton = connect(mapStateToProps)(CartButton);
 
 export default ConnectedCartButton;
