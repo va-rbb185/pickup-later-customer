@@ -1,0 +1,23 @@
+.ongoing-order {
+    .order-details {
+        text-align: center;
+    }
+
+    .no-order-yet {
+        .icon {
+            text-align: center;
+            color: $gray;
+            padding-top: 2.5rem;
+        }
+
+        .no-order-yet-msg {
+            text-align: center;
+            padding-top: 1.5rem;
+        }
+
+        .back-to-homepage {
+            text-align: center;
+            padding-top: 2rem;
+        }
+    }
+}

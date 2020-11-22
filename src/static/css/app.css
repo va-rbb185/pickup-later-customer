@@ -1043,3 +1043,20 @@ a:hover {
   text-align: center;
   padding-top: 2rem;
 }
+
+.ongoing-order .order-details {
+  text-align: center;
+}
+.ongoing-order .no-order-yet .icon {
+  text-align: center;
+  color: #888;
+  padding-top: 2.5rem;
+}
+.ongoing-order .no-order-yet .no-order-yet-msg {
+  text-align: center;
+  padding-top: 1.5rem;
+}
+.ongoing-order .no-order-yet .back-to-homepage {
+  text-align: center;
+  padding-top: 2rem;
+}
