@@ -65,7 +65,6 @@ const AccountSidebar = ({ userData, hideSideBar, logoutCurrentUser }) => {
 };
 
 const mapDispatchToProps = { logoutCurrentUser };
-
 const ConnectedAccountSidebar = connect(null, mapDispatchToProps)(AccountSidebar);
 
 export default ConnectedAccountSidebar;

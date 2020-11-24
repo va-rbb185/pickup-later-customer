@@ -11,14 +11,13 @@ import AccountSidebar from './AccountSidebar';
 
 const Home = ({ allCategories, top3Categories, isLoggedIn, userData }) => {
     const [visible, setVisible] = useState(false);
-
     useEffect(() => {
         if (visible) {
             document.body.classList.add('unscrollable');
         } else {
             document.body.classList.remove('unscrollable');
         }
-    });
+    }, [visible]);
 
     return (
         <div className="home inner-page">

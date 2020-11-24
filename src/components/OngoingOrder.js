@@ -1,22 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
-import { showCartButton, hideCartButton } from '../actions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { showCartButton, hideCartButton } from '../actions';
 import PageHeader from './PageHeader';
 
-class OngoingOrder extends React.Component {
-    componentDidMount() {
-        this.props.hideCartButton();
-    }
+const OngoingOrder = ({ ongoingOrder, showCartButton, hideCartButton }) => {
+    let history = useHistory();
+    useEffect(() => {
+        hideCartButton();
+        return () => {
+            showCartButton();
+        };
+    }, [showCartButton, hideCartButton]);
 
-    componentWillUnmount() {
-        this.props.showCartButton();
-    }
-
-    renderOrderDetails() {
-        if (this.props.ongoingOrder) {
+    const renderOrderDetails = () => {
+        if (ongoingOrder) {
             // Remember to check `ongoingOrder.orderConfirmation.error` for failed order
             return (
                 <div className="order-details">
@@ -37,21 +38,19 @@ class OngoingOrder extends React.Component {
                     <Button
                         color="green"
                         content="Về trang chủ"
-                        onClick={() => this.props.history.replace('/')}
+                        onClick={() => history.replace('/')}
                     />
                 </div>
             </div>
         );
-    }
+    };
 
-    render() {
-        return (
-            <div className="ongoing-order inner-page">
-                <PageHeader>Đơn hàng đang thực hiện</PageHeader>
-                {this.renderOrderDetails()}
-            </div>
-        );
-    }
+    return (
+        <div className="ongoing-order inner-page">
+            <PageHeader>Đơn hàng đang thực hiện</PageHeader>
+            {renderOrderDetails()}
+        </div>
+    );
 }
 
 const mapStateToProps = ({ ongoingOrder }) => ({ ongoingOrder });
