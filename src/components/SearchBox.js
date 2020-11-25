@@ -40,4 +40,6 @@ class SearchBox extends React.Component {
     }
 }
 
-export default withRouter(SearchBox);
+const SearchBoxWithRouter = withRouter(SearchBox);
+
+export default SearchBoxWithRouter;

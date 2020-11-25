@@ -11,15 +11,17 @@ import orderConfirmationReducer from './orderConfirmationReducer';
 import showSpinnerReducer from './showSpinnerReducer';
 import ongoingOrderReducer from './ongoingOrderReducer';
 
-export default combineReducers({
+const rootReducer = combineReducers({
     testData: testDataReducer,
     storeMenu: menuReducer,
     cart: cartReducer,
     showCartButton: showCartButtonReducer,
     authentication: authenticationReducer,
-    customerDetails : customerDetailsReducer,
+    customerDetails: customerDetailsReducer,
     paymentMethod: paymentMethodReducer,
     orderConfirmation: orderConfirmationReducer,
     showSpinner: showSpinnerReducer,
     ongoingOrder: ongoingOrderReducer
 });
+
+export default rootReducer;
