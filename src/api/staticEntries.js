@@ -11,7 +11,7 @@ export const httpMethods = {
     DELETE: 'DELETE'
 }
 
-export const jsonHeaders = {
+export const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
     'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjbGllbnQiOiJVSVQgU0hPUCJ9.MQiLgrZ9EjFMjTPs2Br8WKFFzYRjL7bPC6MJWwFF9QA'

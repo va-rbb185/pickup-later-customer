@@ -1,4 +1,4 @@
-import { schemes, httpMethods, jsonHeaders } from './staticEntries';
+import { schemes, httpMethods, headers } from './staticEntries';
 
 const scheme = schemes.HTTPS;
 const host = '134d19ca4777.ap.ngrok.io';
@@ -25,8 +25,8 @@ function getApiPath(path, param = null) {
 
 function getConfigurations(method, data = null) {
     let configurations = {
-        method: method,
-        headers: jsonHeaders
+        method,
+        headers
     };
     if (data) {
         configurations.body = JSON.stringify(data);
