@@ -14,7 +14,7 @@ const OngoingOrder = ({ ongoingOrder, showCartButton, hideCartButton }) => {
         return () => {
             showCartButton();
         };
-    }, [showCartButton, hideCartButton]);
+    }, []);
 
     const renderOrderDetails = () => {
         if (ongoingOrder) {

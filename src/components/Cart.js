@@ -38,11 +38,9 @@ class Cart extends React.Component {
             <div className="cart inner-page">
                 <PageHeader>Giỏ hàng của bạn</PageHeader>
                 <div className="products">
-                    {
-                        this.props.cart.items.map(
-                            item => <ProductTile key={`product_${item.product.id}`} product={item.product} />
-                        )
-                    }
+                    {this.props.cart.items.map(
+                        item => <ProductTile key={`product_${item.product.id}`} product={item.product} />
+                    )}
                 </div>
                 {
                     this.props.cart.amount === 0

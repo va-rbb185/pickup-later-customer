@@ -4,6 +4,9 @@ import { calculateAmount, calculateOriginalAmount } from './calculateAmount';
 import convertPhone84To0 from './convertPhone84To0';
 import generateToken from './generateToken';
 import getParamFromURL from './getParamFromURL';
+import normalizeForURLs from './normalizeForURLs';
+import findByNormalizedName from './findByNormalizedName';
+import findProductInCategories from './findProductInCategories';
 
 export {
     formatPrice,
@@ -12,5 +15,8 @@ export {
     calculateOriginalAmount,
     convertPhone84To0,
     generateToken,
-    getParamFromURL
+    getParamFromURL,
+    normalizeForURLs,
+    findByNormalizedName,
+    findProductInCategories
 };

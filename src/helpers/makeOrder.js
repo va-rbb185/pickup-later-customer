@@ -1,4 +1,4 @@
-import { calculateAmount, calculateOriginalAmount } from './index';
+import { calculateAmount, calculateOriginalAmount } from '.';
 
 const makeOrder = (authentication, storeMenu, cart, customerDetails, paymentMethod) => ({
     userId: authentication.user.data.id,

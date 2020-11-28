@@ -1,13 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { findByNormalizedName } from '../helpers';
 import SearchBox from './SearchBox';
 import PromoBanner from './PromoBanner';
 import PageHeader from './PageHeader';
 import ProductTile from './ProductTile';
 
-const ProductListingPage = () => {
+const ProductListingPage = ({ match, allCategories }) => {
+    const categoryName = match.params.name;
+    const category = findByNormalizedName(categoryName, allCategories);
+
     return (
         <div className="product-list inner-page">
-            <PageHeader>Đồ dùng Gia đình</PageHeader>
+            <PageHeader>{category.title}</PageHeader>
             <div className="top-section">
                 <PromoBanner />
                 <div className="component-container">
@@ -15,10 +20,21 @@ const ProductListingPage = () => {
                 </div>
             </div>
             <div className="products">
-                {[0, 1, 2, 3, 4].map(index => <ProductTile key={index} />)}
+                {category.products.map(
+                    product => (
+                        <ProductTile
+                            key={`product_${product.id}`}
+                            category={category}
+                            product={product}
+                        />
+                    )
+                )}
             </div>
         </div>
     );
 };
 
-export default ProductListingPage;
+const mapStateToProps = ({ storeMenu }) => ({ allCategories: storeMenu.groups });
+const ConnectedPLP = connect(mapStateToProps)(ProductListingPage);
+
+export default ConnectedPLP;

@@ -25,7 +25,7 @@ const Home = ({ allCategories, top3Categories, isLoggedIn, userData }) => {
                 <Sidebar.Pusher dimmed={visible}>
                     <HomeHeader isLoggedIn={isLoggedIn} showSideBar={() => setVisible(true)} />
                     <PromoBanner />
-                    <CategoryList cols={4} isShowTop={false} categories={allCategories} />
+                    <CategoryList cols={4} categories={allCategories} />
                     <div className="home-categories">
                         {top3Categories.map(
                             homeCategory => <HomeCategory key={`homeCat_${homeCategory.id}`} category={homeCategory} />

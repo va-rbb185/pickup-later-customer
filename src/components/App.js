@@ -14,7 +14,6 @@ import {
 
 import Home from './Home';
 import Search from './Search';
-import CategoryListingPage from './CategoryListingPage';
 import ProductListingPage from './ProductListingPage';
 import ProductDetailPage from './ProductDetailPage';
 import CartButton from './CartButton';
@@ -97,9 +96,8 @@ class App extends React.Component {
                 <div className="page">
                     <Route exact path="/" component={Home} />
                     <Route path="/search" component={Search} />
-                    <Route path="/all-categories" component={CategoryListingPage} />
-                    <Route path="/product-list" component={ProductListingPage} />
-                    <Route path="/product-details" component={ProductDetailPage} />
+                    <Route path="/categories/:name" component={ProductListingPage} />
+                    <Route path="/products/:categoryName/:productName" component={ProductDetailPage} />
                     <Route path="/cart" component={Cart} />
                     <Route path="/checkout" component={Checkout} />
                     <Route path="/login" component={Login} />
