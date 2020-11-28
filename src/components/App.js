@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { loginStatus } from '../enums';
 import { convertPhone84To0 } from '../helpers';
+import mqttConnection from '../mqtt';
 import {
     fetchMenu,
     retrieveCartFromStorage,
@@ -59,6 +60,19 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        /* Establish a connection to MQTT broker */
+        mqttConnection.establish({
+            onMessageArrived: message => {
+                const payload = JSON.parse(message.payloadString);
+                console.info('Parsed object: ', payload);
+            },
+            onConnectionLost: response => {
+                if (response.errorCode !== 0) {
+                    console.warn('MQTT connection lost: ' + response.errorMessage);
+                }
+            }
+        });
+
         this.props.fetchMenu();
         this.props.retrieveCartFromStorage();
         this.props.retrieveAuthenticationFromStorage();
@@ -70,6 +84,11 @@ class App extends React.Component {
         this.updateCustomerPhone(nextProps.authentication);
         this.saveOngoingOrderToStorage(nextProps.ongoingOrder);
         return false;
+    }
+
+    componentWillUnmount() {
+        /* Disconnect client upon component unmount */
+        mqttConnection.close();
     }
 
     render() {

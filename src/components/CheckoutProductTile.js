@@ -5,6 +5,7 @@ import { formatPrice } from '../helpers';
 const CheckoutProductTile = ({ cartItem }) => {
     const { quantity } = cartItem;
     const { name, salePrice } = cartItem.product;
+
     return (
         <div className="checkout-product-tile">
             <div className="inner-tile">
