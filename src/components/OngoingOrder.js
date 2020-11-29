@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,12 +8,12 @@ import { showCartButton, hideCartButton } from '../actions';
 import PageHeader from './PageHeader';
 
 const OngoingOrder = ({ ongoingOrder, showCartButton, hideCartButton }) => {
-    let history = useHistory();
     useEffect(() => {
         hideCartButton();
         return () => {
             showCartButton();
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const renderOrderDetails = () => {
@@ -36,9 +36,10 @@ const OngoingOrder = ({ ongoingOrder, showCartButton, hideCartButton }) => {
                 </div>
                 <div className="back-to-homepage">
                     <Button
+                        as={Link}
+                        to="/"
                         color="green"
                         content="Về trang chủ"
-                        onClick={() => history.replace('/')}
                     />
                 </div>
             </div>

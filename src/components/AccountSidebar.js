@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
@@ -8,8 +8,6 @@ import { faHistory, faReceipt } from '@fortawesome/free-solid-svg-icons';
 import { logoutCurrentUser } from '../actions';
 
 const AccountSidebar = ({ userData, hideSideBar, logoutCurrentUser }) => {
-    let history = useHistory();
-
     if (userData) {
         return (
             <div className="sidebar-content">
@@ -41,21 +39,25 @@ const AccountSidebar = ({ userData, hideSideBar, logoutCurrentUser }) => {
                         }}
                     />
                 </div>
-                <div className="ongoing-order sidebar-entry" onClick={() => history.push('/ongoing-order')}>
-                    <div className="icon">
-                        <FontAwesomeIcon icon={faReceipt} size="2x" />
-                    </div>
-                    <div className="content">
-                        <h5>Đơn hàng đang thực hiện</h5>
-                    </div>
+                <div className="ongoing-order sidebar-entry">
+                    <Link to="/ongoing-order">
+                        <div className="icon">
+                            <FontAwesomeIcon icon={faReceipt} size="2x" />
+                        </div>
+                        <div className="content">
+                            <h5>Đơn hàng đang thực hiện</h5>
+                        </div>
+                    </Link>
                 </div>
-                <div className="order-history sidebar-entry" onClick={hideSideBar}>
-                    <div className="icon">
-                        <FontAwesomeIcon icon={faHistory} size="2x" />
-                    </div>
-                    <div className="content">
-                        <h5>Lịch sử mua hàng</h5>
-                    </div>
+                <div className="order-history sidebar-entry">
+                    <Link to="/order-history">
+                        <div className="icon">
+                            <FontAwesomeIcon icon={faHistory} size="2x" />
+                        </div>
+                        <div className="content">
+                            <h5>Lịch sử mua hàng</h5>
+                        </div>
+                    </Link>
                 </div>
             </div>
         );

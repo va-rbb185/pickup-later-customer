@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { findByNormalizedName } from '../helpers';
 import SearchBox from './SearchBox';
-import PromoBanner from './PromoBanner';
 import PageHeader from './PageHeader';
 import ProductTile from './ProductTile';
 
@@ -14,7 +13,6 @@ const ProductListingPage = ({ match, allCategories }) => {
         <div className="product-list inner-page">
             <PageHeader>{category.title}</PageHeader>
             <div className="top-section">
-                <PromoBanner />
                 <div className="component-container">
                     <SearchBox />
                 </div>

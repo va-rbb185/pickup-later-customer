@@ -26,12 +26,9 @@
         .product-info {
             @include make-custom-col(50%, 5px);
 
-            .product-name-wrapper {
+            .product-name {
                 width: 100%;
-
-                .product-name {
-                    font-size: $fontSize15;
-                }
+                font-size: $fontSize15;
             }
 
             .product-quantity-wrapper {

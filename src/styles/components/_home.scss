@@ -1,10 +1,6 @@
 .home {
-    .promo-banner {
+    .category-list {
         margin-top: 66px;
-        margin-bottom: 1.5rem;
-
-        @media (min-width: $maxViewWidth) {
-            padding-top: 0;
-        }
+        padding-top: 1.5rem;
     }
 }

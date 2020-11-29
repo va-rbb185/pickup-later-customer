@@ -5,7 +5,6 @@ import { loginStatus } from '../enums';
 
 import HomeHeader from './HomeHeader';
 import CategoryList from './CategoryList';
-import PromoBanner from './PromoBanner';
 import HomeCategory from './HomeCategory';
 import AccountSidebar from './AccountSidebar';
 
@@ -24,7 +23,6 @@ const Home = ({ allCategories, top3Categories, isLoggedIn, userData }) => {
             <Sidebar.Pushable>
                 <Sidebar.Pusher dimmed={visible}>
                     <HomeHeader isLoggedIn={isLoggedIn} showSideBar={() => setVisible(true)} />
-                    <PromoBanner />
                     <CategoryList cols={4} categories={allCategories} />
                     <div className="home-categories">
                         {top3Categories.map(

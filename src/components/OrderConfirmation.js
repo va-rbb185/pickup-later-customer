@@ -11,7 +11,8 @@ const OrderConfirmation = ({ ongoingOrder, hideSpinner }) => {
     let history = useHistory();
     useEffect(() => {
         hideSpinner();
-    }, [hideSpinner]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     if (ongoingOrder && ongoingOrder.orderId && !ongoingOrder.orderConfirmation.error) {
         return <Redirect to="/ongoing-order" />;

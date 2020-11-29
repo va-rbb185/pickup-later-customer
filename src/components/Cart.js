@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 import { showCartButton, hideCartButton, clearCart } from '../actions';
 import { loginStatus } from '../enums';
@@ -91,10 +91,12 @@ class Cart extends React.Component {
                         </div>
                     </div>
                     <Button
+                        as={Link}
+                        to="/checkout"
+                        className="proceed-to-checkout-btn"
                         disabled={!this.props.isLoggedIn || this.props.hasOngoingOrder || this.props.cart.amount === 0}
                         color="green"
                         content="Nhập thông tin đơn hàng"
-                        onClick={() => this.props.history.push('/checkout')}
                     />
                 </div>
             </div>
@@ -114,8 +116,6 @@ const mapDispatchToProps = {
     clearCart
 };
 
-const CartWithRouter = withRouter(Cart);
-
-const ConnectedCart = connect(mapStateToProps, mapDispatchToProps)(CartWithRouter);
+const ConnectedCart = connect(mapStateToProps, mapDispatchToProps)(Cart);
 
 export default ConnectedCart;

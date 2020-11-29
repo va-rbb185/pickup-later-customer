@@ -10,7 +10,7 @@ const ProductTile = ({ vertical = null, category = null, product, allCategories 
     const className = `product-tile ${isVerticalTile ? 'vertical' : 'horizontal'}`;
     const { name, imageUrl, price, salePrice } = product;
 
-    let pathToProduct = null;
+    let pathToProduct = '/products/null';
     if (category) {
         pathToProduct = `/products/${normalizeForURLs(category.name)}/${normalizeForURLs(name)}`;
     } else {
@@ -29,7 +29,9 @@ const ProductTile = ({ vertical = null, category = null, product, allCategories 
                             <img src={imageUrl || sampleImageURLs.PRODUCT} alt="product" />
                         </Link>
                     </div>
-                    <div className="product-name">{name}</div>
+                    <div className="product-name">
+                        <Link to={pathToProduct}>{name}</Link>
+                    </div>
                     <div className="product-prices">
                         <div className="sale-price">{formatPrice(salePrice)}</div>
                         {
@@ -55,8 +57,8 @@ const ProductTile = ({ vertical = null, category = null, product, allCategories 
                     </Link>
                 </div>
                 <div className="product-info">
-                    <div className="product-name-wrapper">
-                        <Link to={pathToProduct} className="product-name">{name}</Link>
+                    <div className="product-name">
+                        <Link to={pathToProduct}>{name}</Link>
                     </div>
                     <div className="product-quantity-wrapper">
                         <ProductQuantity product={product} />
