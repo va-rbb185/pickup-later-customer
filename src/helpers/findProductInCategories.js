@@ -1,13 +1,17 @@
 const findProductInCategories = (productIdToFind, categories) => {
-    let foundProduct;
-    categories.forEach(category => {
+    let result = [null, null];
+
+    categories.some(category => {
         const categoryProducts = category.products;
-        foundProduct = categoryProducts.find(product => product.id === productIdToFind);
-        if (typeof foundProduct !== 'undefined') {
-            return [category, foundProduct];
+        const foundProduct = categoryProducts.find(product => product.id === productIdToFind);
+        if (typeof foundProduct === 'object') {
+            result = [category, foundProduct];
+            return true;
         }
+        return false;
     });
-    return [null, null];
+
+    return result;
 };
 
 export default findProductInCategories;

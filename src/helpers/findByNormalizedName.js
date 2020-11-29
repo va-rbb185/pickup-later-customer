@@ -1,8 +1,8 @@
 import { normalizeForURLs } from '.';
 
-const findByNormalizedName = (normalizedNameToSearch, searchArray) => {
+const findByNormalizedName = (nameToSearch, searchArray) => {
     return searchArray.find(
-        item => normalizedNameToSearch === normalizeForURLs(item.name)
+        item => nameToSearch === normalizeForURLs(item.name)
     );
 };
 
