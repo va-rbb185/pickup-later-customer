@@ -19,6 +19,7 @@ import hideSpinner from './hideSpinner';
 import updateOngoingOrder from './updateOngoingOrder';
 import deleteOngoingOrder from './deleteOngoingOrder';
 import retrieveOngoingOrderFromStorage from './retrieveOngoingOrderFromStorage';
+import fetchOrderHistory from './fetchOrderHistory';
 
 export {
     updateTestData,
@@ -41,5 +42,6 @@ export {
     hideSpinner,
     updateOngoingOrder,
     deleteOngoingOrder,
-    retrieveOngoingOrderFromStorage
+    retrieveOngoingOrderFromStorage,
+    fetchOrderHistory
 };

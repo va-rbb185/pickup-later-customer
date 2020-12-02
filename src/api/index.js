@@ -6,7 +6,7 @@ const basePath = '/api/v1';
 const paths = {
     get: {
         menu: '/menu',
-        test: '/posts/1'
+        users: '/users'
     },
     post: {
         authPhone: '/customers/phone_login',
@@ -15,10 +15,26 @@ const paths = {
     }
 };
 
-function getApiPath(path, param = null) {
+function toQueryString(params) {
+    if (typeof params !== 'object') return '';
+    const keys = Object.keys(params);
+    if (keys.length === 0) return '';
+    return '?' + keys.map(key => `${key}=${encodeURIComponent(`${params[key]}`)}`).join('&');
+};
+
+function getApiPath(path, params = null) {
     let apiPath = scheme + host + basePath + path;
-    if (param) {
-        apiPath += param;
+    if (params) {
+        const type = typeof params;
+
+        if (type === 'number' || type === 'string') {
+            apiPath += `/${params}`;
+        }
+
+        if (type === 'object') {
+            const queryString = toQueryString(params);
+            apiPath += queryString;
+        }
     }
     return apiPath;
 }
@@ -66,6 +82,14 @@ export const authenticateOtp = async (phoneNumber, otp) => {
 
 export const createOrder = async order => {
     const apiPath = getApiPath(paths.post.createOrder);
+    const configurations = getConfigurations(httpMethods.POST, order);
+    const response = await fetch(apiPath, configurations);
+    const data = await response.json();
+    return data;
+};
+
+export const fetchOrdersByUser = async (userId, params) => {
+    const apiPath = getApiPath(`${paths.get.users}/${userId}/orders`, params);
     const configurations = getConfigurations(httpMethods.POST, order);
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
