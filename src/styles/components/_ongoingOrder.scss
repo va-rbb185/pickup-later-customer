@@ -1,4 +1,6 @@
 .ongoing-order {
+    background-color: $whiteSmoke;
+
     .order-details {
         text-align: center;
     }
@@ -18,6 +20,36 @@
         .back-to-homepage {
             text-align: center;
             padding-top: 2rem;
+        }
+    }
+
+    .ui.card {
+        border-radius: 0;
+
+        >div {
+            text-align: left;
+        }
+
+        &.order-info {
+            margin-top: 1rem;
+        }
+
+        &.order-details {
+            .summary {
+                padding-top: 0.75rem;
+
+                .summary-entry {
+                    @include make-custom-row(0);
+
+                    .summary-title {
+                        @include make-custom-col(77%, 0);
+                    }
+
+                    .summary-amount {
+                        @include make-custom-col(23%, 0);
+                    }
+                }
+            }
         }
     }
 }

@@ -4,8 +4,14 @@ body {
     color: $text;
 }
 
-body.unscrollable {
-    overflow-y: hidden;
+body {
+    &.unscrollable {
+        overflow-y: hidden;
+    }
+
+    &.white-smoke-bg {
+        background-color: $whiteSmoke;
+    }
 }
 
 a,

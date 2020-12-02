@@ -1,6 +1,6 @@
-const userTypes = {
+const UserType = {
     GUEST: 'GUEST',
     CUSTOMER: 'CUSTOMER'
 };
 
-export default userTypes;
+export default UserType;

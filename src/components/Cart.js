@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 import { showCartButton, hideCartButton, clearCart } from '../actions';
-import { loginStatus } from '../enums';
+import { LoginStatus } from '../enums';
 import { formatPrice, calculateAmount, calculateOriginalAmount } from '../helpers';
 
 import PageHeader from './PageHeader';
@@ -75,7 +75,7 @@ class Cart extends React.Component {
                     {
                         this.props.hasOngoingOrder
                             ? <div className="invalid-msg">
-                                Vui lòng hoàn tất đơn hàng đang thực hiện để có thể đặt đơn hàng mới.
+                                Vui lòng hoàn tất đơn hàng đang thực hiện trước khi đặt đơn hàng mới.
                             </div>
                             : null
                     }
@@ -106,7 +106,7 @@ class Cart extends React.Component {
 
 const mapStateToProps = ({ cart, authentication, ongoingOrder }) => ({
     cart,
-    isLoggedIn: authentication.login.status === loginStatus.LOGGED_IN,
+    isLoggedIn: authentication.login.status === LoginStatus.LOGGED_IN,
     hasOngoingOrder: !!ongoingOrder && !!ongoingOrder.orderId && !ongoingOrder.orderConfirmation.error
 });
 

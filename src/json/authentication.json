@@ -6,14 +6,14 @@
     "type": "CUSTOMER",
     "data": {
       "id": 5,
-      "user_name": "",
+      "user_name": "Viet Anh",
       "password": "",
       "phone_number": "+84352305969",
       "address": "",
-      "code_verify": 880799,
+      "code_verify": 262456,
       "type": 3,
       "status": "ACTIVE",
-      "lastest_login_at": "2020-10-23T23:06:19.781089369+07:00"
+      "lastest_login_at": "2020-11-29T21:13:20.34218041+07:00"
     }
   }
 }

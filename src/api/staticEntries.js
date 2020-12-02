@@ -9,7 +9,7 @@ export const httpMethods = {
     PUT: 'PUT',
     PATCH: 'PATCH',
     DELETE: 'DELETE'
-}
+};
 
 export const headers = {
     'Accept': 'application/json',

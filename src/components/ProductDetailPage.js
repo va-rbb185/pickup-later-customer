@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { findByNormalizedName, formatPrice } from '../helpers';
 import { sampleImageURLs } from '../static/resources';
@@ -6,6 +6,13 @@ import PageHeader from './PageHeader';
 import ProductQuantity from './ProductQuantity';
 
 const ProductDetailPage = ({ match, allCategories }) => {
+    useEffect(() => {
+        document.body.classList.add('white-smoke-bg');
+        return () => {
+            document.body.classList.remove('white-smoke-bg');
+        };
+    }, []);
+
     const { categoryName, productName } = match.params;
     const category = findByNormalizedName(categoryName, allCategories);
     const product = findByNormalizedName(productName, category.products);

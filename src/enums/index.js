@@ -1,9 +1,9 @@
-import loginStatus from './loginStatus';
-import userTypes from './userTypes';
-import paymentMethods from './paymentMethods';
+import LoginStatus from './LoginStatus';
+import UserType from './UserType';
+import PaymentMethod from './PaymentMethod';
 
 export {
-    loginStatus,
-    userTypes,
-    paymentMethods
+    LoginStatus,
+    UserType,
+    PaymentMethod
 };

@@ -1,9 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loginStatus } from '../enums';
+import { LoginStatus } from '../enums';
 import { convertPhone84To0 } from '../helpers';
-import mqttConnection from '../mqtt';
 import {
     fetchMenu,
     retrieveCartFromStorage,
@@ -23,6 +22,7 @@ import Login from './Login';
 import Checkout from './Checkout';
 import OrderConfirmation from './OrderConfirmation';
 import OngoingOrder from './OngoingOrder';
+import MQTTConnector from './MQTTConnector';
 
 class App extends React.Component {
     saveCartToStorage(nextCart) {
@@ -34,14 +34,14 @@ class App extends React.Component {
         }
     }
 
-    updateCustomerPhone(nextAuthentication) {
+    updateCustomerDetails(nextAuthentication) {
         const currentLoginStatus = this.props.authentication.login.status;
         const nextLoginStatus = nextAuthentication.login.status;
-        const shouldUpdate = nextLoginStatus === loginStatus.LOGGED_IN && nextLoginStatus !== currentLoginStatus;
+        const shouldUpdate = nextLoginStatus === LoginStatus.LOGGED_IN && nextLoginStatus !== currentLoginStatus;
 
         if (shouldUpdate) {
             const nextCustomerDetails = {
-                name: '',
+                name: nextAuthentication.user.data['user_name'],
                 phone: convertPhone84To0(nextAuthentication.user.data['phone_number']),
                 note: ''
             };
@@ -59,19 +59,6 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        /* Establish a connection to MQTT broker */
-        mqttConnection.establish({
-            onMessageArrived: message => {
-                const payload = JSON.parse(message.payloadString);
-                console.info('Parsed object: ', payload);
-            },
-            onConnectionLost: response => {
-                if (response.errorCode !== 0) {
-                    console.warn('MQTT connection lost: ' + response.errorMessage);
-                }
-            }
-        });
-
         this.props.fetchMenu();
         this.props.retrieveCartFromStorage();
         this.props.retrieveAuthenticationFromStorage();
@@ -80,19 +67,17 @@ class App extends React.Component {
 
     shouldComponentUpdate(nextProps) {
         this.saveCartToStorage(nextProps.cart);
-        this.updateCustomerPhone(nextProps.authentication);
+        this.updateCustomerDetails(nextProps.authentication);
         this.saveOngoingOrderToStorage(nextProps.ongoingOrder);
         return false;
-    }
-
-    componentWillUnmount() {
-        /* Disconnect client upon component unmount */
-        mqttConnection.close();
     }
 
     render() {
         return (
             <BrowserRouter>
+                <Spinner />
+                <CartButton />
+                <MQTTConnector />
                 <div className="page">
                     <Route exact path="/" component={Home} />
                     <Route path="/search" component={Search} />
@@ -104,8 +89,6 @@ class App extends React.Component {
                     <Route path="/order-confirmation" component={OrderConfirmation} />
                     <Route path="/ongoing-order" component={OngoingOrder} />
                 </div>
-                <CartButton />
-                <Spinner />
             </BrowserRouter>
         );
     }

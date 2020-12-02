@@ -1,5 +1,5 @@
 import { authenticateOtp as authenticateOtpApi } from '../api';
-import { loginStatus, userTypes } from '../enums';
+import { LoginStatus, UserType } from '../enums';
 import {
     AUTHENTICATE_OTP_START,
     AUTHENTICATE_OTP_SUCCESS,
@@ -11,9 +11,9 @@ const authenticateOtpStart = () => ({ type: AUTHENTICATE_OTP_START });
 const authenticateOtpSuccess = data => ({
     type: AUTHENTICATE_OTP_SUCCESS,
     authentication: {
-        login: { status: loginStatus.LOGGED_IN },
+        login: { status: LoginStatus.LOGGED_IN },
         user: {
-            type: userTypes.CUSTOMER,
+            type: UserType.CUSTOMER,
             data
         }
     }

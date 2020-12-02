@@ -1,4 +1,4 @@
-import { loginStatus, userTypes, paymentMethods } from '../enums';
+import { LoginStatus, UserType, PaymentMethod } from '../enums';
 
 export const storeMenu = {
     storeId: null,
@@ -14,8 +14,8 @@ export const cart = {
 };
 
 export const authentication = {
-    login: { status: loginStatus.NOT_LOGGED_IN },
-    user: { type: userTypes.GUEST }
+    login: { status: LoginStatus.NOT_LOGGED_IN },
+    user: { type: UserType.GUEST }
 };
 
 export const customerDetails = {
@@ -24,4 +24,4 @@ export const customerDetails = {
     note: ''
 }
 
-export const paymentMethod = paymentMethods.COD.stringValue;
+export const paymentMethod = PaymentMethod.COD.value;

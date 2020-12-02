@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMobileAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faUser, faStickyNote } from '@fortawesome/free-regular-svg-icons';
 import { formatPrice, makeOrder, calculateAmount, calculateOriginalAmount } from '../helpers';
-import { paymentMethods, loginStatus } from '../enums';
+import { PaymentMethod, LoginStatus } from '../enums';
 import {
     showCartButton,
     hideCartButton,
@@ -174,19 +174,19 @@ class Checkout extends React.Component {
                 return <Redirect to={{ pathname: '/order-confirmation', search: '?error=1' }} />;
             }
 
-            if (paymentMethod === paymentMethods.COD.stringValue) {
+            if (paymentMethod === PaymentMethod.COD.value) {
                 window.alert('Đặt đơn thành công. Bạn sẽ được chuyển đến trang chi tiết cho đơn hàng vừa đặt.');
                 return (
                     <Redirect
                         to={{
                             pathname: '/order-confirmation',
-                            search: `?orderId=${orderId}&paymentMethod=${paymentMethods.COD}&paymentStatus=${paymentStatus}&qrText=${qrText}&createdAt=${createdAt}`
+                            search: `?orderId=${orderId}&paymentMethod=${PaymentMethod.COD}&paymentStatus=${paymentStatus}&qrText=${qrText}&createdAt=${createdAt}`
                         }}
                     />
                 );
             }
 
-            if (paymentMethod === paymentMethods.MOMO.stringValue && qrText) {
+            if (paymentMethod === PaymentMethod.MOMO.value && qrText) {
                 window.alert('Đặt đơn thành công. Bạn sẽ được chuyển đến trang thanh toán MoMo cho đơn hàng vừa đặt.');
                 return null;
             }
@@ -194,7 +194,7 @@ class Checkout extends React.Component {
 
         const orderSalePrice = calculateAmount(this.props.cart);
         const orderOriginalPrice = calculateOriginalAmount(this.props.cart);
-        const placeOrderAllowed = this.props.authentication.login.status === loginStatus.LOGGED_IN
+        const placeOrderAllowed = this.props.authentication.login.status === LoginStatus.LOGGED_IN
             && !!this.props.authentication.user.data
             && !this.props.orderConfirmation
             && this.props.cart.amount !== 0;
@@ -263,7 +263,7 @@ class Checkout extends React.Component {
                         <div className="section-body">
                             <div className="payment-inner">
                                 <div className="payment-methods" onClick={() => this.setOpenPaymentModal(true)}>
-                                    <span>{paymentMethods[this.props.paymentMethod].shortTitle}</span>
+                                    <span>{PaymentMethod[this.props.paymentMethod].shortTitle}</span>
                                 </div>
                                 <div className="promos" onClick={() => this.setOpenPromoModal(false)}>
                                     <span>Khuyến mãi/Giảm giá</span>
@@ -368,22 +368,22 @@ class Checkout extends React.Component {
                 >
                     <ul className="payment-method-list">
                         <li
-                            className={`list-item${this.state.currentlySelectedPayment === paymentMethods.MOMO.stringValue ? ' selected' : ''}`}
-                            onClick={() => this.setPaymentMethod(paymentMethods.MOMO.stringValue)}
+                            className={`list-item${this.state.currentlySelectedPayment === PaymentMethod.MOMO.value ? ' selected' : ''}`}
+                            onClick={() => this.setPaymentMethod(PaymentMethod.MOMO.value)}
                         >
                             <div className="payment-method-name">
-                                <span>{paymentMethods.MOMO.longTitle}</span>
+                                <span>{PaymentMethod.MOMO.longTitle}</span>
                             </div>
                             <div className="checkmark">
                                 <FontAwesomeIcon icon={faCheck} size="2x" />
                             </div>
                         </li>
                         <li
-                            className={`list-item${this.state.currentlySelectedPayment === paymentMethods.COD.stringValue ? ' selected' : ''}`}
-                            onClick={() => this.setPaymentMethod(paymentMethods.COD.stringValue)}
+                            className={`list-item${this.state.currentlySelectedPayment === PaymentMethod.COD.value ? ' selected' : ''}`}
+                            onClick={() => this.setPaymentMethod(PaymentMethod.COD.value)}
                         >
                             <div className="payment-method-name">
-                                <span>{paymentMethods.COD.longTitle}</span>
+                                <span>{PaymentMethod.COD.longTitle}</span>
                             </div>
                             <div className="checkmark">
                                 <FontAwesomeIcon icon={faCheck} size="2x" />

@@ -4,7 +4,7 @@ const mqttConfigurations = {
     CLIENT_ID: 'clientId-4tVPYfaBWO',
     USERNAME: 'mqtt_admin',
     PASSWORD: '123456',
-    TOPIC: 'dom/order'
+    TOPIC: 'ecommerce/order'
 };
 
 export default mqttConfigurations;

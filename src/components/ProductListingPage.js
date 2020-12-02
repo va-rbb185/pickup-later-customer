@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { findByNormalizedName } from '../helpers';
 import SearchBox from './SearchBox';
@@ -6,6 +6,13 @@ import PageHeader from './PageHeader';
 import ProductTile from './ProductTile';
 
 const ProductListingPage = ({ match, allCategories }) => {
+    useEffect(() => {
+        document.body.classList.add('white-smoke-bg');
+        return () => {
+            document.body.classList.remove('white-smoke-bg');
+        };
+    }, []);
+
     const categoryName = match.params.name;
     const category = findByNormalizedName(categoryName, allCategories);
 

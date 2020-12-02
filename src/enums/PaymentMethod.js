@@ -1,14 +1,14 @@
-const paymentMethods = {
+const PaymentMethod = {
     MOMO: {
-        stringValue: 'MOMO',
+        value: 'MOMO',
         shortTitle: 'Ví MoMo',
         longTitle: 'Thanh toán bằng ví điện tử MoMo'
     },
     COD: {
-        stringValue: 'COD',
+        value: 'COD',
         shortTitle: 'Tiền mặt',
         longTitle: 'Thanh toán bằng tiền mặt khi nhận hàng'
     }
 };
 
-export default paymentMethods;
+export default PaymentMethod;

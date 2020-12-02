@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Sidebar, Menu } from 'semantic-ui-react';
-import { loginStatus } from '../enums';
+import { LoginStatus } from '../enums';
 
 import HomeHeader from './HomeHeader';
 import CategoryList from './CategoryList';
@@ -16,6 +16,9 @@ const Home = ({ allCategories, top3Categories, isLoggedIn, userData }) => {
         } else {
             document.body.classList.remove('unscrollable');
         }
+        return () => {
+            document.body.classList.remove('unscrollable');
+        };
     }, [visible]);
 
     return (
@@ -51,7 +54,7 @@ const Home = ({ allCategories, top3Categories, isLoggedIn, userData }) => {
 
 const mapStateToProps = ({ storeMenu, authentication }) => {
     const allCategories = storeMenu.groups;
-    const isLoggedIn = authentication.login.status === loginStatus.LOGGED_IN;
+    const isLoggedIn = authentication.login.status === LoginStatus.LOGGED_IN;
 
     return {
         allCategories,

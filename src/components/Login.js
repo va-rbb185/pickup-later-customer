@@ -9,7 +9,7 @@ import {
     authenticateOtp,
     logoutCurrentUser
 } from '../actions';
-import { loginStatus } from '../enums';
+import { LoginStatus } from '../enums';
 import { loginResources } from '../static/resources';
 
 import PageHeader from './PageHeader';
@@ -68,7 +68,7 @@ class Login extends React.Component {
     }
 
     saveAuthenticationToStorage(authentication) {
-        if (authentication.login.status === loginStatus.LOGGED_IN) {
+        if (authentication.login.status === LoginStatus.LOGGED_IN) {
             window.localStorage.setItem(
                 'storedAuthentication',
                 JSON.stringify(authentication)
@@ -113,8 +113,8 @@ class Login extends React.Component {
 
     componentDidUpdate() {
         const currentLoginStatus = this.props.authentication.login.status;
-        const isPhoneVerification = currentLoginStatus === loginStatus.PHONE_VERIFICATION;
-        const isLoggedIn = currentLoginStatus === loginStatus.LOGGED_IN;
+        const isPhoneVerification = currentLoginStatus === LoginStatus.PHONE_VERIFICATION;
+        const isLoggedIn = currentLoginStatus === LoginStatus.LOGGED_IN;
         const tooManyAttempts = this.props.authentication.user.failedAttempts === this.MAX_ATTEMPTS_ALLOWED;
 
         if (isPhoneVerification && tooManyAttempts) {
@@ -130,9 +130,9 @@ class Login extends React.Component {
 
     render() {
         const currentLoginStatus = this.props.authentication.login.status;
-        const isNotLoggedIn = currentLoginStatus === loginStatus.NOT_LOGGED_IN;
-        const isPhoneVerification = currentLoginStatus === loginStatus.PHONE_VERIFICATION;
-        const isLoggedIn = currentLoginStatus === loginStatus.LOGGED_IN;
+        const isNotLoggedIn = currentLoginStatus === LoginStatus.NOT_LOGGED_IN;
+        const isPhoneVerification = currentLoginStatus === LoginStatus.PHONE_VERIFICATION;
+        const isLoggedIn = currentLoginStatus === LoginStatus.LOGGED_IN;
 
         /* Render the page according to login status */
         if (isLoggedIn) {

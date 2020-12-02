@@ -1,5 +1,5 @@
 import { authenticatePhone as authenticatePhoneApi } from '../api';
-import { loginStatus, userTypes } from '../enums';
+import { LoginStatus, UserType } from '../enums';
 import {
     AUTHENTICATE_PHONE_START,
     AUTHENTICATE_PHONE_SUCCESS,
@@ -12,11 +12,11 @@ const authenticatePhoneSuccess = (phoneNumber) => ({
     type: AUTHENTICATE_PHONE_SUCCESS,
     authentication: {
         login: {
-            status: loginStatus.PHONE_VERIFICATION,
+            status: LoginStatus.PHONE_VERIFICATION,
             phoneNumber
         },
         user: {
-            type: userTypes.GUEST,
+            type: UserType.GUEST,
             failedAttempts: 0
         }
     }

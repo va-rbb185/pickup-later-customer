@@ -12,6 +12,9 @@ body {
 body.unscrollable {
   overflow-y: hidden;
 }
+body.white-smoke-bg {
+  background-color: #f2f2f2;
+}
 
 a,
 a:hover {
@@ -686,7 +689,6 @@ a:hover {
 }
 .product-details .details {
   padding: 1rem;
-  border-bottom: 10px solid #f2f2f2;
 }
 .product-details .details .product-name {
   font-size: 1.2857rem;
@@ -1033,6 +1035,9 @@ a:hover {
   padding-top: 2rem;
 }
 
+.ongoing-order {
+  background-color: #f2f2f2;
+}
 .ongoing-order .order-details {
   text-align: center;
 }
@@ -1048,4 +1053,45 @@ a:hover {
 .ongoing-order .no-order-yet .back-to-homepage {
   text-align: center;
   padding-top: 2rem;
+}
+.ongoing-order .ui.card {
+  border-radius: 0;
+}
+.ongoing-order .ui.card > div {
+  text-align: left;
+}
+.ongoing-order .ui.card.order-info {
+  margin-top: 1rem;
+}
+.ongoing-order .ui.card.order-details .summary {
+  padding-top: 0.75rem;
+}
+.ongoing-order .ui.card.order-details .summary .summary-entry {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-left: 0;
+  margin-right: 0;
+}
+.ongoing-order .ui.card.order-details .summary .summary-entry .summary-title {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 77%;
+  flex: 0 0 77%;
+  max-width: 77%;
+  position: relative;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+.ongoing-order .ui.card.order-details .summary .summary-entry .summary-amount {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 23%;
+  flex: 0 0 23%;
+  max-width: 23%;
+  position: relative;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
 }

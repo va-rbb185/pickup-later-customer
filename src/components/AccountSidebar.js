@@ -39,25 +39,21 @@ const AccountSidebar = ({ userData, hideSideBar, logoutCurrentUser }) => {
                         }}
                     />
                 </div>
-                <div className="ongoing-order sidebar-entry">
-                    <Link to="/ongoing-order">
-                        <div className="icon">
-                            <FontAwesomeIcon icon={faReceipt} size="2x" />
-                        </div>
-                        <div className="content">
-                            <h5>Đơn hàng đang thực hiện</h5>
-                        </div>
-                    </Link>
+                <div className="sidebar-entry">
+                    <div className="icon">
+                        <FontAwesomeIcon icon={faReceipt} size="2x" />
+                    </div>
+                    <div className="content">
+                        <h5><Link to="/ongoing-order">Đơn hàng đang thực hiện</Link></h5>
+                    </div>
                 </div>
-                <div className="order-history sidebar-entry">
-                    <Link to="/order-history">
-                        <div className="icon">
-                            <FontAwesomeIcon icon={faHistory} size="2x" />
-                        </div>
-                        <div className="content">
-                            <h5>Lịch sử mua hàng</h5>
-                        </div>
-                    </Link>
+                <div className="sidebar-entry">
+                    <div className="icon">
+                        <FontAwesomeIcon icon={faHistory} size="2x" />
+                    </div>
+                    <div className="content">
+                        <h5><Link to="/order-history">Lịch sử mua hàng</Link></h5>
+                    </div>
                 </div>
             </div>
         );

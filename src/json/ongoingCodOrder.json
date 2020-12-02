@@ -1,0 +1,67 @@
+{
+  "cart": {
+    "amount": 3,
+    "items": [{
+      "quantity": 2,
+      "product": {
+        "id": 6,
+        "name": "Bò lát lôt",
+        "title": "Bò lá lốt",
+        "price": 15000,
+        "salePrice": 15000,
+        "imageUrl": "",
+        "freshFood": true,
+        "productType": "Product"
+      }
+    }, {
+      "quantity": 1,
+      "product": {
+        "id": 12,
+        "name": "Gỏi cuốn",
+        "title": "Gỏi cuốn",
+        "price": 20000,
+        "salePrice": 20000,
+        "imageUrl": "",
+        "freshFood": true,
+        "productType": "Product"
+      }
+    }]
+  },
+  "order": {
+    "userId": 5,
+    "storeId": "1000",
+    "userName": "Viet Anh",
+    "phoneNumber": "0352305969",
+    "note": "",
+    "paymentMethod": "COD",
+    "totalAmount": 50000,
+    "totalPriceAmount": 50000,
+    "orderDetails": [{
+      "product_id": 6,
+      "product_name": "Bò lát lôt",
+      "product_type": "Product",
+      "quantity": 2
+    }, {
+      "product_id": 12,
+      "product_name": "Gỏi cuốn",
+      "product_type": "Product",
+      "quantity": 1
+    }],
+    "redirectUrl": "http://localhost:3000/order-confirmation"
+  },
+  "orderConfirmation": {
+    "transactionNo": "291120-01ERA5R5",
+    "userId": 5,
+    "userName": "Viet Anh",
+    "storeId": "",
+    "phoneNumber": "0352305969",
+    "note": "",
+    "totalAmount": 50000,
+    "totalPriceAmount": 50000,
+    "qrText": "",
+    "paymentMethod": "COD",
+    "paymentStatus": "PAID",
+    "createdAt": 1606659347
+  },
+  "orderId": "291120-01ERA5R5"
+}
