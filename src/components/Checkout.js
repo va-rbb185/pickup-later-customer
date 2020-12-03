@@ -14,9 +14,7 @@ import {
     updatePaymentMethod,
     createOrder,
     clearCart,
-    showSpinner,
-    updateOngoingOrder,
-    deleteOngoingOrder
+    showSpinner
 } from '../actions';
 
 import PageHeader from './PageHeader';
@@ -121,12 +119,6 @@ class Checkout extends React.Component {
                 this.props.paymentMethod
             );
 
-            /* Delete existing ongoing order if any */
-            this.props.deleteOngoingOrder();
-
-            /* Add new ongoing order */
-            this.props.updateOngoingOrder(this.props.cart, order);
-
             /* Clear cart as order has been created */
             this.props.clearCart();
 
@@ -141,14 +133,7 @@ class Checkout extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.orderConfirmation && this.props.orderConfirmation !== prevProps.orderConfirmation) {
-            const { transactionNo: orderId, qrText } = this.props.orderConfirmation;
-
-            if (orderId) {
-                this.props.updateOngoingOrder(null, null, this.props.orderConfirmation, orderId);
-            } else {
-                this.props.updateOngoingOrder(null, null, this.props.orderConfirmation);
-            }
-
+            const { qrText } = this.props.orderConfirmation;
             if (qrText) {
                 window.location.replace(qrText);
             }
@@ -424,9 +409,7 @@ const mapDispatchToProps = {
     updatePaymentMethod,
     createOrder,
     clearCart,
-    showSpinner,
-    updateOngoingOrder,
-    deleteOngoingOrder
+    showSpinner
 };
 
 const ConnectedCheckout = connect(mapStateToProps, mapDispatchToProps)(Checkout);

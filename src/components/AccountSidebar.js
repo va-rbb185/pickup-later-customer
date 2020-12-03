@@ -41,14 +41,6 @@ const AccountSidebar = ({ userData, hideSideBar, logoutCurrentUser }) => {
                 </div>
                 <div className="sidebar-entry">
                     <div className="icon">
-                        <FontAwesomeIcon icon={faReceipt} size="2x" />
-                    </div>
-                    <div className="content">
-                        <h5><Link to="/ongoing-order">Đơn hàng đang thực hiện</Link></h5>
-                    </div>
-                </div>
-                <div className="sidebar-entry">
-                    <div className="icon">
                         <FontAwesomeIcon icon={faHistory} size="2x" />
                     </div>
                     <div className="content">

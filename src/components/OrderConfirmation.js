@@ -7,15 +7,15 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { hideSpinner } from '../actions';
 import PageHeader from './PageHeader';
 
-const OrderConfirmation = ({ ongoingOrder, hideSpinner }) => {
+const OrderConfirmation = ({ orderConfirmation, hideSpinner }) => {
     let history = useHistory();
     useEffect(() => {
         hideSpinner();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    if (ongoingOrder && ongoingOrder.orderId && !ongoingOrder.orderConfirmation.error) {
-        return <Redirect to="/ongoing-order" />;
+    if (orderConfirmation && !orderConfirmation.error) {
+        return <Redirect to={`/orders/${orderConfirmation.transactionNo}`} />;
     }
 
     return (
@@ -38,7 +38,7 @@ const OrderConfirmation = ({ ongoingOrder, hideSpinner }) => {
     );
 };
 
-const mapStateToProps = ({ ongoingOrder }) => ({ ongoingOrder });
+const mapStateToProps = ({ orderConfirmation }) => ({ orderConfirmation });
 const mapDispatchToProps = { hideSpinner };
 const ConnectedOrderConfirmation = connect(mapStateToProps, mapDispatchToProps)(OrderConfirmation);
 

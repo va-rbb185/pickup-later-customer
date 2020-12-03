@@ -7,22 +7,21 @@ import {
     fetchMenu,
     retrieveCartFromStorage,
     retrieveAuthenticationFromStorage,
-    updateCustomerDetails,
-    retrieveOngoingOrderFromStorage
+    updateCustomerDetails
 } from '../actions';
 
+import Spinner from './Spinner';
+import CartButton from './CartButton';
+import MQTTConnector from './MQTTConnector';
 import Home from './Home';
 import Search from './Search';
 import ProductListingPage from './ProductListingPage';
 import ProductDetailPage from './ProductDetailPage';
-import CartButton from './CartButton';
-import Spinner from './Spinner';
 import Cart from './Cart';
 import Login from './Login';
 import Checkout from './Checkout';
 import OrderConfirmation from './OrderConfirmation';
-import OngoingOrder from './OngoingOrder';
-import MQTTConnector from './MQTTConnector';
+import OrderDetails from './OrderDetails';
 
 class App extends React.Component {
     saveCartToStorage(nextCart) {
@@ -49,12 +48,12 @@ class App extends React.Component {
         }
     }
 
-    saveOngoingOrderToStorage(nextOngoingOrder) {
-        const currentOngoingOrder = this.props.ongoingOrder;
-        const shouldSave = !!nextOngoingOrder && nextOngoingOrder !== currentOngoingOrder;
+    saveOrderConfirmationToStorage(nextOrderConfirmation) {
+        const currentOrderConfirmation = this.props.orderConfirmation;
+        const shouldSave = !!nextOrderConfirmation && nextOrderConfirmation !== currentOrderConfirmation;
 
         if (shouldSave) {
-            window.localStorage.setItem('storedOngoingOrder', JSON.stringify(nextOngoingOrder));
+            window.localStorage.setItem('storedOrderConfirmation', JSON.stringify(nextOrderConfirmation));
         }
     }
 
@@ -62,13 +61,13 @@ class App extends React.Component {
         this.props.fetchMenu();
         this.props.retrieveCartFromStorage();
         this.props.retrieveAuthenticationFromStorage();
-        this.props.retrieveOngoingOrderFromStorage();
+        // this.props.retrieveOrderConfirmationFromStorage();
     }
 
     shouldComponentUpdate(nextProps) {
         this.saveCartToStorage(nextProps.cart);
         this.updateCustomerDetails(nextProps.authentication);
-        this.saveOngoingOrderToStorage(nextProps.ongoingOrder);
+        this.saveOrderConfirmationToStorage(nextProps.orderConfirmation)
         return false;
     }
 
@@ -87,25 +86,24 @@ class App extends React.Component {
                     <Route path="/checkout" component={Checkout} />
                     <Route path="/login" component={Login} />
                     <Route path="/order-confirmation" component={OrderConfirmation} />
-                    <Route path="/ongoing-order" component={OngoingOrder} />
+                    <Route path="/orders/:id" component={OrderDetails} />
                 </div>
             </BrowserRouter>
         );
     }
 }
 
-const mapStateToProps = ({ cart, authentication, ongoingOrder }) => ({
+const mapStateToProps = ({ cart, authentication, orderConfirmation }) => ({
     cart,
     authentication,
-    ongoingOrder
+    orderConfirmation
 });
 
 const mapDispatchToProps = {
     fetchMenu,
     retrieveCartFromStorage,
     retrieveAuthenticationFromStorage,
-    updateCustomerDetails,
-    retrieveOngoingOrderFromStorage
+    updateCustomerDetails
 };
 
 const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);

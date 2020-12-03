@@ -6,7 +6,8 @@ const basePath = '/api/v1';
 const paths = {
     get: {
         menu: '/menu',
-        users: '/users'
+        users: '/users',
+        orders: '/orders'
     },
     post: {
         authPhone: '/customers/phone_login',
@@ -90,7 +91,15 @@ export const createOrder = async order => {
 
 export const fetchOrdersByUser = async (userId, params) => {
     const apiPath = getApiPath(`${paths.get.users}/${userId}/orders`, params);
-    const configurations = getConfigurations(httpMethods.POST, order);
+    const configurations = getConfigurations(httpMethods.GET);
+    const response = await fetch(apiPath, configurations);
+    const data = await response.json();
+    return data;
+};
+
+export const fetchOrder = async orderId => {
+    const apiPath = getApiPath(paths.get.orders, orderId);
+    const configurations = getConfigurations(httpMethods.GET);
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
     return data;

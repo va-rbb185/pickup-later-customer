@@ -16,9 +16,6 @@ import updatePaymentMethod from './updatePaymentMethod';
 import createOrder from './createOrder';
 import showSpinner from './showSpinner';
 import hideSpinner from './hideSpinner';
-import updateOngoingOrder from './updateOngoingOrder';
-import deleteOngoingOrder from './deleteOngoingOrder';
-import retrieveOngoingOrderFromStorage from './retrieveOngoingOrderFromStorage';
 import fetchOrderHistory from './fetchOrderHistory';
 
 export {
@@ -40,8 +37,5 @@ export {
     createOrder,
     showSpinner,
     hideSpinner,
-    updateOngoingOrder,
-    deleteOngoingOrder,
-    retrieveOngoingOrderFromStorage,
     fetchOrderHistory
 };
