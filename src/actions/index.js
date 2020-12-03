@@ -17,6 +17,8 @@ import createOrder from './createOrder';
 import showSpinner from './showSpinner';
 import hideSpinner from './hideSpinner';
 import fetchOrderHistory from './fetchOrderHistory';
+import retrieveOrderConfirmationFromStorage from './retrieveOrderConfirmationFromStorage';
+import deleteOrderConfirmation from './deleteOrderConfirmation';
 
 export {
     updateTestData,
@@ -37,5 +39,7 @@ export {
     createOrder,
     showSpinner,
     hideSpinner,
-    fetchOrderHistory
+    fetchOrderHistory,
+    retrieveOrderConfirmationFromStorage,
+    deleteOrderConfirmation
 };

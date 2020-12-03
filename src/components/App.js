@@ -7,6 +7,7 @@ import {
     fetchMenu,
     retrieveCartFromStorage,
     retrieveAuthenticationFromStorage,
+    retrieveOrderConfirmationFromStorage,
     updateCustomerDetails
 } from '../actions';
 
@@ -61,7 +62,7 @@ class App extends React.Component {
         this.props.fetchMenu();
         this.props.retrieveCartFromStorage();
         this.props.retrieveAuthenticationFromStorage();
-        // this.props.retrieveOrderConfirmationFromStorage();
+        this.props.retrieveOrderConfirmationFromStorage();
     }
 
     shouldComponentUpdate(nextProps) {
@@ -103,6 +104,7 @@ const mapDispatchToProps = {
     fetchMenu,
     retrieveCartFromStorage,
     retrieveAuthenticationFromStorage,
+    retrieveOrderConfirmationFromStorage,
     updateCustomerDetails
 };
 
