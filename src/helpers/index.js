@@ -7,6 +7,7 @@ import getParamFromURL from './getParamFromURL';
 import normalizeForURLs from './normalizeForURLs';
 import findByNormalizedName from './findByNormalizedName';
 import findProductInCategories from './findProductInCategories';
+import getDateTimeFromMilliseconds from './getDateTimeFromMilliseconds';
 
 export {
     formatPrice,
@@ -18,5 +19,6 @@ export {
     getParamFromURL,
     normalizeForURLs,
     findByNormalizedName,
-    findProductInCategories
+    findProductInCategories,
+    getDateTimeFromMilliseconds
 };

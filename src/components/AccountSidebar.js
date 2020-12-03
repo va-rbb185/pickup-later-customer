@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-import { faHistory, faReceipt } from '@fortawesome/free-solid-svg-icons';
+import { faHistory } from '@fortawesome/free-solid-svg-icons';
 import { logoutCurrentUser } from '../actions';
 
 const AccountSidebar = ({ userData, hideSideBar, logoutCurrentUser }) => {

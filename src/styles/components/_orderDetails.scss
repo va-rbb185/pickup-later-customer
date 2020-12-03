@@ -1,25 +1,47 @@
 .order-detail-page {
     background-color: $whiteSmoke;
+    padding-bottom: 60px;
 
     .order-details {
         text-align: center;
     }
 
-    .no-order-yet {
+    .order-info-entries {
+        margin-top: -0.25rem;
+        margin-bottom: -0.25rem;
+    }
+
+    .payment-info-entries {
+        .order-amount {
+            color: $lighterGreen;
+            font-size: $fontSize18;
+            font-weight: 600;
+        }
+
+        .payment-status,
+        .payment-method {
+            font-weight: 600;
+        }
+    }
+
+    .order-info-entry {
+        @include make-custom-row(0);
+        @include align-items-center;
+
+        padding: 0.25rem 0;
+
         .icon {
+            @include make-custom-col(10%, 0);
+
+            color: $mortar;
             text-align: center;
-            color: $gray;
-            padding-top: 2.5rem;
         }
 
-        .no-order-yet-msg {
-            text-align: center;
-            padding-top: 1.5rem;
-        }
+        .content {
+            @include make-custom-col(90%, 0);
 
-        .back-to-homepage {
-            text-align: center;
-            padding-top: 2rem;
+            padding-left: 10px;
+            font-size: $fontSize15;
         }
     }
 
@@ -47,6 +69,9 @@
 
                     .summary-amount {
                         @include make-custom-col(23%, 0);
+
+                        font-weight: 600;
+                        font-size: $fontSize15;
                     }
                 }
             }
