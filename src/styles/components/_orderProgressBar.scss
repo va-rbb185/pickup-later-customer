@@ -1,0 +1,21 @@
+.order-progress-bar {
+    padding: 1rem 1rem 4.25rem 1rem;
+
+    .order-step {
+        position: relative;
+        filter: grayscale(1);
+
+        &.accomplished {
+            filter: grayscale(0);
+        }
+
+        span {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            font-size: $fontSize13;
+
+            @include translate(-50%, 120%);
+        }
+    }
+}

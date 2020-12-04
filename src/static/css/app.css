@@ -752,6 +752,26 @@ a:hover {
   font-size: 1.0714rem;
 }
 
+.order-progress-bar {
+  padding: 1rem 1rem 4.25rem 1rem;
+}
+.order-progress-bar .order-step {
+  position: relative;
+  filter: grayscale(1);
+}
+.order-progress-bar .order-step.accomplished {
+  filter: grayscale(0);
+}
+.order-progress-bar .order-step span {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  font-size: 0.929rem;
+  -webkit-transform: translate(-50%, 120%);
+  -ms-transform: translate(-50%, 120%);
+  transform: translate(-50%, 120%);
+}
+
 /* pages */
 .home .category-list {
   margin-top: 66px;
@@ -1123,6 +1143,10 @@ a:hover {
 .order-detail-page .order-info-entries {
   margin-top: -0.25rem;
   margin-bottom: -0.25rem;
+}
+.order-detail-page .order-status .order-step-details {
+  margin-top: -0.5rem;
+  margin-bottom: -0.5rem;
 }
 .order-detail-page .payment-info-entries .order-amount {
   color: #4db856;

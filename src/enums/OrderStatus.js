@@ -1,17 +1,17 @@
 const OrderStatus = {
     NEW: {
         value: 'NEW',
-        title: 'Mới tạo đơn',
+        title: 'Tạo đơn',
         indicatorColor: '#ed5426'
     },
     RECEIVED: {
         value: 'RECEIVED',
-        title: 'Mới nhận đơn',
+        title: 'Nhận đơn',
         indicatorColor: '#ed5426'
     },
     CONFIRMED: {
         value: 'CONFIRMED',
-        title: 'Đã xác nhận',
+        title: 'Xác nhận',
         indicatorColor: '#367ff5'
     },
     AVAILABLE: {

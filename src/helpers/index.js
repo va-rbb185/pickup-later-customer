@@ -8,6 +8,7 @@ import normalizeForURLs from './normalizeForURLs';
 import findByNormalizedName from './findByNormalizedName';
 import findProductInCategories from './findProductInCategories';
 import getDateTimeFromMilliseconds from './getDateTimeFromMilliseconds';
+import getOrderStatusArray from './getOrderStatusArray';
 
 export {
     formatPrice,
@@ -20,5 +21,6 @@ export {
     normalizeForURLs,
     findByNormalizedName,
     findProductInCategories,
-    getDateTimeFromMilliseconds
+    getDateTimeFromMilliseconds,
+    getOrderStatusArray
 };

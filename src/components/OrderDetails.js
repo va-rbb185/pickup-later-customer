@@ -5,13 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faClock, faStickyNote, faHandPaper } from '@fortawesome/free-regular-svg-icons';
 import { faHashtag, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { fetchOrder } from '../api';
-import { PaymentMethod, PaymentStatus } from '../enums';
+import { PaymentMethod, PaymentStatus, OrderStatus } from '../enums';
 import { formatPrice, getDateTimeFromMilliseconds } from '../helpers';
 import { showCartButton, hideCartButton } from '../actions';
 import { order as orderFromJSON } from '../json';
 
 import PageHeader from './PageHeader';
 import OrderProductTile from './OrderProductTile';
+import OrderProgressBar from './OrderProgressBar';
 
 class OrderDetails extends React.Component {
     constructor(props) {
@@ -56,7 +57,8 @@ class OrderDetails extends React.Component {
                 note,
                 paymentMethod,
                 paymentStatus,
-                createdAt
+                createdAt,
+                orderAudits
             } = this.state.order;
 
             return (
@@ -112,7 +114,16 @@ class OrderDetails extends React.Component {
                             <Card.Content>
                                 <Card.Header>Trạng thái đơn hàng</Card.Header>
                             </Card.Content>
-                            <Card.Content>[Trạng thái đơn hàng]</Card.Content>
+                            <Card.Content>
+                                <OrderProgressBar orderProgress={orderAudits} />
+                                <div className="order-step-details">
+                                    {[...orderAudits].reverse().map(({ status, created_at }) => (
+                                        <div className="py-2">
+                                            {OrderStatus[status].title}: <b>{getDateTimeFromMilliseconds(created_at)}</b>
+                                        </div>
+                                    ))}
+                                </div>
+                            </Card.Content>
                         </Card>
                         <Card fluid className="order-details">
                             <Card.Content>

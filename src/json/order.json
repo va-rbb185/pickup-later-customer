@@ -55,20 +55,12 @@
       }
     ],
     "orderAudits": [{
-        "status": "COMPLETED",
-        "created_at": 1606746908
-      },
-      {
         "status": "AVAILABLE",
         "created_at": 1606746474
       },
       {
         "status": "CONFIRMED",
         "created_at": 1606746230
-      },
-      {
-        "status": "RECEIVED",
-        "created_at": 1606745714
       },
       {
         "status": "RECEIVED",

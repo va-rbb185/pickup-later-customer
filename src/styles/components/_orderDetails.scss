@@ -11,6 +11,13 @@
         margin-bottom: -0.25rem;
     }
 
+    .order-status {
+        .order-step-details {
+            margin-top: -0.5rem;
+            margin-bottom: -0.5rem;
+        }
+    }
+
     .payment-info-entries {
         .order-amount {
             color: $lighterGreen;
