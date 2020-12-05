@@ -1,1 +1,22 @@
-.search {}
+.search {
+    .product-category {
+        padding-top: 1.25rem;
+        border-bottom: 10px solid #f2f2f2;
+
+        .product-category-header {
+            @include display-flex;
+
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+            margin-bottom: 1rem;
+
+            .category-name {
+                @include flex-grow(1);
+
+                h5 {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

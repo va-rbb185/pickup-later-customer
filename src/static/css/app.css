@@ -778,6 +778,27 @@ a:hover {
   padding-top: 1.5rem;
 }
 
+.search .product-category {
+  padding-top: 1.25rem;
+  border-bottom: 10px solid #f2f2f2;
+}
+.search .product-category .product-category-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  margin-bottom: 1rem;
+}
+.search .product-category .product-category-header .category-name {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+.search .product-category .product-category-header .category-name h5 {
+  font-weight: bold;
+}
+
 .product-details .product-image {
   text-align: center;
 }

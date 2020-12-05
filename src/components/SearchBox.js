@@ -1,10 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { productSearch } from '../api';
 
 class SearchBox extends React.Component {
     constructor(props) {
         super(props);
         this.isSearchPage = this.props.location.pathname === '/search';
+        this.inputTimer = null;
         this.onSearchBoxClick = this.onSearchBoxClick.bind(this);
         this.onSearchBoxChange = this.onSearchBoxChange.bind(this);
     }
@@ -15,7 +17,17 @@ class SearchBox extends React.Component {
         }
     }
 
-    onSearchBoxChange() { }
+    onSearchBoxChange(event) {
+        window.clearTimeout(this.inputTimer);
+        const searchQuery = event.target.value;
+        if (searchQuery && searchQuery.length > 2) {
+            this.inputTimer = window.setTimeout(() => {
+                productSearch(searchQuery)
+                    .then(response => this.props.onReceiveSearchResult(response.data))
+                    .catch(error => console.error(error));
+            }, 1500);
+        }
+    }
 
     componentDidMount() {
         if (this.isSearchPage) {
@@ -32,6 +44,7 @@ class SearchBox extends React.Component {
                         type="text"
                         placeholder="Tìm kiếm sản phẩm..."
                         onClick={this.onSearchBoxClick}
+                        onChange={this.onSearchBoxChange}
                     />
                     <i className="search icon"></i>
                 </div>

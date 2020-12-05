@@ -7,7 +7,8 @@ const paths = {
     get: {
         menu: '/menu',
         users: '/users',
-        orders: '/orders'
+        orders: '/orders',
+        productSearch: '/search_product'
     },
     post: {
         authPhone: '/customers/phone_login',
@@ -99,6 +100,14 @@ export const fetchOrdersByUser = async (userId, params) => {
 
 export const fetchOrder = async orderId => {
     const apiPath = getApiPath(paths.get.orders, orderId);
+    const configurations = getConfigurations(httpMethods.GET);
+    const response = await fetch(apiPath, configurations);
+    const data = await response.json();
+    return data;
+};
+
+export const productSearch = async query => {
+    const apiPath = getApiPath(paths.get.productSearch, { keyword: query });
     const configurations = getConfigurations(httpMethods.GET);
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
