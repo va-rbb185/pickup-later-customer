@@ -22,6 +22,7 @@ import Cart from './Cart';
 import Login from './Login';
 import Checkout from './Checkout';
 import OrderConfirmation from './OrderConfirmation';
+import OrderHistory from './OrderHistory';
 import OrderDetails from './OrderDetails';
 
 class App extends React.Component {
@@ -30,7 +31,11 @@ class App extends React.Component {
         const shouldSave = nextCart.amount !== currentCart.amount;
 
         if (shouldSave) {
-            window.localStorage.setItem('storedCart', JSON.stringify(nextCart));
+            if (nextCart.amount > 0) {
+                window.localStorage.setItem('storedCart', JSON.stringify(nextCart));
+            } else {
+                window.localStorage.removeItem('storedCart');
+            }
         }
     }
 
@@ -51,10 +56,14 @@ class App extends React.Component {
 
     saveOrderConfirmationToStorage(nextOrderConfirmation) {
         const currentOrderConfirmation = this.props.orderConfirmation;
-        const shouldSave = !!nextOrderConfirmation && nextOrderConfirmation !== currentOrderConfirmation;
+        const shouldSave = nextOrderConfirmation !== currentOrderConfirmation;
 
         if (shouldSave) {
-            window.localStorage.setItem('storedOrderConfirmation', JSON.stringify(nextOrderConfirmation));
+            if (nextOrderConfirmation) {
+                window.localStorage.setItem('storedOrderConfirmation', JSON.stringify(nextOrderConfirmation));
+            } else {
+                window.localStorage.removeItem('storedOrderConfirmation');
+            }
         }
     }
 
@@ -68,7 +77,7 @@ class App extends React.Component {
     shouldComponentUpdate(nextProps) {
         this.saveCartToStorage(nextProps.cart);
         this.updateCustomerDetails(nextProps.authentication);
-        this.saveOrderConfirmationToStorage(nextProps.orderConfirmation)
+        this.saveOrderConfirmationToStorage(nextProps.orderConfirmation);
         return false;
     }
 
@@ -87,6 +96,7 @@ class App extends React.Component {
                     <Route path="/checkout" component={Checkout} />
                     <Route path="/login" component={Login} />
                     <Route path="/order-confirmation" component={OrderConfirmation} />
+                    <Route exact path="/orders" component={OrderHistory} />
                     <Route path="/orders/:id" component={OrderDetails} />
                 </div>
             </BrowserRouter>

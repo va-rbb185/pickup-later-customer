@@ -15,9 +15,9 @@ const OrderProgressBar = ({ orderProgress }) => {
     return (
         <div className="order-progress-bar">
             <ProgressBar filledBackground="rgb(162,140,234)" percent={percentageAccomplished}>
-                {combinedSteps.map(item => {
+                {combinedSteps.map((item, index) => {
                     return (
-                        <Step transition="scale">
+                        <Step key={`orderProgressStep_${index}_${item.status}`} transition="scale">
                             {
                                 ({ accomplished }) => (
                                     <div className={`order-step${accomplished ? ' accomplished' : ''}`}>

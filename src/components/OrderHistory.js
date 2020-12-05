@@ -1,10 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { showCartButton, hideCartButton, fetchOrderHistory } from '../actions';
 
-const OrderHistory = () => {
+const OrderHistory = ({ orderHistory, showCartButton, hideCartButton, fetchOrderHistory }) => {
     return (
         <div className="order-history inner page">
         </div>
     );
 };
 
-export default OrderHistory;
+const mapStateToProps = ({ orderHistory }) => ({ orderHistory });
+
+const mapDispatchToProps = {
+    showCartButton,
+    hideCartButton,
+    fetchOrderHistory
+};
+
+const ConnectedOrderHistory = connect(mapStateToProps, mapDispatchToProps)(OrderHistory);
+
+export default ConnectedOrderHistory;

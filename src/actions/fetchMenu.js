@@ -7,31 +7,21 @@ import {
 
 const fetchMenuStart = () => ({ type: FETCH_MENU_START });
 
-const fetchMenuSuccess = (response) => ({
+const fetchMenuSuccess = menu => ({
     type: FETCH_MENU_SUCCESS,
-    menu: response
+    menu
 });
 
-const fetchMenuFailure = (error) => ({
+const fetchMenuFailure = error => ({
     type: FETCH_MENU_FAILURE,
     error
 });
 
 const fetchMenu = () => dispatch => {
-    console.info('Store menu fetching started.');
     dispatch(fetchMenuStart());
-
     fetchStoreMenu()
-        .then(response => {
-            const action = fetchMenuSuccess(response);
-            console.info('Store menu fetching succeeded. Updated state:', action.menu);
-            dispatch(action);
-        })
-        .catch(error => {
-            const action = fetchMenuFailure(error);
-            console.error('Store menu fetching failed.', action.error);
-            dispatch(action);
-        });
+        .then(response => dispatch(fetchMenuSuccess(response)))
+        .catch(error => dispatch(fetchMenuFailure(error)));
 };
 
 export default fetchMenu;

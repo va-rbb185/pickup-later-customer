@@ -217,7 +217,7 @@ class Checkout extends React.Component {
                                         </div>
                                         <div className="field-data">
                                             <h5>Lưu ý</h5>
-                                            <span>{this.props.customerDetails.note || 'Không có'}</span>
+                                            <span>{this.props.customerDetails.note || '<Không có>'}</span>
                                         </div>
                                     </div>
                                 </Form>

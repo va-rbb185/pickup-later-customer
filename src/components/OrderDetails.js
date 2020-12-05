@@ -2,13 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Card } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faClock, faStickyNote, faHandPaper } from '@fortawesome/free-regular-svg-icons';
-import { faHashtag, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faStickyNote, faHandPaper } from '@fortawesome/free-regular-svg-icons';
+import { faHashtag, faPhone, faUser } from '@fortawesome/free-solid-svg-icons';
 import { fetchOrder } from '../api';
 import { PaymentMethod, PaymentStatus, OrderStatus } from '../enums';
 import { formatPrice, getDateTimeFromMilliseconds } from '../helpers';
 import { showCartButton, hideCartButton } from '../actions';
-import { order as orderFromJSON } from '../json';
 
 import PageHeader from './PageHeader';
 import OrderProductTile from './OrderProductTile';
@@ -18,7 +17,7 @@ class OrderDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            order: orderFromJSON.data
+            order: null
         };
     }
 
@@ -34,11 +33,10 @@ class OrderDetails extends React.Component {
         this.fetchTheOrder();
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        if (nextProps.orderHistory !== this.props.orderHistory) {
+    componentDidUpdate(prevProps) {
+        if (this.props.orderHistory !== prevProps.orderHistory) {
             this.fetchTheOrder();
         }
-        return nextState.order !== this.state.order;
     }
 
     componentWillUnmount() {
@@ -63,7 +61,7 @@ class OrderDetails extends React.Component {
 
             return (
                 <div className="order-detail-page inner-page">
-                    <PageHeader>Đơn hàng đang thực hiện</PageHeader>
+                    <PageHeader>Chi tiết đơn hàng</PageHeader>
                     <div className="order-details">
                         <Card fluid className="order-info">
                             <Card.Content>
@@ -117,9 +115,9 @@ class OrderDetails extends React.Component {
                             <Card.Content>
                                 <OrderProgressBar orderProgress={orderAudits} />
                                 <div className="order-step-details">
-                                    {[...orderAudits].reverse().map(({ status, created_at }) => (
-                                        <div className="py-2">
-                                            {OrderStatus[status].title}: <b>{getDateTimeFromMilliseconds(created_at)}</b>
+                                    {[...orderAudits].reverse().map((item, index) => (
+                                        <div key={`orderStepDetail_${index}`} className="py-2">
+                                            {OrderStatus[item.status].title}: <b>{getDateTimeFromMilliseconds(item.created_at)}</b>
                                         </div>
                                     ))}
                                 </div>
