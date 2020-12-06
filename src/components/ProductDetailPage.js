@@ -21,7 +21,7 @@ const ProductDetailPage = ({ match, allCategories }) => {
 
         return (
             <div className="product-details inner-page">
-                <PageHeader>Chi tiết Sản phẩm</PageHeader>
+                <PageHeader>Chi tiết sản phẩm</PageHeader>
                 <div className="top-section">
                     <div className="product-image">
                         <img src={imageUrl || sampleImageURLs.PRODUCT_DETAIL} alt="" />

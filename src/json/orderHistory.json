@@ -1,0 +1,381 @@
+{
+  "count": 9,
+  "pages": 1,
+  "offset": 0,
+  "perPage": 10,
+  "page": 1,
+  "prevPage": 1,
+  "nextPage": 1,
+  "records": [{
+      "transactionNo": "51220-01ERSW8R",
+      "userId": 5,
+      "userName": "Viet Anh",
+      "phoneNumber": "0352305969",
+      "note": "1 tô không đồ chua, không đậu phộng",
+      "totalAmount": 60000,
+      "status": "COMPLETED",
+      "storeId": "1000",
+      "paymentMethod": "COD",
+      "paymentStatus": "NEW",
+      "orderDetails": [{
+        "productId": 1006,
+        "productName": "Bún thịt nướng",
+        "productType": "Product",
+        "quantity": 2,
+        "price": 0,
+        "subtotal": 0
+      }],
+      "orderAudits": [{
+          "status": "AVAILABLE",
+          "created_at": 1607211595
+        },
+        {
+          "status": "CONFIRMED",
+          "created_at": 1607211530
+        },
+        {
+          "status": "NEW",
+          "created_at": 1607211476
+        },
+        {
+          "status": "COMPLETED",
+          "created_at": 1607211713
+        }
+      ],
+      "createdAt": 1607186923906
+    },
+    {
+      "transactionNo": "51220-01ERSSMX",
+      "userId": 5,
+      "userName": "Viet Anh",
+      "phoneNumber": "0352305969",
+      "note": "",
+      "totalAmount": 20000,
+      "status": "COMPLETED",
+      "storeId": "1000",
+      "paymentMethod": "COD",
+      "paymentStatus": "NEW",
+      "orderDetails": [{
+        "productId": 1013,
+        "productName": "Gỏi cuốn",
+        "productType": "Product",
+        "quantity": 1,
+        "price": 0,
+        "subtotal": 0
+      }],
+      "orderAudits": [{
+          "status": "AVAILABLE",
+          "created_at": 1607208780
+        },
+        {
+          "status": "CONFIRMED",
+          "created_at": 1607208757
+        },
+        {
+          "status": "NEW",
+          "created_at": 1607208729
+        },
+        {
+          "status": "COMPLETED",
+          "created_at": 1607208933
+        }
+      ],
+      "createdAt": 1607186923906
+    },
+    {
+      "transactionNo": "51220-01ERSNQG",
+      "userId": 5,
+      "userName": "Viet Anh",
+      "phoneNumber": "0352305969",
+      "note": "789fjz",
+      "totalAmount": 15000,
+      "status": "COMPLETED",
+      "storeId": "1000",
+      "paymentMethod": "COD",
+      "paymentStatus": "NEW",
+      "orderDetails": [{
+        "productId": 1007,
+        "productName": "Bò lát lôt",
+        "productType": "Product",
+        "quantity": 1,
+        "price": 0,
+        "subtotal": 0
+      }],
+      "orderAudits": [{
+          "status": "AVAILABLE",
+          "created_at": 1607204679
+        },
+        {
+          "status": "CONFIRMED",
+          "created_at": 1607204649
+        },
+        {
+          "status": "NEW",
+          "created_at": 1607204620
+        },
+        {
+          "status": "COMPLETED",
+          "created_at": 1607204752
+        }
+      ],
+      "createdAt": 1607186923906
+    },
+    {
+      "transactionNo": "51220-01ERS1GP",
+      "userId": 5,
+      "userName": "Viet Anh",
+      "phoneNumber": "0352305969",
+      "note": "",
+      "totalAmount": 20000,
+      "status": "COMPLETED",
+      "storeId": "1000",
+      "paymentMethod": "COD",
+      "paymentStatus": "NEW",
+      "orderDetails": [{
+        "productId": 1013,
+        "productName": "Gỏi cuốn",
+        "productType": "Product",
+        "quantity": 1,
+        "price": 0,
+        "subtotal": 0
+      }],
+      "orderAudits": [{
+          "status": "AVAILABLE",
+          "created_at": 1607183495
+        },
+        {
+          "status": "CONFIRMED",
+          "created_at": 1607183482
+        },
+        {
+          "status": "NEW",
+          "created_at": 1607183425
+        },
+        {
+          "status": "COMPLETED",
+          "created_at": 1607183504
+        }
+      ],
+      "createdAt": 1607186923906
+    },
+    {
+      "transactionNo": "51220-01ERS17T",
+      "userId": 5,
+      "userName": "Viet Anh",
+      "phoneNumber": "0352305969",
+      "note": "",
+      "totalAmount": 50000,
+      "status": "COMPLETED",
+      "storeId": "1000",
+      "paymentMethod": "COD",
+      "paymentStatus": "NEW",
+      "orderDetails": [{
+          "productId": 1013,
+          "productName": "Gỏi cuốn",
+          "productType": "Product",
+          "quantity": 1,
+          "price": 0,
+          "subtotal": 0
+        },
+        {
+          "productId": 1006,
+          "productName": "Bún thịt nướng",
+          "productType": "Product",
+          "quantity": 1,
+          "price": 0,
+          "subtotal": 0
+        }
+      ],
+      "orderAudits": [{
+          "status": "AVAILABLE",
+          "created_at": 1607183216
+        },
+        {
+          "status": "CONFIRMED",
+          "created_at": 1607183149
+        },
+        {
+          "status": "NEW",
+          "created_at": 1607183134
+        },
+        {
+          "status": "COMPLETED",
+          "created_at": 1607183221
+        }
+      ],
+      "createdAt": 1607186923906
+    },
+    {
+      "transactionNo": "51220-01ERS118",
+      "userId": 5,
+      "userName": "Viet Anh",
+      "phoneNumber": "0352305969",
+      "note": "",
+      "totalAmount": 28000,
+      "status": "COMPLETED",
+      "storeId": "1000",
+      "paymentMethod": "COD",
+      "paymentStatus": "NEW",
+      "orderDetails": [{
+        "productId": 1,
+        "productName": "Combo bánh mì ốp la & cafe",
+        "productType": "Combo",
+        "quantity": 1,
+        "price": 0,
+        "subtotal": 0,
+        "products": [{
+            "productId": 1002,
+            "productName": "Cafe sữa đá (size vừa)",
+            "quantity": 1
+          },
+          {
+            "productId": 1014,
+            "productName": "Bánh mì ốp la",
+            "quantity": 1
+          }
+        ]
+      }],
+      "orderAudits": [{
+          "status": "AVAILABLE",
+          "created_at": 1607183002
+        },
+        {
+          "status": "CONFIRMED",
+          "created_at": 1607182982
+        },
+        {
+          "status": "NEW",
+          "created_at": 1607182919
+        },
+        {
+          "status": "COMPLETED",
+          "created_at": 1607183014
+        }
+      ],
+      "createdAt": 1607186923906
+    },
+    {
+      "transactionNo": "51220-01ERS07R",
+      "userId": 5,
+      "userName": "Viet Anh",
+      "phoneNumber": "0352305969",
+      "note": "",
+      "totalAmount": 30000,
+      "status": "COMPLETED",
+      "storeId": "1000",
+      "paymentMethod": "COD",
+      "paymentStatus": "NEW",
+      "orderDetails": [{
+        "productId": 1012,
+        "productName": "Bún bò",
+        "productType": "Product",
+        "quantity": 1,
+        "price": 0,
+        "subtotal": 0
+      }],
+      "orderAudits": [{
+          "status": "AVAILABLE",
+          "created_at": 1607182853
+        },
+        {
+          "status": "CONFIRMED",
+          "created_at": 1607182155
+        },
+        {
+          "status": "NEW",
+          "created_at": 1607182084
+        },
+        {
+          "status": "COMPLETED",
+          "created_at": 1607182862
+        }
+      ],
+      "createdAt": 1607186923910
+    },
+    {
+      "transactionNo": "51220-01ERRZJX",
+      "userId": 5,
+      "userName": "Viet Anh",
+      "phoneNumber": "0352305969",
+      "note": "abc_xyz",
+      "totalAmount": 35000,
+      "status": "COMPLETED",
+      "storeId": "1000",
+      "paymentMethod": "COD",
+      "paymentStatus": "NEW",
+      "orderDetails": [{
+          "productId": 1013,
+          "productName": "Gỏi cuốn",
+          "productType": "Product",
+          "quantity": 1,
+          "price": 0,
+          "subtotal": 0
+        },
+        {
+          "productId": 1007,
+          "productName": "Bò lát lôt",
+          "productType": "Product",
+          "quantity": 1,
+          "price": 0,
+          "subtotal": 0
+        }
+      ],
+      "orderAudits": [{
+          "status": "AVAILABLE",
+          "created_at": 1607181520
+        },
+        {
+          "status": "CONFIRMED",
+          "created_at": 1607181437
+        },
+        {
+          "status": "NEW",
+          "created_at": 1607181400
+        },
+        {
+          "status": "COMPLETED",
+          "created_at": 1607181584
+        }
+      ],
+      "createdAt": 1607186923910
+    },
+    {
+      "transactionNo": "51220-01ERRXMT",
+      "userId": 5,
+      "userName": "Viet Anh",
+      "phoneNumber": "0352305969",
+      "note": "Ko rau hành",
+      "totalAmount": 30000,
+      "status": "COMPLETED",
+      "storeId": "1000",
+      "paymentMethod": "COD",
+      "paymentStatus": "NEW",
+      "orderDetails": [{
+        "productId": 1006,
+        "productName": "Bún thịt nướng",
+        "productType": "Product",
+        "quantity": 1,
+        "price": 0,
+        "subtotal": 0
+      }],
+      "orderAudits": [{
+          "status": "AVAILABLE",
+          "created_at": 1607179724
+        },
+        {
+          "status": "CONFIRMED",
+          "created_at": 1607179483
+        },
+        {
+          "status": "NEW",
+          "created_at": 1607179365
+        },
+        {
+          "status": "COMPLETED",
+          "created_at": 1607179776
+        }
+      ],
+      "createdAt": 1607186923910
+    }
+  ]
+}

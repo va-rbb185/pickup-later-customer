@@ -44,7 +44,7 @@ const AccountSidebar = ({ userData, hideSideBar, logoutCurrentUser }) => {
                         <FontAwesomeIcon icon={faHistory} size="2x" />
                     </div>
                     <div className="content">
-                        <h5><Link to="/order-history">Lịch sử mua hàng</Link></h5>
+                        <h5><Link to="/orders">Lịch sử mua hàng</Link></h5>
                     </div>
                 </div>
             </div>

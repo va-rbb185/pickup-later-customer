@@ -6,6 +6,7 @@ import { fetchOrderHistory, deleteOrderConfirmation } from '../actions';
 
 const MQTTConnector = ({ userId, fetchOrderHistory, deleteOrderConfirmation }) => {
     const onMessageArrived = message => {
+        console.info('Message arrived: ' + message.payloadString);
         const action = JSON.parse(message.payloadString);
         if (action.type === 'UPDATE_ORDER_STATUS' && typeof userId === 'number') {
             fetchOrderHistory(userId, {
@@ -30,7 +31,7 @@ const MQTTConnector = ({ userId, fetchOrderHistory, deleteOrderConfirmation }) =
             onConnectionLost: onConnectionLost
         });
         return () => {
-            /* Disconnect MQTT client when component unmounts */
+            /* Disconnect MQTT client from the broker when component unmounts */
             mqttConnection.close();
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
