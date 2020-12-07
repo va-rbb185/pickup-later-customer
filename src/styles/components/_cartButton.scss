@@ -9,8 +9,8 @@
     .cart-float-button {
         width: 60px;
         height: 60px;
-        background-color: #008358 !important;
-        transition: .2s linear !important;
+        background-color: $darkGreen !important;
+        transition: 0.2s linear !important;
         margin-right: 0 !important;
 
         .cart-float-button-icon {
@@ -22,10 +22,10 @@
         }
 
         span {
-            background-color: #fff;
+            background-color: $white;
             border-radius: 50%;
-            color: #f58220;
-            font-size: .7rem;
+            color: $ecstasy;
+            font-size: 0.7rem;
             padding: 0;
             position: absolute;
             top: 20%;

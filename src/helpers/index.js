@@ -9,6 +9,8 @@ import findByNormalizedName from './findByNormalizedName';
 import findProductInCategories from './findProductInCategories';
 import getDateTimeFromMilliseconds from './getDateTimeFromMilliseconds';
 import getOrderStatusArray from './getOrderStatusArray';
+import getOrderQuantity from './getOrderQuantity';
+import getBriefDescription from './getBriefDescription';
 
 export {
     formatPrice,
@@ -22,5 +24,7 @@ export {
     findByNormalizedName,
     findProductInCategories,
     getDateTimeFromMilliseconds,
-    getOrderStatusArray
+    getOrderStatusArray,
+    getOrderQuantity,
+    getBriefDescription
 };

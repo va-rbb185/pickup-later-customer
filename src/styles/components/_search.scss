@@ -1,7 +1,7 @@
 .search {
     .product-category {
         padding-top: 1.25rem;
-        border-bottom: 10px solid #f2f2f2;
+        border-bottom: 10px solid $whiteSmoke;
 
         .product-category-header {
             @include display-flex;

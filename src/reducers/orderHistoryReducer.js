@@ -11,7 +11,7 @@ const orderHistoryReducer = (prevState = null, action) => {
         case FETCH_ORDER_HISTORY_SUCCESS:
             return action.orderHistory;
         case FETCH_ORDER_HISTORY_FAILURE:
-            return action.error;
+            return prevState;
         default:
             return prevState;
     }

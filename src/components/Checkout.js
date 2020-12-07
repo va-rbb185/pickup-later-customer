@@ -278,7 +278,7 @@ class Checkout extends React.Component {
                         <Button
                             disabled={!placeOrderAllowed}
                             color="green"
-                            content="Đặt đơn hàng"
+                            content="Đặt hàng"
                             onClick={this.onPlaceOrder}
                         />
                     </div>

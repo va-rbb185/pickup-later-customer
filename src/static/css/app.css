@@ -22,7 +22,7 @@ a:hover {
 }
 
 #app {
-  background-color: #d9d2ee;
+  background-color: #f2f2f2;
 }
 
 .inner-page {
@@ -1257,4 +1257,95 @@ a:hover {
   padding-right: 0;
   font-weight: 600;
   font-size: 1.0714rem;
+}
+
+.order-history .order-item {
+  padding: 1rem 1.25rem;
+}
+.order-history .order-item:not(:last-child) {
+  border-bottom: solid 1px #f2f2f2;
+}
+.order-history .order-item .order-item-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-left: 0;
+  margin-right: 0;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.order-history .order-item .total-quantity {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 20%;
+  flex: 0 0 20%;
+  max-width: 20%;
+  position: relative;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: left;
+}
+.order-history .order-item .total-quantity .btn-quantity {
+  padding: 12px;
+  width: 48px;
+  height: 48px;
+}
+.order-history .order-item .total-quantity .btn-quantity span {
+  font-weight: 600;
+  font-size: 1.2857rem;
+  color: #4db856;
+}
+.order-history .order-item .details {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 55%;
+  flex: 0 0 55%;
+  max-width: 55%;
+  position: relative;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+.order-history .order-item .details .order-id {
+  font-size: 1.1429rem;
+  font-weight: 600;
+}
+.order-history .order-item .details .brief-description {
+  font-size: 0.857rem;
+  color: #555;
+}
+.order-history .order-item .details .order-total-amount {
+  font-size: 1.2857rem;
+  font-weight: 600;
+  color: #4db856;
+}
+.order-history .order-item .details .creation-time {
+  font-size: 0.857rem;
+  color: #555;
+}
+.order-history .order-item .details .see-order-details {
+  text-decoration: underline;
+  margin-top: 0.5rem;
+}
+.order-history .order-item .status {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 25%;
+  flex: 0 0 25%;
+  max-width: 25%;
+  position: relative;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  text-align: right;
+}
+.order-history .order-item .status .status-badge {
+  display: inline-block;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  line-height: 130%;
 }

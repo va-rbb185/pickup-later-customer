@@ -6,7 +6,7 @@ import { fetchOrderHistory, deleteOrderConfirmation } from '../actions';
 
 const MQTTConnector = ({ userId, fetchOrderHistory, deleteOrderConfirmation }) => {
     const onMessageArrived = message => {
-        console.info('Message arrived: ' + message.payloadString);
+        console.info('Message arrived: ' + message.payloadString, `userId=${userId}`);
         const action = JSON.parse(message.payloadString);
         if (action.type === 'UPDATE_ORDER_STATUS' && typeof userId === 'number') {
             fetchOrderHistory(userId, {
@@ -19,16 +19,14 @@ const MQTTConnector = ({ userId, fetchOrderHistory, deleteOrderConfirmation }) =
         }
     };
 
-    const onConnectionLost = response => {
-        if (response.errorCode !== 0) {
-            console.warn('MQTT connection lost: ' + response.errorMessage);
-        }
-    };
-
     useEffect(() => {
         mqttConnection.establish({
-            onMessageArrived: null,
-            onConnectionLost: onConnectionLost
+            onMessageArrived: onMessageArrived,
+            onConnectionLost: response => {
+                if (response.errorCode !== 0) {
+                    console.warn('MQTT connection lost: ' + response.errorMessage);
+                }
+            }
         });
         return () => {
             /* Disconnect MQTT client from the broker when component unmounts */
@@ -38,10 +36,11 @@ const MQTTConnector = ({ userId, fetchOrderHistory, deleteOrderConfirmation }) =
     }, []);
 
     useEffect(() => {
-        if (window.mqttClient) {
+        if (typeof userId === 'number' && window.mqttClient) {
             window.mqttClient.onMessageArrived = onMessageArrived;
         }
-    });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [userId]);
 
     return null;
 };

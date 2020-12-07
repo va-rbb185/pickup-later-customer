@@ -1,0 +1,78 @@
+.order-history {
+    .order-item {
+        padding: 1rem 1.25rem;
+
+        &:not(:last-child) {
+            border-bottom: solid 1px $whiteSmoke;
+        }
+
+        .order-item-content {
+            @include make-custom-row(0);
+            @include align-items-center;
+        }
+
+        .total-quantity {
+            @include make-custom-col(20%, 0);
+
+            text-align: left;
+
+            .btn-quantity {
+                padding: 12px;
+                width: 48px;
+                height: 48px;
+
+                span {
+                    font-weight: 600;
+                    font-size: $fontSize18;
+                    color: $lighterGreen;
+                }
+            }
+        }
+
+        .details {
+            @include make-custom-col(55%, 0);
+
+            .order-id {
+                font-size: $fontSize16;
+                font-weight: 600;
+            }
+
+            .brief-description {
+                font-size: $fontSize12;
+                color: $mortar;
+            }
+
+            .order-total-amount {
+                font-size: $fontSize18;
+                font-weight: 600;
+                color: $lighterGreen;
+            }
+
+            .creation-time {
+                font-size: $fontSize12;
+                color: $mortar;
+            }
+
+            .see-order-details {
+                text-decoration: underline;
+                margin-top: 0.5rem;
+            }
+        }
+
+        .status {
+            @include make-custom-col(25%, 0);
+
+            text-align: right;
+
+            .status-badge {
+                display: inline-block;
+                color: $white;
+                font-weight: 600;
+                text-align: center;
+                padding: 5px 10px;
+                border-radius: 5px;
+                line-height: 130%;
+            }
+        }
+    }
+}
