@@ -63,16 +63,6 @@
             @include make-custom-col(25%, 0);
 
             text-align: right;
-
-            .status-badge {
-                display: inline-block;
-                color: $white;
-                font-weight: 600;
-                text-align: center;
-                padding: 5px 10px;
-                border-radius: 5px;
-                line-height: 130%;
-            }
         }
     }
 }

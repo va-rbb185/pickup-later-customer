@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { productSearch } from '../api';
 
 class SearchBox extends React.Component {
     constructor(props) {
@@ -21,11 +20,7 @@ class SearchBox extends React.Component {
         window.clearTimeout(this.inputTimer);
         const searchQuery = event.target.value;
         if (searchQuery && searchQuery.length > 2) {
-            this.inputTimer = window.setTimeout(() => {
-                productSearch(searchQuery)
-                    .then(response => this.props.onReceiveSearchResult(response.data))
-                    .catch(error => console.error(error));
-            }, 1500);
+            this.inputTimer = window.setTimeout(() => this.props.onSearchQueryChange(searchQuery), 2000);
         }
     }
 

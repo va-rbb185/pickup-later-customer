@@ -2,8 +2,29 @@
     background-color: $whiteSmoke;
     padding-bottom: 60px;
 
+    .see-order-history {
+        background-color: $transparent;
+        padding: 1rem 1rem 0 1rem;
+        font-weight: 500;
+
+        a {
+            color: $denim;
+        }
+    }
+
     .order-details {
         text-align: center;
+    }
+
+    .bottom-action {
+        padding: 1rem 1rem 0 1rem;
+        text-align: center;
+
+        .cancellation-description {
+            font-size: $fontSize12;
+            color: $dustyGray;
+            margin-top: 0.5rem;
+        }
     }
 
     .order-info-entries {
@@ -15,6 +36,15 @@
         .order-step-details {
             margin-top: -0.5rem;
             margin-bottom: -0.5rem;
+
+            .order-step-detail {
+                padding-top: 0.35rem;
+                padding-bottom: 0.35rem;
+
+                &.cancelled {
+                    color: $crimson;
+                }
+            }
         }
     }
 
@@ -63,6 +93,17 @@
             margin-top: 1rem;
         }
 
+        &.order-status {
+            .content.order-status-header {
+                @include display-flex;
+                @include align-items-center;
+
+                .header {
+                    @include flex-grow(1);
+                }
+            }
+        }
+
         &.order-details {
             .summary {
                 padding-top: 0.75rem;
@@ -83,5 +124,15 @@
                 }
             }
         }
+    }
+}
+
+.cancellation-modal {
+    .message {
+        margin-bottom: 0.5rem;
+    }
+
+    .reason-select {
+        width: 100%;
     }
 }

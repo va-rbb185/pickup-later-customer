@@ -1,23 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Card } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import { Card, Button, Modal, Select } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faStickyNote, faHandPaper } from '@fortawesome/free-regular-svg-icons';
 import { faHashtag, faPhone, faUser } from '@fortawesome/free-solid-svg-icons';
-import { fetchOrder } from '../api';
-import { PaymentMethod, PaymentStatus, OrderStatus } from '../enums';
+import { fetchOrder, updateOrder } from '../api';
+import { PaymentMethod, PaymentStatus, OrderStatus, LoginStatus } from '../enums';
 import { formatPrice, getDateTimeFromMilliseconds } from '../helpers';
-import { showCartButton, hideCartButton } from '../actions';
+import { showCartButton, hideCartButton, fetchOrderHistory } from '../actions';
 
 import PageHeader from './PageHeader';
 import OrderProductTile from './OrderProductTile';
 import OrderProgressBar from './OrderProgressBar';
+import CustomBadge from './CustomBadge';
 
 class OrderDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            order: null
+            order: null,
+            modalVisible: false,
+            cancellationReason: ''
         };
     }
 
@@ -53,6 +57,7 @@ class OrderDetails extends React.Component {
                 userName,
                 phoneNumber,
                 note,
+                status,
                 paymentMethod,
                 paymentStatus,
                 createdAt,
@@ -62,6 +67,9 @@ class OrderDetails extends React.Component {
             return (
                 <div className="order-detail-page inner-page">
                     <PageHeader>Chi tiết đơn hàng</PageHeader>
+                    <div className="see-order-history">
+                        <Link to="/orders">{'<'}&nbsp;&nbsp;Xem Lịch sử mua hàng</Link>
+                    </div>
                     <div className="order-details">
                         <Card fluid className="order-info">
                             <Card.Content>
@@ -109,15 +117,22 @@ class OrderDetails extends React.Component {
                             </Card.Content>
                         </Card>
                         <Card fluid className="order-status">
-                            <Card.Content>
+                            <Card.Content className="order-status-header">
                                 <Card.Header>Trạng thái đơn hàng</Card.Header>
+                                <CustomBadge
+                                    text={OrderStatus[status].title}
+                                    backgroundColor={OrderStatus[status].indicatorColor}
+                                />
                             </Card.Content>
                             <Card.Content>
-                                <OrderProgressBar orderProgress={orderAudits} />
+                                <OrderProgressBar orderStatus={status} orderProgress={orderAudits} />
                                 <div className="order-step-details">
                                     {[...orderAudits].reverse().map((item, index) => (
-                                        <div key={`orderStepDetail_${index}`} className="py-2">
-                                            {OrderStatus[item.status].title}: <b>{getDateTimeFromMilliseconds(item.created_at)}</b>
+                                        <div
+                                            key={`orderStepDetail_${index}`}
+                                            className={`order-step-detail${item.status === OrderStatus.CANCELED.value ? ' cancelled' : ''}`}
+                                        >
+                                            {OrderStatus[item.status].progressTitle}: <b>{getDateTimeFromMilliseconds(item.created_at)}</b>
                                         </div>
                                     ))}
                                 </div>
@@ -173,6 +188,99 @@ class OrderDetails extends React.Component {
                             </Card.Content>
                         </Card>
                     </div>
+                    {status !== OrderStatus.COMPLETED.value && status !== OrderStatus.CANCELED.value
+                        ? <div className="bottom-action">
+                            <Button
+                                className="cancel-order-btn"
+                                disabled={
+                                    typeof this.props.userId !== 'number'
+                                    || (status !== OrderStatus.NEW.value && status !== OrderStatus.RECEIVED.value)
+                                }
+                                color={status === OrderStatus.NEW.value || status === OrderStatus.RECEIVED.value
+                                    ? 'red'
+                                    : 'grey'
+                                }
+                                content="Huỷ đơn hàng"
+                                onClick={() => this.setState({ modalVisible: true })}
+                            />
+                            {status !== OrderStatus.NEW.value && status !== OrderStatus.RECEIVED.value
+                                ? <div className="cancellation-description">
+                                    Không thể huỷ đơn hàng sau khi đơn hàng đã được xác nhận.
+                                </div>
+                                : null
+                            }
+                        </div>
+                        : null
+                    }
+                    <Modal
+                        className="custom-modal"
+                        closeIcon={true}
+                        open={this.state.modalVisible}
+                        onClose={() => this.setState({ modalVisible: false, cancellationReason: '' })}
+                        onOpen={() => this.setState({ modalVisible: true })}
+                    >
+                        <Modal.Header>Huỷ đơn hàng</Modal.Header>
+                        <Modal.Content>
+                            <div className="cancellation-modal">
+                                <div className="message">Vui lòng cho biết lý do huỷ đơn:</div>
+                                <Select
+                                    className="reason-select"
+                                    placeholder="Chọn một lý do..."
+                                    options={[
+                                        {
+                                            key: 1,
+                                            value: 'Muốn đổi món',
+                                            text: 'Muốn đổi món',
+                                            selected: true
+                                        },
+                                        {
+                                            key: 2,
+                                            value: 'Không thể nhận hàng vào lúc này',
+                                            text: 'Không thể nhận hàng vào lúc này'
+                                        },
+                                        {
+                                            key: 3,
+                                            value: 'Không còn muốn đặt nữa',
+                                            text: 'Không còn muốn đặt nữa'
+                                        },
+                                        {
+                                            key: 4,
+                                            value: 'Khác',
+                                            text: 'Khác'
+                                        }
+                                    ]}
+                                    onChange={(event, data) => this.setState({ cancellationReason: data.value })}
+                                />
+                            </div>
+                        </Modal.Content>
+                        <Modal.Actions className="text-center">
+                            <Button
+                                negative
+                                content="Huỷ đơn hàng"
+                                onClick={() => {
+                                    if (
+                                        typeof this.props.userId === 'number'
+                                        && (status === OrderStatus.NEW.value || status === OrderStatus.RECEIVED.value)
+                                        && this.state.cancellationReason
+                                    ) {
+                                        updateOrder({
+                                            transactionNo,
+                                            status: OrderStatus.CANCELED.value,
+                                            cancelReason: this.state.cancellationReason
+                                        })
+                                            .then(() => {
+                                                fetchOrderHistory(this.props.userId, {
+                                                    page: 1,
+                                                    perPage: 100
+                                                });
+                                            })
+                                            .catch(error => console.error(error));
+                                    }
+                                    this.setState({ modalVisible: false, cancellationReason: '' });
+                                }}
+                            />
+                        </Modal.Actions>
+                    </Modal>
                 </div>
             );
         }
@@ -181,11 +289,15 @@ class OrderDetails extends React.Component {
     }
 }
 
-const mapStateToProps = ({ orderHistory }) => ({ orderHistory });
+const mapStateToProps = ({ authentication, orderHistory }) => ({
+    userId: authentication.login.status === LoginStatus.LOGGED_IN ? authentication.user.data.id : null,
+    orderHistory
+});
 
 const mapDispatchToProps = {
     showCartButton,
-    hideCartButton
+    hideCartButton,
+    fetchOrderHistory
 };
 
 const ConnectedOrderDetails = connect(mapStateToProps, mapDispatchToProps)(OrderDetails);

@@ -9,13 +9,18 @@
             filter: grayscale(0);
         }
 
-        span {
+        .step-title {
             position: absolute;
             left: 50%;
             bottom: 0;
             font-size: $fontSize13;
+            font-weight: 500;
 
             @include translate(-50%, 120%);
+
+            &.cancelled {
+                color: $crimson;
+            }
         }
     }
 }

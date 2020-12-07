@@ -4,8 +4,8 @@ import { OrderStatus } from '../enums';
 import { getOrderStatusArray } from '../helpers';
 import 'react-step-progress-bar/styles.css';
 
-const OrderProgressBar = ({ orderProgress }) => {
-    const allOrderStatus = getOrderStatusArray();
+const OrderProgressBar = ({ orderStatus, orderProgress }) => {
+    const allOrderStatus = getOrderStatusArray(orderStatus);
     const stepPercentage = 100 / (allOrderStatus.length - 1);
     const percentageAccomplished = stepPercentage * (orderProgress.length - 1);
     const reversedProgress = [...orderProgress].reverse();
@@ -22,7 +22,9 @@ const OrderProgressBar = ({ orderProgress }) => {
                                 ({ accomplished }) => (
                                     <div className={`order-step${accomplished ? ' accomplished' : ''}`}>
                                         🟣
-                                        <span>{OrderStatus[item.status].title}</span>
+                                        <span className={`step-title${item.status === OrderStatus.CANCELED.value ? ' cancelled' : ''}`}>
+                                            {OrderStatus[item.status].progressTitle}
+                                        </span>
                                     </div>
                                 )
                             }

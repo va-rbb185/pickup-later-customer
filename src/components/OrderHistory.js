@@ -6,6 +6,7 @@ import { LoginStatus, OrderStatus } from '../enums';
 import { getDateTimeFromMilliseconds, formatPrice, getOrderQuantity, getBriefDescription } from '../helpers';
 import { showCartButton, hideCartButton, fetchOrderHistory } from '../actions';
 import PageHeader from './PageHeader';
+import CustomBadge from './CustomBadge';
 
 const OrderHistory = ({ userId, orderHistory, fetchOrderHistory, showCartButton, hideCartButton }) => {
     let history = useHistory();
@@ -59,12 +60,10 @@ const OrderHistory = ({ userId, orderHistory, fetchOrderHistory, showCartButton,
                                             <div className="creation-time">{getDateTimeFromMilliseconds(item.createdAt)}</div>
                                         </div>
                                         <div className="status">
-                                            <div
-                                                className="status-badge"
-                                                style={{ backgroundColor: OrderStatus[item.status].indicatorColor }}
-                                            >
-                                                {OrderStatus[item.status].title}
-                                            </div>
+                                            <CustomBadge
+                                                text={OrderStatus[item.status].title}
+                                                backgroundColor={OrderStatus[item.status].indicatorColor}
+                                            />
                                         </div>
                                     </div>
                                 </div>);

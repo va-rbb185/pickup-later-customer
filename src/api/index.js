@@ -1,7 +1,7 @@
 import { schemes, httpMethods, headers } from './staticEntries';
 
 const scheme = schemes.HTTPS;
-const host = '410c22f8e955.ap.ngrok.io';
+const host = '762267034321.ngrok.io';
 const basePath = '/api/v1';
 const paths = {
     get: {
@@ -13,7 +13,7 @@ const paths = {
     post: {
         authPhone: '/customers/phone_login',
         authOtp: '/customers/verify_code',
-        createOrder: '/orders'
+        orders: '/orders'
     }
 };
 
@@ -83,7 +83,7 @@ export const authenticateOtp = async (phoneNumber, otp) => {
 };
 
 export const createOrder = async order => {
-    const apiPath = getApiPath(paths.post.createOrder);
+    const apiPath = getApiPath(paths.post.orders);
     const configurations = getConfigurations(httpMethods.POST, order);
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
@@ -109,6 +109,14 @@ export const fetchOrder = async orderId => {
 export const productSearch = async query => {
     const apiPath = getApiPath(paths.get.productSearch, { keyword: query });
     const configurations = getConfigurations(httpMethods.GET);
+    const response = await fetch(apiPath, configurations);
+    const data = await response.json();
+    return data;
+};
+
+export const updateOrder = async orderData => {
+    const apiPath = getApiPath(paths.post.orders);
+    const configurations = getConfigurations(httpMethods.PUT, orderData);
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
     return data;

@@ -554,6 +554,7 @@ a:hover {
 }
 
 .ui.modal.custom-modal {
+  overflow: visible;
   width: 90%;
   height: auto;
   top: 50%;
@@ -762,14 +763,28 @@ a:hover {
 .order-progress-bar .order-step.accomplished {
   filter: grayscale(0);
 }
-.order-progress-bar .order-step span {
+.order-progress-bar .order-step .step-title {
   position: absolute;
   left: 50%;
   bottom: 0;
   font-size: 0.929rem;
+  font-weight: 500;
   -webkit-transform: translate(-50%, 120%);
   -ms-transform: translate(-50%, 120%);
   transform: translate(-50%, 120%);
+}
+.order-progress-bar .order-step .step-title.cancelled {
+  color: #db2828;
+}
+
+.custom-badge {
+  display: inline-block;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  line-height: 130%;
 }
 
 /* pages */
@@ -1158,8 +1173,25 @@ a:hover {
   background-color: #f2f2f2;
   padding-bottom: 60px;
 }
+.order-detail-page .see-order-history {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 1rem 1rem 0 1rem;
+  font-weight: 500;
+}
+.order-detail-page .see-order-history a {
+  color: #1c63ce;
+}
 .order-detail-page .order-details {
   text-align: center;
+}
+.order-detail-page .bottom-action {
+  padding: 1rem 1rem 0 1rem;
+  text-align: center;
+}
+.order-detail-page .bottom-action .cancellation-description {
+  font-size: 0.857rem;
+  color: #999;
+  margin-top: 0.5rem;
 }
 .order-detail-page .order-info-entries {
   margin-top: -0.25rem;
@@ -1168,6 +1200,13 @@ a:hover {
 .order-detail-page .order-status .order-step-details {
   margin-top: -0.5rem;
   margin-bottom: -0.5rem;
+}
+.order-detail-page .order-status .order-step-details .order-step-detail {
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+}
+.order-detail-page .order-status .order-step-details .order-step-detail.cancelled {
+  color: #db2828;
 }
 .order-detail-page .payment-info-entries .order-amount {
   color: #4db856;
@@ -1224,6 +1263,19 @@ a:hover {
 .order-detail-page .ui.card.order-info {
   margin-top: 1rem;
 }
+.order-detail-page .ui.card.order-status .content.order-status-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.order-detail-page .ui.card.order-status .content.order-status-header .header {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
 .order-detail-page .ui.card.order-details .summary {
   padding-top: 0.75rem;
 }
@@ -1257,6 +1309,13 @@ a:hover {
   padding-right: 0;
   font-weight: 600;
   font-size: 1.0714rem;
+}
+
+.cancellation-modal .message {
+  margin-bottom: 0.5rem;
+}
+.cancellation-modal .reason-select {
+  width: 100%;
 }
 
 .order-history .order-item {
@@ -1339,13 +1398,4 @@ a:hover {
   padding-left: 0;
   padding-right: 0;
   text-align: right;
-}
-.order-history .order-item .status .status-badge {
-  display: inline-block;
-  color: #fff;
-  font-weight: 600;
-  text-align: center;
-  padding: 5px 10px;
-  border-radius: 5px;
-  line-height: 130%;
 }
