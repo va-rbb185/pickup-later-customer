@@ -787,6 +787,10 @@ a:hover {
   line-height: 130%;
 }
 
+.ui.dimmer {
+  position: fixed !important;
+}
+
 /* pages */
 .home .category-list {
   margin-top: 66px;

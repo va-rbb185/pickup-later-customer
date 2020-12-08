@@ -8,7 +8,7 @@ import { faHashtag, faPhone, faUser } from '@fortawesome/free-solid-svg-icons';
 import { fetchOrder, updateOrder } from '../api';
 import { PaymentMethod, PaymentStatus, OrderStatus, LoginStatus } from '../enums';
 import { formatPrice, getDateTimeFromMilliseconds } from '../helpers';
-import { showCartButton, hideCartButton, fetchOrderHistory } from '../actions';
+import { showCartButton, hideCartButton, showSpinner, hideSpinner } from '../actions';
 
 import PageHeader from './PageHeader';
 import OrderProductTile from './OrderProductTile';
@@ -268,18 +268,15 @@ class OrderDetails extends React.Component {
                                         && (status === OrderStatus.NEW.value || status === OrderStatus.RECEIVED.value)
                                         && this.state.cancellationReason
                                     ) {
+                                        this.props.showSpinner();
                                         updateOrder({
                                             transactionNo,
                                             status: OrderStatus.CANCELED.value,
                                             cancelReason: this.state.cancellationReason
                                         })
-                                            .then(() => {
-                                                this.props.fetchOrderHistory(this.props.userId, {
-                                                    page: 1,
-                                                    perPage: 100
-                                                });
-                                            })
-                                            .catch(error => console.error(error));
+                                            .then(() => console.log(`Successfully cancelled order ${transactionNo}.`))
+                                            .catch(error => console.error(error))
+                                            .finally(this.props.hideSpinner);
                                     }
                                     this.setState({ modalVisible: false, cancellationReason: '' });
                                 }}
@@ -302,7 +299,8 @@ const mapStateToProps = ({ authentication, orderHistory }) => ({
 const mapDispatchToProps = {
     showCartButton,
     hideCartButton,
-    fetchOrderHistory
+    showSpinner,
+    hideSpinner
 };
 
 const ConnectedOrderDetails = connect(mapStateToProps, mapDispatchToProps)(OrderDetails);
