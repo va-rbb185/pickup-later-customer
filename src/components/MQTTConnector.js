@@ -8,12 +8,14 @@ const MQTTConnector = ({ userId, fetchOrderHistory, deleteOrderConfirmation }) =
     const onMessageArrived = message => {
         console.info('Message arrived: ' + message.payloadString, `userId=${userId}`);
         const action = JSON.parse(message.payloadString);
-        if (action.type === 'UPDATE_ORDER_STATUS' && typeof userId === 'number') {
+        const { type, payload } = action;
+
+        if (type === 'UPDATE_ORDER_STATUS' && typeof userId === 'number') {
             fetchOrderHistory(userId, {
                 page: 1,
                 perPage: 100
             });
-            if (action.payload.orderStatus.status === OrderStatus.COMPLETED.value) {
+            if (payload.orderStatus.status === OrderStatus.COMPLETED.value || payload.orderStatus.status === OrderStatus.CANCELED.value) {
                 deleteOrderConfirmation();
             }
         }

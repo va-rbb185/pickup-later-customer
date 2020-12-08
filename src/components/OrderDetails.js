@@ -61,7 +61,8 @@ class OrderDetails extends React.Component {
                 paymentMethod,
                 paymentStatus,
                 createdAt,
-                orderAudits
+                orderAudits,
+                cancelReason
             } = this.state.order;
 
             return (
@@ -132,7 +133,11 @@ class OrderDetails extends React.Component {
                                             key={`orderStepDetail_${index}`}
                                             className={`order-step-detail${item.status === OrderStatus.CANCELED.value ? ' cancelled' : ''}`}
                                         >
-                                            {OrderStatus[item.status].progressTitle}: <b>{getDateTimeFromMilliseconds(item.created_at)}</b>
+                                            <span>{OrderStatus[item.status].progressTitle}: <b>{getDateTimeFromMilliseconds(item.created_at)}</b></span>
+                                            {item.status === OrderStatus.CANCELED.value && cancelReason
+                                                ? <span>&nbsp;(Lý do: {cancelReason})</span>
+                                                : null
+                                            }
                                         </div>
                                     ))}
                                 </div>
@@ -230,8 +235,7 @@ class OrderDetails extends React.Component {
                                         {
                                             key: 1,
                                             value: 'Muốn đổi món',
-                                            text: 'Muốn đổi món',
-                                            selected: true
+                                            text: 'Muốn đổi món'
                                         },
                                         {
                                             key: 2,
@@ -256,6 +260,7 @@ class OrderDetails extends React.Component {
                         <Modal.Actions className="text-center">
                             <Button
                                 negative
+                                disabled={!this.state.cancellationReason}
                                 content="Huỷ đơn hàng"
                                 onClick={() => {
                                     if (
@@ -269,7 +274,7 @@ class OrderDetails extends React.Component {
                                             cancelReason: this.state.cancellationReason
                                         })
                                             .then(() => {
-                                                fetchOrderHistory(this.props.userId, {
+                                                this.props.fetchOrderHistory(this.props.userId, {
                                                     page: 1,
                                                     perPage: 100
                                                 });

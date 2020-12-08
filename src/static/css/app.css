@@ -1205,7 +1205,10 @@ a:hover {
   padding-top: 0.35rem;
   padding-bottom: 0.35rem;
 }
-.order-detail-page .order-status .order-step-details .order-step-detail.cancelled {
+.order-detail-page .order-status .cancellation-reason {
+  margin-top: 0.7rem;
+}
+.order-detail-page .order-status .cancelled {
   color: #db2828;
 }
 .order-detail-page .payment-info-entries .order-amount {

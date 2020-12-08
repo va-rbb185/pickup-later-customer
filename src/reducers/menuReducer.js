@@ -7,18 +7,21 @@ import {
     FETCH_MENU_FAILURE
 } from '../actions/types';
 
-const menuReducer = (previousState = storeMenu, action) => {
+const menuReducer = (prevState = storeMenu, action) => {
     switch (action.type) {
         case UPDATE_MENU:
             return action.menu;
         case FETCH_MENU_START:
-            return previousState;
+            return prevState;
         case FETCH_MENU_SUCCESS:
-            return action.menu;
+            if (!action.menu.error) {
+                return action.menu;
+            }
+            return prevState;
         case FETCH_MENU_FAILURE:
-            return previousState;
+            return prevState;
         default:
-            return previousState;
+            return prevState;
     }
 };
 

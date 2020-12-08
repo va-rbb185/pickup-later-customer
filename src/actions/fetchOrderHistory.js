@@ -17,11 +17,16 @@ const fetchOrderHistoryFailure = (error) => ({
     error
 });
 
-const fetchOrderHistory = (userId, params) => dispatch => {
+const fetchOrderHistory = (userId, params, callback = null) => dispatch => {
     dispatch(fetchOrderHistoryStart());
     fetchOrdersByUser(userId, params)
         .then(response => dispatch(fetchOrderHistorySuccess(response)))
-        .catch(error => dispatch(fetchOrderHistoryFailure(error)));
+        .catch(error => dispatch(fetchOrderHistoryFailure(error)))
+        .finally(() => {
+            if (typeof callback === 'function') {
+                callback();
+            }
+        });
 };
 
 export default fetchOrderHistory;
