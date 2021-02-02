@@ -60,6 +60,6 @@
     "serve": "^11.3.2"
   },
   "optionalDependencies": {
-    "fsevents": "^2.2.1"
+    "fsevents": "^2.3.1"
   }
 }
