@@ -14,15 +14,24 @@ const createCartFailure = error => ({
     error
 });
 
-const createCart = (cart, authentication, onCompletion) => dispatch => {
+const createCart = (product, authentication, onCompletion, saveCartNo) => dispatch => {
     createCartApi({
         userId: authentication.user.data.id,
         userName: authentication.user.data.userName,
         phoneNumber: authentication.user.data.phoneNumber,
-        cart
+        cart: {
+            amount: 1,
+            items: [{
+                quantity: 1,
+                product
+            }]
+        }
     })
         .then(response => {
-            if (response.cartNo) return getCartApi(response.cartNo);
+            if (response.cartNo) {
+                if (typeof saveCartNo === 'function') saveCartNo(response.cartNo);
+                return getCartApi(response.cartNo);
+            }
             return null;
         })
         .then(response => {

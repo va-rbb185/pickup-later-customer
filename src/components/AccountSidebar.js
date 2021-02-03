@@ -5,9 +5,9 @@ import { Button } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faHistory } from '@fortawesome/free-solid-svg-icons';
-import { logoutCurrentUser } from '../actions';
+import { logoutCurrentUser, clearCart } from '../actions';
 
-const AccountSidebar = ({ userData, hideSideBar, logoutCurrentUser }) => {
+const AccountSidebar = ({ userData, hideSideBar, logoutCurrentUser, clearCart }) => {
     if (userData) {
         return (
             <div className="sidebar-content">
@@ -33,6 +33,7 @@ const AccountSidebar = ({ userData, hideSideBar, logoutCurrentUser }) => {
                             const confirmation = window.confirm('Bạn có chắc chắn muốn đăng xuất?');
                             if (confirmation) {
                                 hideSideBar();
+                                clearCart();
                                 window.localStorage.removeItem('storedAuthentication');
                                 logoutCurrentUser();
                             }
@@ -54,7 +55,11 @@ const AccountSidebar = ({ userData, hideSideBar, logoutCurrentUser }) => {
     return null;
 };
 
-const mapDispatchToProps = { logoutCurrentUser };
+const mapDispatchToProps = {
+    logoutCurrentUser,
+    clearCart
+};
+
 const ConnectedAccountSidebar = connect(null, mapDispatchToProps)(AccountSidebar);
 
 export default ConnectedAccountSidebar;

@@ -7,7 +7,8 @@ import {
     AUTHENTICATE_OTP_SUCCESS,
     AUTHENTICATE_OTP_FAILURE,
     RETRIEVE_AUTHENTICATION_FROM_STORAGE,
-    LOGOUT_CURRENT_USER
+    LOGOUT_CURRENT_USER,
+    UPDATE_AUTH_CART_NUMBER
 } from '../actions/types';
 
 const authenticationReducer = (prevState = authentication, action) => {
@@ -42,6 +43,12 @@ const authenticationReducer = (prevState = authentication, action) => {
 
         case LOGOUT_CURRENT_USER:
             return action.authentication;
+
+        case UPDATE_AUTH_CART_NUMBER: {
+            let nextState = { ...prevState };
+            nextState.user.data.cartNo = action.cartNo;
+            return nextState;
+        }
 
         default:
             return prevState;

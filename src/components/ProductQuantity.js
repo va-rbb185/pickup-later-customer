@@ -5,7 +5,8 @@ import {
     showSpinner,
     hideSpinner,
     createCart,
-    updateCart
+    updateCart,
+    updateAuthCartNo,
 } from '../actions';
 import { LoginStatus } from '../enums';
 import { addToCart, removeFromCart } from '../helpers';
@@ -25,20 +26,20 @@ class ProductQuantity extends React.Component {
     }
 
     onClickAddToCart() {
-        const { isLoggedIn, cartNo, product, cart, authentication, history, showSpinner, hideSpinner, createCart, updateCart } = this.props;
+        const { isLoggedIn, cartNo, product, cart, authentication, history, showSpinner, hideSpinner, createCart, updateCart, updateAuthCartNo } = this.props;
 
         if (isLoggedIn) {
             showSpinner();
             if (cartNo) {
                 updateCart(cartNo, addToCart(product, cart), hideSpinner);
             } else {
-                createCart(cart, authentication, hideSpinner);
+                createCart(product, authentication, hideSpinner, cartNo => updateAuthCartNo(cartNo));
             }
         } else if (cartNo) {
             showSpinner();
             updateCart(cartNo, addToCart(product, cart), hideSpinner);
         } else {
-            window.alert('Vui lòng đăng nhập để sử dụng giở hàng.');
+            window.alert('Vui lòng đăng nhập để sử dụng giỏ hàng.');
             history.push('/login');
         }
     }
@@ -99,7 +100,8 @@ const mapDispatchToProps = {
     showSpinner,
     hideSpinner,
     createCart,
-    updateCart
+    updateCart,
+    updateAuthCartNo
 };
 
 const ProductQuantityWithRouter = withRouter(ProductQuantity);

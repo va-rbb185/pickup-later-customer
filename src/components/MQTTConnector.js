@@ -18,10 +18,7 @@ const MQTTConnector = ({ userId, fetchOrderHistory, deleteOrderConfirmation, get
             if (payload.orderStatus.status === OrderStatus.COMPLETED.value || payload.orderStatus.status === OrderStatus.CANCELED.value) {
                 deleteOrderConfirmation();
             }
-        } else if (type === 'UPDATE_CART' && payload.cartNo) {
-            console.log(payload.cartNo);
-            getCart(payload.cartNo);
-        }
+        } else if (type === 'UPDATE_CART' && payload.cartNo) getCart(payload.cartNo);
     };
 
     useEffect(() => {

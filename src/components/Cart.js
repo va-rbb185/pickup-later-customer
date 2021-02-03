@@ -15,10 +15,14 @@ import { formatPrice, calculateAmount, calculateOriginalAmount, clearCart } from
 
 import PageHeader from './PageHeader';
 import ProductTile from './ProductTile';
+import CustomModal from './CustomModal';
 
 class Cart extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            shareCartModalOpen: false
+        };
         this.cartNoFromQueryString = new URLSearchParams(this.props.location.search).get('cartNo');
         this.onClickClearCart = this.onClickClearCart.bind(this);
     }
@@ -61,19 +65,25 @@ class Cart extends React.Component {
                         </div>
                         : null
                 }
-                {
-                    this.props.cart.amount !== 0
-                        ? <div className="clear-cart">
-                            <Button
+                <div className="cart-actions">
+                    {
+                        this.props.cart.amount !== 0
+                            ? <Button
                                 basic
                                 color="red"
                                 icon="trash alternate"
                                 content="Xoá tất cả"
                                 onClick={this.onClickClearCart}
                             />
-                        </div>
-                        : null
-                }
+                            : null
+                    }
+                    <Button
+                        basic
+                        color="orange"
+                        icon="share square"
+                        content="Chia sẻ giỏ hàng"
+                    />
+                </div>
                 <div className="cart-summary">
                     {
                         !this.props.isLoggedIn
@@ -111,6 +121,16 @@ class Cart extends React.Component {
                         content="Nhập thông tin đơn hàng"
                     />
                 </div>
+                <CustomModal
+                    open={this.state.shareCartModalOpen}
+                    header="Chia sẻ giỏ hàng"
+                    confirmation="Xác nhận"
+                    onClose={() => this.setState({ shareCartModalOpen: false })}
+                    onOpen={() => this.setState({ shareCartModalOpen: true })}
+                    onConfirm={() => this.setState({ shareCartModalOpen: false })}
+                >
+                    Chia sẻ giỏ hàng
+                </CustomModal>
             </div>
         );
     }

@@ -23,6 +23,7 @@ import getCart from './getCart';
 import createCart from './createCart';
 import updateCart from './updateCart';
 import updateCartNo from './updateCartNo';
+import updateAuthCartNo from './updateAuthCartNo';
 
 export {
     updateTestData,
@@ -49,5 +50,6 @@ export {
     getCart,
     createCart,
     updateCart,
-    updateCartNo
+    updateCartNo,
+    updateAuthCartNo
 };
