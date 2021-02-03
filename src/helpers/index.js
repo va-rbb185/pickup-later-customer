@@ -11,6 +11,7 @@ import getDateTimeFromMilliseconds from './getDateTimeFromMilliseconds';
 import getOrderStatusArray from './getOrderStatusArray';
 import getOrderQuantity from './getOrderQuantity';
 import getBriefDescription from './getBriefDescription';
+import { addToCart, removeFromCart, clearCart } from './updateCart';
 
 export {
     formatPrice,
@@ -26,5 +27,8 @@ export {
     getDateTimeFromMilliseconds,
     getOrderStatusArray,
     getOrderQuantity,
-    getBriefDescription
+    getBriefDescription,
+    addToCart,
+    removeFromCart,
+    clearCart
 };

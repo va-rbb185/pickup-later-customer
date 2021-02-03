@@ -8,7 +8,10 @@ import {
     retrieveCartFromStorage,
     retrieveAuthenticationFromStorage,
     retrieveOrderConfirmationFromStorage,
-    updateCustomerDetails
+    updateCustomerDetails,
+    showSpinner,
+    hideSpinner,
+    getCart
 } from '../actions';
 
 import Spinner from './Spinner';
@@ -26,16 +29,16 @@ import OrderHistory from './OrderHistory';
 import OrderDetails from './OrderDetails';
 
 class App extends React.Component {
-    saveCartToStorage(nextCart) {
-        const currentCart = this.props.cart;
-        const shouldSave = nextCart.amount !== currentCart.amount;
+    getCartFromServer(nextAuthentication) {
+        const currentLoginStatus = this.props.authentication.login.status;
+        const nextLoginStatus = nextAuthentication.login.status;
+        const shouldGet = nextLoginStatus !== currentLoginStatus
+            && nextLoginStatus === LoginStatus.LOGGED_IN
+            && !!nextAuthentication.user.data.cartNo;
 
-        if (shouldSave) {
-            if (nextCart.amount > 0) {
-                window.localStorage.setItem('storedCart', JSON.stringify(nextCart));
-            } else {
-                window.localStorage.removeItem('storedCart');
-            }
+        if (shouldGet) {
+            this.props.showSpinner();
+            this.props.getCart(nextAuthentication.user.data.cartNo, this.props.hideSpinner);
         }
     }
 
@@ -46,8 +49,8 @@ class App extends React.Component {
 
         if (shouldUpdate) {
             const nextCustomerDetails = {
-                name: nextAuthentication.user.data['user_name'],
-                phone: convertPhone84To0(nextAuthentication.user.data['phone_number']),
+                name: nextAuthentication.user.data.userName,
+                phone: convertPhone84To0(nextAuthentication.user.data.phoneNumber),
                 note: ''
             };
             this.props.updateCustomerDetails(nextCustomerDetails);
@@ -69,13 +72,12 @@ class App extends React.Component {
 
     componentDidMount() {
         this.props.fetchMenu();
-        this.props.retrieveCartFromStorage();
         this.props.retrieveAuthenticationFromStorage();
         this.props.retrieveOrderConfirmationFromStorage();
     }
 
     shouldComponentUpdate(nextProps) {
-        this.saveCartToStorage(nextProps.cart);
+        this.getCartFromServer(nextProps.authentication);
         this.updateCustomerDetails(nextProps.authentication);
         this.saveOrderConfirmationToStorage(nextProps.orderConfirmation);
         return false;
@@ -115,7 +117,10 @@ const mapDispatchToProps = {
     retrieveCartFromStorage,
     retrieveAuthenticationFromStorage,
     retrieveOrderConfirmationFromStorage,
-    updateCustomerDetails
+    updateCustomerDetails,
+    showSpinner,
+    hideSpinner,
+    getCart
 };
 
 const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);

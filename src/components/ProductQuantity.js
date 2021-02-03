@@ -1,6 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addCartItem, removeCartItem } from '../actions';
+import { withRouter } from 'react-router-dom';
+import {
+    showSpinner,
+    hideSpinner,
+    createCart,
+    updateCart
+} from '../actions';
+import { LoginStatus } from '../enums';
+import { addToCart, removeFromCart } from '../helpers';
 
 class ProductQuantity extends React.Component {
     constructor(props) {
@@ -17,17 +25,35 @@ class ProductQuantity extends React.Component {
     }
 
     onClickAddToCart() {
-        this.props.addCartItem(this.props.product);
+        const { isLoggedIn, cartNo, product, cart, authentication, history, showSpinner, hideSpinner, createCart, updateCart } = this.props;
+
+        if (isLoggedIn) {
+            showSpinner();
+            if (cartNo) {
+                updateCart(cartNo, addToCart(product, cart), hideSpinner);
+            } else {
+                createCart(cart, authentication, hideSpinner);
+            }
+        } else {
+            window.alert('Vui lòng đăng nhập để sử dụng giở hàng.');
+            history.push('/login');
+        }
     }
 
     onClickRemoveFromCart() {
-        if (this.calculateQuantity() === 1) {
-            const confirmation = window.confirm('Bạn có chắc chắn muốn xoá sản phẩm này khỏi giỏ hàng?');
-            if (confirmation) {
-                this.props.removeCartItem(this.props.product);
+        const { isLoggedIn, cartNo, product, cart, showSpinner, hideSpinner, updateCart } = this.props;
+
+        if (isLoggedIn && cartNo) {
+            if (this.calculateQuantity() === 1) {
+                const confirmation = window.confirm('Bạn có chắc chắn muốn xoá sản phẩm này khỏi giỏ hàng?');
+                if (confirmation) {
+                    showSpinner();
+                    updateCart(cartNo, removeFromCart(product, cart), hideSpinner);
+                }
+            } else {
+                showSpinner();
+                updateCart(cartNo, removeFromCart(product, cart), hideSpinner);
             }
-        } else {
-            this.props.removeCartItem(this.props.product);
         }
     }
 
@@ -59,13 +85,24 @@ class ProductQuantity extends React.Component {
     }
 };
 
-const mapStateToProps = ({ cart }) => ({ cart });
-
-const mapDispatchToProps = {
-    addCartItem,
-    removeCartItem
+const mapStateToProps = ({ cart, authentication }) => {
+    const isLoggedIn = authentication.login.status === LoginStatus.LOGGED_IN;
+    return {
+        cart,
+        authentication,
+        isLoggedIn,
+        cartNo: isLoggedIn ? authentication.user.data.cartNo : ''
+    };
 };
 
-const ConnectedProductQuantity = connect(mapStateToProps, mapDispatchToProps)(ProductQuantity);
+const mapDispatchToProps = {
+    showSpinner,
+    hideSpinner,
+    createCart,
+    updateCart
+};
+
+const ProductQuantityWithRouter = withRouter(ProductQuantity);
+const ConnectedProductQuantity = connect(mapStateToProps, mapDispatchToProps)(ProductQuantityWithRouter);
 
 export default ConnectedProductQuantity;

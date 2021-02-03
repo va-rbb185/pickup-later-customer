@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
-import { showCartButton, hideCartButton, clearCart } from '../actions';
+import { showCartButton, hideCartButton, showSpinner, hideSpinner, updateCart } from '../actions';
 import { LoginStatus } from '../enums';
-import { formatPrice, calculateAmount, calculateOriginalAmount } from '../helpers';
+import { formatPrice, calculateAmount, calculateOriginalAmount, clearCart } from '../helpers';
 
 import PageHeader from './PageHeader';
 import ProductTile from './ProductTile';
@@ -16,9 +16,11 @@ class Cart extends React.Component {
     }
 
     onClickClearCart() {
-        const confirmation = window.confirm('Bạn có chắc chắn muốn xoá tất cả sản phẩm khỏi giỏ hàng?');
-        if (confirmation) {
-            this.props.clearCart();
+        if (this.props.isLoggedIn
+            && this.props.cartNo
+            && window.confirm('Bạn có chắc chắn muốn xoá tất cả sản phẩm khỏi giỏ hàng?')) {
+            this.props.showSpinner();
+            this.props.updateCart(this.props.cartNo, clearCart(), this.props.hideSpinner);
         }
     }
 
@@ -104,16 +106,22 @@ class Cart extends React.Component {
     }
 }
 
-const mapStateToProps = ({ cart, authentication, orderConfirmation }) => ({
-    cart,
-    isLoggedIn: authentication.login.status === LoginStatus.LOGGED_IN,
-    hasOngoingOrder: !!orderConfirmation && !orderConfirmation.error
-});
+const mapStateToProps = ({ cart, authentication, orderConfirmation }) => {
+    const isLoggedIn = authentication.login.status === LoginStatus.LOGGED_IN;
+    return {
+        cart,
+        isLoggedIn,
+        cartNo: isLoggedIn ? authentication.user.data.cartNo : '',
+        hasOngoingOrder: !!orderConfirmation && !orderConfirmation.error
+    };
+};
 
 const mapDispatchToProps = {
     showCartButton,
     hideCartButton,
-    clearCart
+    showSpinner,
+    hideSpinner,
+    updateCart
 };
 
 const ConnectedCart = connect(mapStateToProps, mapDispatchToProps)(Cart);
