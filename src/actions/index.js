@@ -22,6 +22,7 @@ import deleteOrderConfirmation from './deleteOrderConfirmation';
 import getCart from './getCart';
 import createCart from './createCart';
 import updateCart from './updateCart';
+import updateCartNo from './updateCartNo';
 
 export {
     updateTestData,
@@ -47,5 +48,6 @@ export {
     deleteOrderConfirmation,
     getCart,
     createCart,
-    updateCart
+    updateCart,
+    updateCartNo
 };

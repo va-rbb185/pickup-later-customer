@@ -10,6 +10,7 @@ import paymentMethodReducer from './paymentMethodReducer';
 import orderConfirmationReducer from './orderConfirmationReducer';
 import showSpinnerReducer from './showSpinnerReducer';
 import orderHistoryReducer from './orderHistoryReducer';
+import cartNoReducer from './cartNoReducer';
 
 const rootReducer = combineReducers({
     testData: testDataReducer,
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
     paymentMethod: paymentMethodReducer,
     orderConfirmation: orderConfirmationReducer,
     showSpinner: showSpinnerReducer,
-    orderHistory: orderHistoryReducer
+    orderHistory: orderHistoryReducer,
+    cartNo: cartNoReducer
 });
 
 export default rootReducer;

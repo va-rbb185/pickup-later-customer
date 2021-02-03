@@ -1,12 +1,14 @@
+import { generateClientId } from '../helpers';
 import mqttConfigurations from './mqttConfigurations';
 import logMessages from './logMessages';
 
 function establishConnection({ onMessageArrived, onConnectionLost }) {
     if (window.Paho) {
+        const clientId = generateClientId(12);
         const client = new window.Paho.MQTT.Client(
             mqttConfigurations.HOST,
             mqttConfigurations.PORT,
-            mqttConfigurations.CLIENT_ID
+            clientId
         );
 
         if (typeof onMessageArrived === 'function') {

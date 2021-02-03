@@ -34,6 +34,9 @@ class ProductQuantity extends React.Component {
             } else {
                 createCart(cart, authentication, hideSpinner);
             }
+        } else if (cartNo) {
+            showSpinner();
+            updateCart(cartNo, addToCart(product, cart), hideSpinner);
         } else {
             window.alert('Vui lòng đăng nhập để sử dụng giở hàng.');
             history.push('/login');
@@ -41,17 +44,14 @@ class ProductQuantity extends React.Component {
     }
 
     onClickRemoveFromCart() {
-        const { isLoggedIn, cartNo, product, cart, showSpinner, hideSpinner, updateCart } = this.props;
+        const { cartNo, product, cart, showSpinner, hideSpinner, updateCart } = this.props;
 
-        if (isLoggedIn && cartNo) {
-            if (this.calculateQuantity() === 1) {
-                const confirmation = window.confirm('Bạn có chắc chắn muốn xoá sản phẩm này khỏi giỏ hàng?');
-                if (confirmation) {
-                    showSpinner();
-                    updateCart(cartNo, removeFromCart(product, cart), hideSpinner);
-                }
+        if (cartNo) {
+            showSpinner();
+            if (this.calculateQuantity() === 1
+                && window.confirm('Bạn có chắc chắn muốn xoá sản phẩm này khỏi giỏ hàng?')) {
+                updateCart(cartNo, removeFromCart(product, cart), hideSpinner);
             } else {
-                showSpinner();
                 updateCart(cartNo, removeFromCart(product, cart), hideSpinner);
             }
         }
@@ -85,13 +85,13 @@ class ProductQuantity extends React.Component {
     }
 };
 
-const mapStateToProps = ({ cart, authentication }) => {
+const mapStateToProps = ({ cart, cartNo, authentication }) => {
     const isLoggedIn = authentication.login.status === LoginStatus.LOGGED_IN;
     return {
         cart,
         authentication,
         isLoggedIn,
-        cartNo: isLoggedIn ? authentication.user.data.cartNo : ''
+        cartNo: isLoggedIn ? authentication.user.data.cartNo : cartNo
     };
 };
 

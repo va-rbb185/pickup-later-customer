@@ -32,13 +32,25 @@ class App extends React.Component {
     getCartFromServer(nextAuthentication) {
         const currentLoginStatus = this.props.authentication.login.status;
         const nextLoginStatus = nextAuthentication.login.status;
-        const shouldGet = nextLoginStatus !== currentLoginStatus
-            && nextLoginStatus === LoginStatus.LOGGED_IN
+        const shouldGet = nextLoginStatus === LoginStatus.LOGGED_IN
+            && nextLoginStatus !== currentLoginStatus
             && !!nextAuthentication.user.data.cartNo;
 
         if (shouldGet) {
             this.props.showSpinner();
             this.props.getCart(nextAuthentication.user.data.cartNo, this.props.hideSpinner);
+        }
+    }
+
+    getCartByCartNo(nextCartNo) {
+        const currentLoginStatus = this.props.authentication.login.status;
+        const shouldGet = !!nextCartNo
+            && nextCartNo !== this.props.cartNo
+            && currentLoginStatus !== LoginStatus.LOGGED_IN;
+
+        if (shouldGet) {
+            this.props.showSpinner();
+            this.props.getCart(nextCartNo, this.props.hideSpinner);
         }
     }
 
@@ -77,6 +89,7 @@ class App extends React.Component {
     }
 
     shouldComponentUpdate(nextProps) {
+        this.getCartByCartNo(nextProps.cartNo);
         this.getCartFromServer(nextProps.authentication);
         this.updateCustomerDetails(nextProps.authentication);
         this.saveOrderConfirmationToStorage(nextProps.orderConfirmation);
@@ -106,8 +119,9 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = ({ cart, authentication, orderConfirmation }) => ({
+const mapStateToProps = ({ cart, cartNo, authentication, orderConfirmation }) => ({
     cart,
+    cartNo,
     authentication,
     orderConfirmation
 });

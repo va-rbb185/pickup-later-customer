@@ -1,8 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
-import { showCartButton, hideCartButton, showSpinner, hideSpinner, updateCart } from '../actions';
+import {
+    showCartButton,
+    hideCartButton,
+    showSpinner,
+    hideSpinner,
+    updateCart,
+    updateCartNo
+} from '../actions';
 import { LoginStatus } from '../enums';
 import { formatPrice, calculateAmount, calculateOriginalAmount, clearCart } from '../helpers';
 
@@ -12,12 +19,12 @@ import ProductTile from './ProductTile';
 class Cart extends React.Component {
     constructor(props) {
         super(props);
+        this.cartNoFromQueryString = new URLSearchParams(this.props.location.search).get('cartNo');
         this.onClickClearCart = this.onClickClearCart.bind(this);
     }
 
     onClickClearCart() {
-        if (this.props.isLoggedIn
-            && this.props.cartNo
+        if (this.props.cartNo
             && window.confirm('Bạn có chắc chắn muốn xoá tất cả sản phẩm khỏi giỏ hàng?')) {
             this.props.showSpinner();
             this.props.updateCart(this.props.cartNo, clearCart(), this.props.hideSpinner);
@@ -26,6 +33,9 @@ class Cart extends React.Component {
 
     componentDidMount() {
         this.props.hideCartButton();
+        if (this.cartNoFromQueryString) {
+            this.props.updateCartNo(this.cartNoFromQueryString);
+        }
     }
 
     componentWillUnmount() {
@@ -106,12 +116,12 @@ class Cart extends React.Component {
     }
 }
 
-const mapStateToProps = ({ cart, authentication, orderConfirmation }) => {
+const mapStateToProps = ({ cart, cartNo, authentication, orderConfirmation }) => {
     const isLoggedIn = authentication.login.status === LoginStatus.LOGGED_IN;
     return {
         cart,
         isLoggedIn,
-        cartNo: isLoggedIn ? authentication.user.data.cartNo : '',
+        cartNo: isLoggedIn ? authentication.user.data.cartNo : cartNo,
         hasOngoingOrder: !!orderConfirmation && !orderConfirmation.error
     };
 };
@@ -121,9 +131,11 @@ const mapDispatchToProps = {
     hideCartButton,
     showSpinner,
     hideSpinner,
-    updateCart
+    updateCart,
+    updateCartNo
 };
 
-const ConnectedCart = connect(mapStateToProps, mapDispatchToProps)(Cart);
+const CartWithRouter = withRouter(Cart);
+const ConnectedCart = connect(mapStateToProps, mapDispatchToProps)(CartWithRouter);
 
 export default ConnectedCart;

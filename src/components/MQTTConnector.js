@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import mqttConnection from '../mqtt';
 import { LoginStatus, OrderStatus } from '../enums';
-import { fetchOrderHistory, deleteOrderConfirmation } from '../actions';
+import { fetchOrderHistory, deleteOrderConfirmation, getCart } from '../actions';
 
-const MQTTConnector = ({ userId, fetchOrderHistory, deleteOrderConfirmation }) => {
+const MQTTConnector = ({ userId, fetchOrderHistory, deleteOrderConfirmation, getCart }) => {
     const onMessageArrived = message => {
         console.info('Message arrived: ' + message.payloadString, `userId=${userId}`);
         const action = JSON.parse(message.payloadString);
@@ -18,6 +18,9 @@ const MQTTConnector = ({ userId, fetchOrderHistory, deleteOrderConfirmation }) =
             if (payload.orderStatus.status === OrderStatus.COMPLETED.value || payload.orderStatus.status === OrderStatus.CANCELED.value) {
                 deleteOrderConfirmation();
             }
+        } else if (type === 'UPDATE_CART' && payload.cartNo) {
+            console.log(payload.cartNo);
+            getCart(payload.cartNo);
         }
     };
 
@@ -53,7 +56,8 @@ const mapStateToProps = ({ authentication }) => ({
 
 const mapDispatchToProps = {
     fetchOrderHistory,
-    deleteOrderConfirmation
+    deleteOrderConfirmation,
+    getCart
 };
 
 const ConnectedMQTTConnector = connect(mapStateToProps, mapDispatchToProps)(MQTTConnector);
