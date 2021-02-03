@@ -3,7 +3,13 @@ import {
     ADD_CART_ITEM,
     REMOVE_CART_ITEM,
     RETRIEVE_CART_FROM_STORAGE,
-    CLEAR_CART
+    CLEAR_CART,
+    GET_CART_SUCCESS,
+    GET_CART_FAILURE,
+    CREATE_CART_SUCCESS,
+    CREATE_CART_FAILURE,
+    UPDATE_CART_SUCCESS,
+    UPDATE_CART_FAILURE
 } from '../actions/types';
 
 const cartReducer = (prevState = initialCart, action) => {
@@ -42,6 +48,24 @@ const cartReducer = (prevState = initialCart, action) => {
 
         case RETRIEVE_CART_FROM_STORAGE:
             return action.cart;
+
+        case GET_CART_SUCCESS:
+            return action.cart;
+
+        case GET_CART_FAILURE:
+            return prevState;
+
+        case CREATE_CART_SUCCESS:
+            return action.cart;
+
+        case CREATE_CART_FAILURE:
+            return prevState;
+
+        case UPDATE_CART_SUCCESS:
+            return action.cart;
+
+        case UPDATE_CART_FAILURE:
+            return prevState;
 
         default:
             return prevState;

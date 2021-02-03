@@ -19,6 +19,9 @@ import hideSpinner from './hideSpinner';
 import fetchOrderHistory from './fetchOrderHistory';
 import retrieveOrderConfirmationFromStorage from './retrieveOrderConfirmationFromStorage';
 import deleteOrderConfirmation from './deleteOrderConfirmation';
+import getCart from './getCart';
+import createCart from './createCart';
+import updateCart from './updateCart';
 
 export {
     updateTestData,
@@ -41,5 +44,8 @@ export {
     hideSpinner,
     fetchOrderHistory,
     retrieveOrderConfirmationFromStorage,
-    deleteOrderConfirmation
+    deleteOrderConfirmation,
+    getCart,
+    createCart,
+    updateCart
 };

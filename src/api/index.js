@@ -1,19 +1,21 @@
 import { schemes, httpMethods, headers } from './staticEntries';
 
 const scheme = schemes.HTTPS;
-const host = 'c4c1131f73c7.ngrok.io';
+const host = '2daf9369de05.ngrok.io';
 const basePath = '/api/v1';
 const paths = {
     get: {
         menu: '/menu',
         users: '/users',
         orders: '/orders',
-        productSearch: '/search_product'
+        productSearch: '/search_product',
+        carts: '/carts'
     },
     post: {
         authPhone: '/customers/phone_login',
         authOtp: '/customers/verify_code',
-        orders: '/orders'
+        orders: '/orders',
+        carts: '/carts'
     }
 };
 
@@ -117,6 +119,30 @@ export const productSearch = async query => {
 export const updateOrder = async orderData => {
     const apiPath = getApiPath(paths.post.orders);
     const configurations = getConfigurations(httpMethods.PUT, orderData);
+    const response = await fetch(apiPath, configurations);
+    const data = await response.json();
+    return data;
+};
+
+export const getCart = async cartNo => {
+    const apiPath = getApiPath(paths.get.carts, cartNo);
+    const configurations = getConfigurations(httpMethods.GET);
+    const response = await fetch(apiPath, configurations);
+    const data = await response.json();
+    return data;
+};
+
+export const createCart = async superCart => {
+    const apiPath = getApiPath(paths.post.carts);
+    const configurations = getConfigurations(httpMethods.POST, superCart);
+    const response = await fetch(apiPath, configurations);
+    const data = await response.json();
+    return data;
+};
+
+export const updateCart = async (cartNo, cartObject) => {
+    const apiPath = getApiPath(paths.post.carts, cartNo);
+    const configurations = getConfigurations(httpMethods.PUT, cartObject);
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
     return data;
