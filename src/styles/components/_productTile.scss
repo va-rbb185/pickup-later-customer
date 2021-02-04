@@ -84,7 +84,8 @@
                 margin-bottom: 0.85rem;
 
                 img {
-                    @include fit-image;
+                    height: 85px;
+                    width: 100%;
                 }
             }
 

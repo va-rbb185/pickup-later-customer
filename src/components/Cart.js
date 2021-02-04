@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { Button } from 'semantic-ui-react';
+import { Button, Input } from 'semantic-ui-react';
 import {
     showCartButton,
     hideCartButton,
@@ -82,6 +82,7 @@ class Cart extends React.Component {
                         color="orange"
                         icon="share square"
                         content="Chia sẻ giỏ hàng"
+                        onClick={() => this.setState({ shareCartModalOpen: true })}
                     />
                 </div>
                 <div className="cart-summary">
@@ -124,12 +125,30 @@ class Cart extends React.Component {
                 <CustomModal
                     open={this.state.shareCartModalOpen}
                     header="Chia sẻ giỏ hàng"
-                    confirmation="Xác nhận"
+                    confirmation="OK"
                     onClose={() => this.setState({ shareCartModalOpen: false })}
                     onOpen={() => this.setState({ shareCartModalOpen: true })}
                     onConfirm={() => this.setState({ shareCartModalOpen: false })}
                 >
-                    Chia sẻ giỏ hàng
+                    <div className="share-cart-modal-content">
+                        <div className="share-cart-message">Chia sẻ liên kết bên dưới để cùng những người bạn đóng góp vào giỏ hàng:</div>
+                        <Input
+                            className="share-cart-link"
+                            icon="linkify"
+                            iconPosition="left"
+                            label={{
+                                tag: false,
+                                content: 'Sao chép',
+                                onClick: () => {
+                                    document.querySelector('.share-cart-link input').select();
+                                    document.execCommand('copy');
+                                }
+                            }}
+                            labelPosition="right"
+                            value={`${window.location.protocol}//${window.location.host}/cart?cartNo=${this.props.cartNo}`}
+                            readOnly={true}
+                        />
+                    </div>
                 </CustomModal>
             </div>
         );

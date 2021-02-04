@@ -1,7 +1,7 @@
 import { schemes, httpMethods, headers } from './staticEntries';
 
-const scheme = schemes.HTTP;
-const host = '39e6929d6c0d.ngrok.io';
+const scheme = schemes.HTTPS;
+const host = 'a8d5a83aeb61.ngrok.io';
 const basePath = '/api/v1';
 const paths = {
     get: {
