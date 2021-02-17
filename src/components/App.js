@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { LoginStatus } from '../enums';
 import { convertPhone84To0 } from '../helpers';
 import {
-    fetchMenu,
     retrieveCartFromStorage,
     retrieveAuthenticationFromStorage,
     retrieveOrderConfirmationFromStorage,
@@ -27,6 +26,7 @@ import Checkout from './Checkout';
 import OrderConfirmation from './OrderConfirmation';
 import OrderHistory from './OrderHistory';
 import OrderDetails from './OrderDetails';
+import StoreSelector from './StoreSelector';
 
 class App extends React.Component {
     getCartFromServer(nextAuthentication) {
@@ -83,7 +83,6 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.props.fetchMenu();
         this.props.retrieveAuthenticationFromStorage();
         this.props.retrieveOrderConfirmationFromStorage();
     }
@@ -100,6 +99,7 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <Spinner />
+                <StoreSelector disabled />
                 <CartButton />
                 <MQTTConnector />
                 <div className="page">
@@ -127,7 +127,6 @@ const mapStateToProps = ({ cart, cartNo, authentication, orderConfirmation }) =>
 });
 
 const mapDispatchToProps = {
-    fetchMenu,
     retrieveCartFromStorage,
     retrieveAuthenticationFromStorage,
     retrieveOrderConfirmationFromStorage,

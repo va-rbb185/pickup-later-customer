@@ -41,6 +41,12 @@
             .summary-entry {
                 @include make-custom-row(0);
 
+                margin-bottom: 0.25rem;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
                 .summary-title {
                     @include make-custom-col(77%, 0);
                 }
@@ -58,6 +64,8 @@
 
             .payment-methods {
                 @include make-custom-col(50%, 0);
+                @include display-flex;
+                @include align-items-center;
 
                 padding-right: 15px;
                 border-right: solid 1px $gainsboro;
@@ -65,9 +73,26 @@
 
             .promos {
                 @include make-custom-col(50%, 0);
+                @include display-flex;
+                @include align-items-center;
 
                 padding-left: 15px;
-                color: $dustyGray;
+
+                .promo-callout {
+                    @include flex-grow(1);
+
+                    overflow: hidden;
+                    white-space: nowrap;
+                    -o-text-overflow: ellipsis;
+                    text-overflow: ellipsis;
+                }
+
+                .remove-promo {
+                    font-size: 17px;
+                    font-weight: bold;
+                    color: $crimson;
+                    padding-left: 4px;
+                }
             }
         }
     }
@@ -180,6 +205,18 @@
             .checkmark {
                 visibility: visible;
             }
+        }
+    }
+
+    .promo {
+        margin-bottom: 1.5rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .promo-name {
+            margin-bottom: 0;
         }
     }
 }

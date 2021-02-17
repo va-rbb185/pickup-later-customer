@@ -17,11 +17,14 @@ const fetchMenuFailure = error => ({
     error
 });
 
-const fetchMenu = () => dispatch => {
+const fetchMenu = (storeToken, onCompletion) => dispatch => {
     dispatch(fetchMenuStart());
-    fetchStoreMenu()
+    fetchStoreMenu(storeToken)
         .then(response => dispatch(fetchMenuSuccess(response)))
-        .catch(error => dispatch(fetchMenuFailure(error)));
+        .catch(error => dispatch(fetchMenuFailure(error)))
+        .finally(() => {
+            if (typeof onCompletion === 'function') onCompletion();
+        });
 };
 
 export default fetchMenu;

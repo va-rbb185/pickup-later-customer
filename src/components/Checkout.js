@@ -5,8 +5,9 @@ import { Button, Form } from 'semantic-ui-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMobileAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faUser, faStickyNote } from '@fortawesome/free-regular-svg-icons';
-import { formatPrice, makeOrder, calculateAmount, calculateOriginalAmount } from '../helpers';
+import { formatPrice, makeOrder, calculateAmount, calculateDiscount } from '../helpers';
 import { PaymentMethod, LoginStatus } from '../enums';
+import { getVouchersOfUser, verifyVoucher } from '../api';
 import {
     showCartButton,
     hideCartButton,
@@ -14,7 +15,8 @@ import {
     updatePaymentMethod,
     createOrder,
     clearCart,
-    showSpinner
+    showSpinner,
+    hideSpinner
 } from '../actions';
 
 import PageHeader from './PageHeader';
@@ -29,9 +31,11 @@ class Checkout extends React.Component {
             customerPhone: this.props.customerDetails.phone,
             customerNote: this.props.customerDetails.note,
             currentlySelectedPayment: this.props.paymentMethod,
+            usersPromos: [],
+            selectedPromo: null,
             customerDetailModalOpen: false,
             paymentModalOpen: false,
-            promoModelOpen: false
+            promoModalOpen: false
         };
         this.setOpenCustomerDetailModal = this.setOpenCustomerDetailModal.bind(this);
         this.setOpenPaymentModal = this.setOpenPaymentModal.bind(this);
@@ -40,6 +44,36 @@ class Checkout extends React.Component {
         this.onSaveCustomerDetails = this.onSaveCustomerDetails.bind(this);
         this.onSubmitPaymentMethod = this.onSubmitPaymentMethod.bind(this);
         this.onPlaceOrder = this.onPlaceOrder.bind(this);
+    }
+
+    renderPromos() {
+        return this.state.usersPromos.map(promo => (
+            <li
+                key={promo.id}
+                className="promo"
+                onClick={() => {
+                    this.setOpenPromoModal(false);
+                    this.props.showSpinner();
+
+                    verifyVoucher({
+                        userID: this.props.authentication.user.data.id,
+                        voucherID: promo.code
+                    })
+                        .then(response => {
+                            if (response && response.message === 'valid') {
+                                this.setState({ selectedPromo: promo });
+                            } else {
+                                window.alert('Mã khuyến mãi không thể áp dụng cho đơn hàng này.');
+                            }
+                        })
+                        .catch(error => console.error(error))
+                        .finally(this.props.hideSpinner);
+                }}
+            >
+                <h5 className="promo-name">{promo.name}</h5>
+                <div className="promo-code">{promo.code}</div>
+            </li>
+        ));
     }
 
     setOpenCustomerDetailModal(open) {
@@ -51,7 +85,7 @@ class Checkout extends React.Component {
     }
 
     setOpenPromoModal(open) {
-        this.setState({ promoModelOpen: open });
+        this.setState({ promoModalOpen: open });
     }
 
     setPaymentMethod(paymentMethod) {
@@ -116,7 +150,8 @@ class Checkout extends React.Component {
                 this.props.storeMenu,
                 this.props.cart,
                 this.props.customerDetails,
-                this.props.paymentMethod
+                this.props.paymentMethod,
+                this.state.selectedPromo
             );
 
             /* Clear cart as order has been created */
@@ -129,6 +164,11 @@ class Checkout extends React.Component {
 
     componentDidMount() {
         this.props.hideCartButton();
+        if (this.props.authentication.login.status === LoginStatus.LOGGED_IN) {
+            getVouchersOfUser(this.props.authentication.user.data.id)
+                .then(response => this.setState({ usersPromos: response.vouchers }))
+                .catch(error => console.log(error));
+        }
     }
 
     componentDidUpdate(prevProps) {
@@ -178,7 +218,8 @@ class Checkout extends React.Component {
         }
 
         const orderSalePrice = calculateAmount(this.props.cart);
-        const orderOriginalPrice = calculateOriginalAmount(this.props.cart);
+        const orderDiscount = calculateDiscount(orderSalePrice, this.state.selectedPromo);
+        const orderDiscountedPrice = orderSalePrice - orderDiscount;
         const placeOrderAllowed = this.props.authentication.login.status === LoginStatus.LOGGED_IN
             && !!this.props.authentication.user.data
             && !this.props.orderConfirmation
@@ -237,8 +278,16 @@ class Checkout extends React.Component {
                             </div>
                             <div className="summary">
                                 <div className="summary-entry">
-                                    <div className="summary-title">Tổng tạm tính</div>
+                                    <div className="summary-title">Tạm tính</div>
                                     <div className="summary-amount text-right">{formatPrice(orderSalePrice)}</div>
+                                </div>
+                                <div className="summary-entry">
+                                    <div className="summary-title">Giảm giá</div>
+                                    <div className="summary-amount text-right">- {formatPrice(orderDiscount)}</div>
+                                </div>
+                                <div className="summary-entry">
+                                    <div className="summary-title">Tổng</div>
+                                    <div className="summary-amount text-right">{formatPrice(orderDiscountedPrice)}</div>
                                 </div>
                             </div>
                         </div>
@@ -248,10 +297,19 @@ class Checkout extends React.Component {
                         <div className="section-body">
                             <div className="payment-inner">
                                 <div className="payment-methods" onClick={() => this.setOpenPaymentModal(true)}>
-                                    <span>{PaymentMethod[this.props.paymentMethod].shortTitle}</span>
+                                    <span style={{ color: PaymentMethod[this.props.paymentMethod].indicatorColor }}>
+                                        {PaymentMethod[this.props.paymentMethod].shortTitle}
+                                    </span>
                                 </div>
-                                <div className="promos" onClick={() => this.setOpenPromoModal(false)}>
-                                    <span>Khuyến mãi/Giảm giá</span>
+                                <div className="promos">
+                                    <div className="promo-callout" onClick={() => this.setOpenPromoModal(true)}>
+                                        {this.state.selectedPromo ? this.state.selectedPromo.name : 'Thêm mã khuyến mãi'}
+                                    </div>
+                                    {this.state.selectedPromo
+                                        ? <div className="remove-promo" onClick={() => this.setState({ selectedPromo: null })}>x</div>
+                                        : null
+                                    }
+
                                 </div>
                             </div>
                         </div>
@@ -267,10 +325,10 @@ class Checkout extends React.Component {
                         <div className="subtotal">
                             <div className="label">Tổng cộng:</div>
                             <div className="values">
-                                <div className="value">{formatPrice(orderSalePrice)}</div>
+                                <div className="value">{formatPrice(orderDiscountedPrice)}</div>
                                 {
-                                    orderSalePrice !== orderOriginalPrice
-                                        ? <div className="original-value"><s>{formatPrice(orderOriginalPrice)}</s></div>
+                                    orderSalePrice !== orderDiscountedPrice
+                                        ? <div className="original-value"><s>{formatPrice(orderSalePrice)}</s></div>
                                         : null
                                 }
                             </div>
@@ -377,15 +435,18 @@ class Checkout extends React.Component {
                     </ul>
                 </CustomModal>
                 <CustomModal
-                    open={this.state.promoModelOpen}
+                    open={this.state.promoModalOpen}
                     header="Khuyến mãi/Giảm giá"
                     confirmation="Xác nhận"
+                    noActions
                     onClose={() => this.setOpenPromoModal(false)}
                     onOpen={() => this.setOpenPromoModal(true)}
-                    onConfirm={() => this.setOpenPromoModal(false)}
                 >
                     <ul className="promo-list">
-                        <li className="list-item">Hiện không có mã khuyến mãi khả dụng.</li>
+                        {this.state.usersPromos.length > 0
+                            ? this.renderPromos()
+                            : <li className="list-item">Không có mã khuyến mãi khả dụng.</li>
+                        }
                     </ul>
                 </CustomModal>
             </div>
@@ -409,7 +470,8 @@ const mapDispatchToProps = {
     updatePaymentMethod,
     createOrder,
     clearCart,
-    showSpinner
+    showSpinner,
+    hideSpinner
 };
 
 const ConnectedCheckout = connect(mapStateToProps, mapDispatchToProps)(Checkout);

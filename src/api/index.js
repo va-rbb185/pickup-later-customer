@@ -1,23 +1,8 @@
 import { schemes, httpMethods, headers } from './staticEntries';
 
 const scheme = schemes.HTTPS;
-const host = 'a8d5a83aeb61.ngrok.io';
+const host = 'fb9bc91edfa0.ngrok.io';
 const basePath = '/api/v1';
-const paths = {
-    get: {
-        menu: '/menu',
-        users: '/users',
-        orders: '/orders',
-        productSearch: '/search_product',
-        carts: '/carts'
-    },
-    post: {
-        authPhone: '/customers/phone_login',
-        authOtp: '/customers/verify_code',
-        orders: '/orders',
-        carts: '/carts'
-    }
-};
 
 function toQueryString(params) {
     if (typeof params !== 'object') return '';
@@ -43,27 +28,41 @@ function getApiPath(path, params = null) {
     return apiPath;
 }
 
-function getConfigurations(method, data = null) {
+function getConfigurations(method, data = null, token = null) {
     let configurations = {
         method,
         headers
     };
+
     if (data) {
         configurations.body = JSON.stringify(data);
     }
+
+    if (token && typeof token === 'string') {
+        configurations.headers['Authorization'] = token;
+    }
+
     return configurations;
 }
 
-export const fetchStoreMenu = async () => {
-    const apiPath = getApiPath(paths.get.menu);
+export const fetchStores = async () => {
+    const apiPath = getApiPath('/stores');
     const configurations = getConfigurations(httpMethods.GET);
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
     return data;
 };
 
+export const fetchStoreMenu = async storeToken => {
+    const apiPath = getApiPath('/menu');
+    let configurations = getConfigurations(httpMethods.GET, null, storeToken);
+    const response = await fetch(apiPath, configurations);
+    const data = await response.json();
+    return data;
+};
+
 export const authenticatePhone = async phoneNumber => {
-    const apiPath = getApiPath(paths.post.authPhone);
+    const apiPath = getApiPath('/customers/phone_login');
     const configurations = getConfigurations(httpMethods.POST, { phoneNumber });
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
@@ -71,21 +70,18 @@ export const authenticatePhone = async phoneNumber => {
 };
 
 export const authenticateOtp = async (phoneNumber, otp) => {
-    const apiPath = getApiPath(paths.post.authOtp);
-    const configurations = getConfigurations(
-        httpMethods.POST,
-        {
-            phoneNumber,
-            codeVerify: otp
-        }
-    );
+    const apiPath = getApiPath('/customers/verify_code');
+    const configurations = getConfigurations(httpMethods.POST, {
+        phoneNumber,
+        codeVerify: otp
+    });
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
     return data;
 };
 
 export const createOrder = async order => {
-    const apiPath = getApiPath(paths.post.orders);
+    const apiPath = getApiPath('/orders');
     const configurations = getConfigurations(httpMethods.POST, order);
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
@@ -93,7 +89,7 @@ export const createOrder = async order => {
 };
 
 export const fetchOrdersByUser = async (userId, params) => {
-    const apiPath = getApiPath(`${paths.get.users}/${userId}/orders`, params);
+    const apiPath = getApiPath(`/users/${userId}/orders`, params);
     const configurations = getConfigurations(httpMethods.GET);
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
@@ -101,7 +97,7 @@ export const fetchOrdersByUser = async (userId, params) => {
 };
 
 export const fetchOrder = async orderId => {
-    const apiPath = getApiPath(paths.get.orders, orderId);
+    const apiPath = getApiPath(`/orders/${orderId}`);
     const configurations = getConfigurations(httpMethods.GET);
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
@@ -109,7 +105,7 @@ export const fetchOrder = async orderId => {
 };
 
 export const productSearch = async query => {
-    const apiPath = getApiPath(paths.get.productSearch, { keyword: query });
+    const apiPath = getApiPath('/search_product', { keyword: query });
     const configurations = getConfigurations(httpMethods.GET);
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
@@ -117,7 +113,7 @@ export const productSearch = async query => {
 };
 
 export const updateOrder = async orderData => {
-    const apiPath = getApiPath(paths.post.orders);
+    const apiPath = getApiPath('/orders');
     const configurations = getConfigurations(httpMethods.PUT, orderData);
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
@@ -125,7 +121,7 @@ export const updateOrder = async orderData => {
 };
 
 export const getCart = async cartNo => {
-    const apiPath = getApiPath(paths.get.carts, cartNo);
+    const apiPath = getApiPath(`/carts/${cartNo}`);
     const configurations = getConfigurations(httpMethods.GET);
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
@@ -133,7 +129,7 @@ export const getCart = async cartNo => {
 };
 
 export const createCart = async superCart => {
-    const apiPath = getApiPath(paths.post.carts);
+    const apiPath = getApiPath('/carts');
     const configurations = getConfigurations(httpMethods.POST, superCart);
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
@@ -141,9 +137,25 @@ export const createCart = async superCart => {
 };
 
 export const updateCart = async (cartNo, cartObject) => {
-    const apiPath = getApiPath(paths.post.carts, cartNo);
+    const apiPath = getApiPath(`/carts/${cartNo}`);
     const configurations = getConfigurations(httpMethods.PUT, cartObject);
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
     return data;
 };
+
+export const getVouchersOfUser = async userId => {
+    const apiPath = getApiPath(`/customers/${userId}/vouchers`);
+    const configurations = getConfigurations(httpMethods.GET);
+    const response = await fetch(apiPath, configurations);
+    const data = await response.json();
+    return data;
+};
+
+export const verifyVoucher = async voucherData => {
+    const apiPath = getApiPath('/vouchers/verify');
+    const configurations = getConfigurations(httpMethods.POST,  voucherData);
+    const response = await fetch(apiPath, configurations);
+    const data = await response.json();
+    return data;
+}

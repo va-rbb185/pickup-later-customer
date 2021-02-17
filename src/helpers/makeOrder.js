@@ -1,12 +1,13 @@
 import { calculateAmount, calculateOriginalAmount } from '.';
 
-const makeOrder = (authentication, storeMenu, cart, customerDetails, paymentMethod) => ({
+const makeOrder = (authentication, storeMenu, cart, customerDetails, paymentMethod, promo) => ({
     userId: authentication.user.data.id,
     storeId: storeMenu.storeId,
     userName: customerDetails.name,
     phoneNumber: customerDetails.phone,
     note: customerDetails.note,
     paymentMethod,
+    voucherCode: promo ? promo.code : '',
     totalAmount: calculateAmount(cart),
     totalPriceAmount: calculateOriginalAmount(cart),
     orderDetails: mapCartToOrderDetails(cart),

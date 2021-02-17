@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Modal } from 'semantic-ui-react';
 
-const CustomModal = ({ open, header, confirmation, children, onOpen, onClose, onConfirm }) => {
+const CustomModal = ({ open, header, confirmation, noActions, children, onOpen, onClose, onConfirm }) => {
     return (
         <Modal
             closeIcon={true}
@@ -14,15 +14,18 @@ const CustomModal = ({ open, header, confirmation, children, onOpen, onClose, on
             <Modal.Content>
                 {children}
             </Modal.Content>
-            <Modal.Actions>
-                <Button
-                    content={confirmation}
-                    labelPosition="right"
-                    icon="checkmark"
-                    onClick={onConfirm}
-                    positive
-                />
-            </Modal.Actions>
+            {!noActions
+                ? <Modal.Actions>
+                    <Button
+                        content={confirmation}
+                        labelPosition="right"
+                        icon="checkmark"
+                        onClick={onConfirm}
+                        positive
+                    />
+                </Modal.Actions>
+                : null
+            }
         </Modal>
     );
 };

@@ -13,6 +13,7 @@ import getOrderQuantity from './getOrderQuantity';
 import getBriefDescription from './getBriefDescription';
 import { addToCart, removeFromCart, clearCart } from './updateCart';
 import generateClientId from './generateClientId';
+import calculateDiscount from './calculateDiscount';
 
 export {
     formatPrice,
@@ -32,5 +33,6 @@ export {
     addToCart,
     removeFromCart,
     clearCart,
-    generateClientId
+    generateClientId,
+    calculateDiscount
 };
