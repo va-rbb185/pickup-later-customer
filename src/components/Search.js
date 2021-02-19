@@ -21,16 +21,21 @@ const Search = () => {
     useEffect(() => {
         if (searchQuery && typeof searchQuery === 'string') {
             productSearch(searchQuery)
-                .then(response => setProductCategory(response.data))
+                .then(response => {
+                    // console.log(response.data)
+                    setProductCategory(response.data)
+                })
                 .catch(error => console.error(error));
         }
     }, [searchQuery]);
+
+    console.log(productCategory);
 
     return (
         <div className="search inner-page">
             <PageHeader>Tìm kiếm</PageHeader>
             <div className="top-section">
-                <div className="component-container">
+                <div className="component-c)ontainer">
                     <SearchBox
                         onSearchQueryChange={searchQuery => {
                             history.replace({
@@ -44,7 +49,7 @@ const Search = () => {
             <div className="search-result product-categories">
                 {productCategory.length > 0
                     ? productCategory
-                        .filter(({ products }) => products.length > 0)
+                        .filter(({ products }) => !!products && products.length > 0)
                         .map(category => {
                             return (
                                 <div key={`productCategory_${category.id}`} className="product-category">

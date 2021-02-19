@@ -99,7 +99,7 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <Spinner />
-                <StoreSelector disabled />
+                <StoreSelector />
                 <CartButton />
                 <MQTTConnector />
                 <div className="page">
