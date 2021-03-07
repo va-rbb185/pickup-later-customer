@@ -8,7 +8,8 @@ import {
     showSpinner,
     hideSpinner,
     updateCart,
-    updateCartNo
+    updateCartNo,
+    fetchMenu
 } from '../actions';
 import { LoginStatus } from '../enums';
 import { formatPrice, calculateAmount, calculateOriginalAmount, clearCart } from '../helpers';
@@ -23,7 +24,9 @@ class Cart extends React.Component {
         this.state = {
             shareCartModalOpen: false
         };
-        this.cartNoFromQueryString = new URLSearchParams(this.props.location.search).get('cartNo');
+        const urlParams = new URLSearchParams(props.location.search);
+        this.cartNoFromQueryString = urlParams.get('cartNo');
+        this.storeToken = urlParams.get('storeToken');
         this.onClickClearCart = this.onClickClearCart.bind(this);
     }
 
@@ -39,6 +42,10 @@ class Cart extends React.Component {
         this.props.hideCartButton();
         if (this.cartNoFromQueryString) {
             this.props.updateCartNo(this.cartNoFromQueryString);
+        }
+        if (this.storeToken) {
+            this.props.showSpinner();
+            this.props.fetchMenu(this.storeToken, this.props.hideSpinner);
         }
     }
 
@@ -145,7 +152,7 @@ class Cart extends React.Component {
                                 }
                             }}
                             labelPosition="right"
-                            value={`${window.location.protocol}//${window.location.host}/cart?cartNo=${this.props.cartNo}`}
+                            value={`${window.location.protocol}//${window.location.host}/cart?cartNo=${this.props.cartNo}&storeToken=${this.props.storeToken}`}
                             readOnly={true}
                         />
                     </div>
@@ -155,13 +162,14 @@ class Cart extends React.Component {
     }
 }
 
-const mapStateToProps = ({ cart, cartNo, authentication, orderConfirmation }) => {
+const mapStateToProps = ({ cart, cartNo, authentication, orderConfirmation, storeMenu }) => {
     const isLoggedIn = authentication.login.status === LoginStatus.LOGGED_IN;
     return {
         cart,
         isLoggedIn,
         cartNo: isLoggedIn ? authentication.user.data.cartNo : cartNo,
-        hasOngoingOrder: !!orderConfirmation && !orderConfirmation.error
+        hasOngoingOrder: !!orderConfirmation && !orderConfirmation.error,
+        storeToken: !!storeMenu.storeId ? storeMenu.token : ''
     };
 };
 
@@ -171,7 +179,8 @@ const mapDispatchToProps = {
     showSpinner,
     hideSpinner,
     updateCart,
-    updateCartNo
+    updateCartNo,
+    fetchMenu
 };
 
 const CartWithRouter = withRouter(Cart);

@@ -11,6 +11,7 @@ import orderConfirmationReducer from './orderConfirmationReducer';
 import showSpinnerReducer from './showSpinnerReducer';
 import orderHistoryReducer from './orderHistoryReducer';
 import cartNoReducer from './cartNoReducer';
+import showAboutReducer from './showAboutReducer';
 
 const rootReducer = combineReducers({
     testData: testDataReducer,
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
     orderConfirmation: orderConfirmationReducer,
     showSpinner: showSpinnerReducer,
     orderHistory: orderHistoryReducer,
-    cartNo: cartNoReducer
+    cartNo: cartNoReducer,
+    aboutShown: showAboutReducer
 });
 
 export default rootReducer;

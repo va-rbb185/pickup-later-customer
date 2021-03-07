@@ -15,4 +15,15 @@
     .header {
         margin-bottom: 1rem;
     }
+
+    .about-link {
+        position: absolute;
+        bottom: 6px;
+        width: 100%;
+        text-align: center;
+
+        a {
+            color: rgb(29, 128, 228);
+        }
+    }
 }

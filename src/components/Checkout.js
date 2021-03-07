@@ -151,7 +151,8 @@ class Checkout extends React.Component {
                 this.props.cart,
                 this.props.customerDetails,
                 this.props.paymentMethod,
-                this.state.selectedPromo
+                this.state.selectedPromo,
+                this.props.storeMenu.token
             );
 
             /* Clear cart as order has been created */

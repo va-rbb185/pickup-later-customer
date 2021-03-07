@@ -24,6 +24,8 @@ import createCart from './createCart';
 import updateCart from './updateCart';
 import updateCartNo from './updateCartNo';
 import updateAuthCartNo from './updateAuthCartNo';
+import showAbout from './showAbout';
+import hideAbout from './hideAbout';
 
 export {
     updateTestData,
@@ -51,5 +53,7 @@ export {
     createCart,
     updateCart,
     updateCartNo,
-    updateAuthCartNo
+    updateAuthCartNo,
+    showAbout,
+    hideAbout
 };

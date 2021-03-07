@@ -1,0 +1,40 @@
+.about {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    z-index: 5001;
+    padding: 2rem 1rem;
+
+    p {
+        margin-bottom: 0.25rem;
+    }
+
+    > div {
+        margin-bottom: 1.5rem;
+    }
+
+    .app-info {
+        text-align: center;
+
+        .app-logo {
+            width: 100px;
+        }
+
+        .app-name {
+            margin-top: 0.5rem;
+        }
+    }
+
+    .close {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 36px;
+        height: 36px;
+        font-size: 36px;
+        margin-bottom: 0;
+    }
+}

@@ -27,6 +27,8 @@ import OrderConfirmation from './OrderConfirmation';
 import OrderHistory from './OrderHistory';
 import OrderDetails from './OrderDetails';
 import StoreSelector from './StoreSelector';
+import About from './About';
+import Footer from './Footer';
 
 class App extends React.Component {
     getCartFromServer(nextAuthentication) {
@@ -99,8 +101,9 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <Spinner />
-                <StoreSelector />
+                <StoreSelector disabled />
                 <CartButton />
+                <About />
                 <MQTTConnector />
                 <div className="page">
                     <Route exact path="/" component={Home} />
@@ -113,6 +116,7 @@ class App extends React.Component {
                     <Route path="/order-confirmation" component={OrderConfirmation} />
                     <Route exact path="/orders" component={OrderHistory} />
                     <Route path="/orders/:id" component={OrderDetails} />
+                    <Footer />
                 </div>
             </BrowserRouter>
         );

@@ -814,6 +814,62 @@ a:hover {
 .store-selector .header {
   margin-bottom: 1rem;
 }
+.store-selector .about-link {
+  position: absolute;
+  bottom: 6px;
+  width: 100%;
+  text-align: center;
+}
+.store-selector .about-link a {
+  color: #1d80e4;
+}
+
+.about {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 5001;
+  padding: 2rem 1rem;
+}
+.about p {
+  margin-bottom: 0.25rem;
+}
+.about > div {
+  margin-bottom: 1.5rem;
+}
+.about .app-info {
+  text-align: center;
+}
+.about .app-info .app-logo {
+  width: 100px;
+}
+.about .app-info .app-name {
+  margin-top: 0.5rem;
+}
+.about .close {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 36px;
+  height: 36px;
+  font-size: 36px;
+  margin-bottom: 0;
+}
+
+.footer {
+  padding-top: 1.5rem;
+  background-color: #fff;
+}
+.footer .about-link {
+  width: 100%;
+  text-align: center;
+}
+.footer .about-link a {
+  color: #1d80e4;
+}
 
 /* pages */
 .home .category-list {
