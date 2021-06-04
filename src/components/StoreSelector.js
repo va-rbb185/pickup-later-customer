@@ -16,7 +16,7 @@ const StoreSelector = ({ hasSelectedStore, fetchMenu, showSpinner, hideSpinner, 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    if (disabled || hasSelectedStore) return null;
+    if (hasSelectedStore) return null;
 
     return (
         <div className="store-selector">

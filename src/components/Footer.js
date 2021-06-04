@@ -8,9 +8,9 @@ const Footer = () => {
 
     return (
         <div className="footer">
-            <div className="about-link">
+            {/* <div className="about-link">
                 <Link to="#about" onClick={() => dispatch(showAbout())}>About us</Link>
-            </div>
+            </div> */}
         </div>
     );
 };
