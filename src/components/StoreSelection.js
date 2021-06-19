@@ -5,16 +5,35 @@ import { Dropdown } from 'semantic-ui-react';
 import { fetchMenu, showSpinner, hideSpinner, showAbout } from '../actions';
 import { fetchStores } from '../api';
 
-const StoreSelector = ({ hasSelectedStore, fetchMenu, showSpinner, hideSpinner, showAbout, disabled = false }) => {
+/* Define a hook that helps get user's location */
+const useGetLocation = () => {
+    const [location, setLocation] = useState({ lat: '', lng: '' });
+
+    const onSuccess = ({ coords }) => setLocation({ lat: coords.latitude, lng: coords.longitude });
+    const onError = () => alert('Xảy ra lỗi trong việc xác định vị trí của bạn.');
+
+    useEffect(() => {
+        if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        } else {
+            alert('Thiết bị hoặc trình duyệt không hỗ trợ định vị GPS.');
+        }
+    }, []);
+
+    return location;
+};
+
+const StoreSelection = ({ hasSelectedStore, fetchMenu, showSpinner, hideSpinner, showAbout, disabled = false }) => {
     const [stores, setStores] = useState([]);
+    const currentLocation = useGetLocation();
+
     useEffect(() => {
         showSpinner();
-        fetchStores()
+        fetchStores(currentLocation)
             .then(response => setStores(response.stores))
             .catch(error => console.error(error))
             .finally(hideSpinner);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [currentLocation, showSpinner, hideSpinner]);
 
     if (disabled || hasSelectedStore) return null;
 
@@ -56,6 +75,6 @@ const mapDispatchToProps = {
     showAbout
 };
 
-const ConnectedComp = connect(mapStateToProps, mapDispatchToProps)(StoreSelector);
+const ConnectedComp = connect(mapStateToProps, mapDispatchToProps)(StoreSelection);
 
 export default ConnectedComp;

@@ -45,8 +45,8 @@ function getConfigurations(method, data = null, token = null) {
     return configurations;
 }
 
-export const fetchStores = async () => {
-    const apiPath = getApiPath('/stores');
+export const fetchStores = async location => {
+    const apiPath = getApiPath('/stores', location);
     const configurations = getConfigurations(httpMethods.GET);
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
@@ -154,7 +154,7 @@ export const getVouchersOfUser = async userId => {
 
 export const verifyVoucher = async voucherData => {
     const apiPath = getApiPath('/vouchers/verify');
-    const configurations = getConfigurations(httpMethods.POST,  voucherData);
+    const configurations = getConfigurations(httpMethods.POST, voucherData);
     const response = await fetch(apiPath, configurations);
     const data = await response.json();
     return data;

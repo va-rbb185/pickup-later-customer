@@ -26,7 +26,7 @@ import Checkout from './Checkout';
 import OrderConfirmation from './OrderConfirmation';
 import OrderHistory from './OrderHistory';
 import OrderDetails from './OrderDetails';
-import StoreSelector from './StoreSelector';
+import StoreSelection from './StoreSelection';
 import About from './About';
 import Footer from './Footer';
 
@@ -101,7 +101,7 @@ class App extends React.Component {
         return (
             <BrowserRouter>
                 <Spinner />
-                <StoreSelector disabled />
+                <StoreSelection disabled />
                 <CartButton />
                 <About />
                 <MQTTConnector />
