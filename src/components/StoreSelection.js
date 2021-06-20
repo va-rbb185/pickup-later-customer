@@ -51,7 +51,6 @@ const StoreSelection = ({ hasSelectedStore, fetchMenu, showSpinner, hideSpinner,
 };
 
 const mapStateToProps = ({ storeMenu }) => ({ hasSelectedStore: !!storeMenu.storeId });
-
 const mapDispatchToProps = {
     fetchMenu,
     showSpinner,
@@ -59,6 +58,4 @@ const mapDispatchToProps = {
     showAbout
 };
 
-const ConnectedComp = connect(mapStateToProps, mapDispatchToProps)(StoreSelection);
-
-export default ConnectedComp;
+export default connect(mapStateToProps, mapDispatchToProps)(StoreSelection);
