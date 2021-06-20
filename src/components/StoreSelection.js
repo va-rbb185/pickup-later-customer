@@ -6,11 +6,18 @@ import { fetchMenu, showSpinner, hideSpinner, showAbout } from '../actions';
 import { fetchStores } from '../api';
 
 /* Define a hook that helps get user's location */
-const useGetLocation = () => {
+const useGeolocation = () => {
     const [location, setLocation] = useState({ lat: '', lng: '' });
 
-    const onSuccess = ({ coords }) => setLocation({ lat: coords.latitude, lng: coords.longitude });
-    const onError = () => alert('Xảy ra lỗi trong việc xác định vị trí của bạn.');
+    const onSuccess = ({ coords }) => setLocation({
+        lat: coords.latitude,
+        lng: coords.longitude
+    });
+
+    const onError = err => {
+        console.error(err);
+        alert('Xảy ra lỗi trong việc xác định vị trí của bạn.');
+    };
 
     useEffect(() => {
         if ('geolocation' in navigator) {
@@ -25,7 +32,7 @@ const useGetLocation = () => {
 
 const StoreSelection = ({ hasSelectedStore, fetchMenu, showSpinner, hideSpinner, showAbout, disabled = false }) => {
     const [stores, setStores] = useState([]);
-    const currentLocation = useGetLocation();
+    const currentLocation = useGeolocation();
 
     useEffect(() => {
         showSpinner();
