@@ -2,33 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Dropdown } from 'semantic-ui-react';
-import { fetchMenu, showSpinner, hideSpinner, showAbout } from '../actions';
+
 import { fetchStores } from '../api';
-
-/* Define a hook that helps get user's location */
-const useGeolocation = () => {
-    const [location, setLocation] = useState({ lat: '', lng: '' });
-
-    const onSuccess = ({ coords }) => setLocation({
-        lat: coords.latitude,
-        lng: coords.longitude
-    });
-
-    const onError = err => {
-        console.error(err);
-        alert('Xảy ra lỗi trong việc xác định vị trí của bạn.');
-    };
-
-    useEffect(() => {
-        if ('geolocation' in navigator) {
-            navigator.geolocation.getCurrentPosition(onSuccess, onError);
-        } else {
-            alert('Thiết bị hoặc trình duyệt không hỗ trợ định vị GPS.');
-        }
-    }, []);
-
-    return location;
-};
+import { useGeolocation } from '../hooks';
+import { fetchMenu, showSpinner, hideSpinner, showAbout } from '../actions';
 
 const StoreSelection = ({ hasSelectedStore, fetchMenu, showSpinner, hideSpinner, showAbout, disabled = false }) => {
     const [stores, setStores] = useState([]);
